@@ -1,8 +1,0 @@
-atox\controller\Pagina.class
-atox\controller\HistoricoOrcamentosController.class
-atox\controller\PrincipalController.class
-atox\CarSystemMain.class
-atox\controller\PaginaFactory.class
-atox\view\ViewFactory.class
-atox\controller\TemplatePaginasController.class
-atox\controller\LoginController.class
