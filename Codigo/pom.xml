@@ -9,7 +9,7 @@
   <version>0.0.1</version>
 
   <name>CarSystem</name>
-  <!-- FIXME change it to the project's website -->
+
   <url>https://github.com/atoxcorp/carsystem</url>
 
   <properties>
@@ -27,11 +27,10 @@
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.zenjava/javafx-maven-plugin -->
 
-    <!-- https://mvnrepository.com/artifact/org.json/json -->
     <dependency>
-        <groupId>org.json</groupId>
-        <artifactId>json</artifactId>
-        <version>20180813</version>
+      <groupId>com.microsoft.sqlserver</groupId>
+      <artifactId>mssql-jdbc</artifactId>
+      <version>7.0.0.jre10</version>
     </dependency>
 
     <dependency>
