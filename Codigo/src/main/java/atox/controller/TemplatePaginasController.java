@@ -11,7 +11,7 @@ public class TemplatePaginasController {
     private ScrollPane paneConteudo;
 
     private void carregaPagina(PaginaInterface pag){
-        paneConteudo.setContent(pag.getNode());
+        
     }
 
     public void initialize(){
