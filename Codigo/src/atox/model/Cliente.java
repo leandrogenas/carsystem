@@ -7,8 +7,26 @@ public class Cliente {
     private String telefone;
     private String email;
 
-    public Cliente(){
+
+     Cliente(){
 
     }
+public String getNome() {
+     return nome;
+    }
+    public String getCPF() {
+        return CPF;
+    }
 
-}
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
