@@ -1,9 +1,10 @@
 <component name="libraryTable">
   <library name="CarSystem">
     <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/ini4j-0.5.4.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/jfxrt.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mssql-jdbc-7.0.0.jre8.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/junit-4.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mssql-jdbc-7.0.0.jre8.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
