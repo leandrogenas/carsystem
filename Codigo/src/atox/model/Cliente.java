@@ -7,13 +7,14 @@ public class Cliente {
     private String telefone;
     private String email;
 
-
-     Cliente(){
+    Cliente() {
 
     }
-public String getNome() {
-     return nome;
+
+    public String getNome() {
+        return nome;
     }
+
     public String getCPF() {
         return CPF;
     }
@@ -29,4 +30,6 @@ public String getNome() {
     public String getEndereco() {
         return endereco;
     }
+
+}
 
