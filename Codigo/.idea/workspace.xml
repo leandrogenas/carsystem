@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Teste-JavaFx/atox/controller/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Teste-JavaFx/atox/model/Cliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Teste-JavaFx/atox/model/Cliente.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Teste-JavaFx/fxml/novo_orcamento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Teste-JavaFx/fxml/novo_orcamento.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fxml/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fxml/novo_orcamento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/novo_orcamento.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CarSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/atox/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/atox/Principal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/atox/view/PaginaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/atox/view/PaginaPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxml/historico_orcamentos.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/template_historico.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxml/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/tela_login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxml/menu_template.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/template_principal.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxml/novo_orcamento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/tela_novo_orcamento_1.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxml/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fxml/template_paginas.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/fxml/tela_principal.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -97,11 +100,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CarSystem.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CarSystem.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CarSystem.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="667">
-              <caret line="57" column="20" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="20" />
+              <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2086#2087#0" expanded="true" />
@@ -111,8 +114,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fxml/login.fxml">
+      <file leaf-file-name="tela_login.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/fxml/tela_login.fxml">
           <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="205">
@@ -121,40 +124,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BancoDeDados.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BancoDeDados.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/atox/BancoDeDados.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
+            <state relative-caret-position="18">
               <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="novo_orcamento.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fxml/novo_orcamento.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="historico_orcamentos.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fxml/historico_orcamentos.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="template_paginas.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/fxml/template_paginas.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-270" />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Configs.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/atox/Configs.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -173,20 +147,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
               <caret line="5" selection-start-line="5" selection-end-line="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TemplatePaginasController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/atox/controller/TemplatePaginasController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#598#599#0" expanded="true" />
-                <element signature="e#665#666#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -228,7 +188,6 @@
         <option value="$PROJECT_DIR$/src/atox/Login.java" />
         <option value="$PROJECT_DIR$/src/atox/Configs.java" />
         <option value="$PROJECT_DIR$/src/atox/Principal.java" />
-        <option value="$PROJECT_DIR$/src/CarSystem.java" />
         <option value="$PROJECT_DIR$/src/atox/controller/PrincipalController.java" />
         <option value="$PROJECT_DIR$/src/fxml/template_paginas.fxml" />
         <option value="$PROJECT_DIR$/src/atox/view/PaginaPrincipal.java" />
@@ -241,6 +200,7 @@
         <option value="$PROJECT_DIR$/src/atox/controller/LoginController.java" />
         <option value="$PROJECT_DIR$/src/fxml/novo_orcamento.fxml" />
         <option value="$PROJECT_DIR$/src/fxml/login.fxml" />
+        <option value="$PROJECT_DIR$/src/CarSystem.java" />
       </list>
     </option>
   </component>
@@ -280,6 +240,13 @@
               <item name="Codigo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="atox" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Codigo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Codigo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="atox" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Codigo" type="b2602c69:ProjectViewProjectNode" />
@@ -484,7 +451,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -495,11 +461,11 @@
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="5" />
       <window_info anchor="bottom" id="Version Control" order="13" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34415585" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.34415585" />
       <window_info anchor="bottom" id="Terminal" order="14" weight="0.32954547" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.21028744" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.21028744" />
       <window_info anchor="bottom" id="SonarLint" order="7" weight="0.2857143" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -555,7 +521,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/fxml/historico_orcamentos.fxml">
+    <entry file="file://$PROJECT_DIR$/src/fxml/template_historico.fxml">
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
       <provider editor-type-id="text-editor" />
     </entry>
@@ -602,7 +568,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/fxml/novo_orcamento.fxml">
+    <entry file="file://$PROJECT_DIR$/src/fxml/tela_novo_orcamento_1.fxml">
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
       <provider editor-type-id="text-editor" />
     </entry>
@@ -625,7 +591,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/fxml/novo_orcamento.fxml">
+    <entry file="file://$PROJECT_DIR$/src/fxml/tela_novo_orcamento_1.fxml">
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
       <provider editor-type-id="text-editor" />
     </entry>
@@ -676,23 +642,7 @@
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java" />
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/atox/Login.java" />
-    <entry file="file://$PROJECT_DIR$/src/fxml/menu_template.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="21" column="14" lean-forward="true" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/javafx.graphics/javafx/application/Application.java" />
-    <entry file="file://$PROJECT_DIR$/src/fxml/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/atox/view/PaginaFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -775,28 +725,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/atox/BancoDeDados.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fxml/novo_orcamento.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fxml/historico_orcamentos.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fxml/template_paginas.fxml">
+    <entry file="file://$PROJECT_DIR$/src/fxml/tela_principal.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-270" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/fxml/login.fxml">
+    <entry file="file://$PROJECT_DIR$/src/fxml/tela_login.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
@@ -807,12 +742,43 @@
     <entry file="file://$PROJECT_DIR$/src/CarSystem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="667">
-          <caret line="57" column="20" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="20" />
+          <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2086#2087#0" expanded="true" />
             <element signature="e#2114#2115#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fxml/tela_novo_orcamento_1.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fxml/sample.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fxml/template_historico.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fxml/template_principal.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/atox/BancoDeDados.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>

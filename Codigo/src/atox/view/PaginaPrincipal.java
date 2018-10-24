@@ -6,7 +6,7 @@ public class PaginaPrincipal extends PaginaBase {
     }
 
     @Override
-    public String getNomeFXML() { return "/fxml/novo_orcamento.fxml"; }
+    public String getNomeFXML() { return "/fxml/tela_novo_orcamento_1.fxml"; }
 
     @Override
     public String getTitulo() { return "CarSystem"; }
