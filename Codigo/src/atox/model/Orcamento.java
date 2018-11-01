@@ -1,6 +1,9 @@
 package atox.model;
 
-public class Orçamento {
+
+import java.util.Date;
+
+public class Orcamento {
 
     private int codOrcamento;
     private String placaCarro;
@@ -11,7 +14,8 @@ public class Orçamento {
     public void Orcamento() {
 
     }
-    public void setOrcamento(Orcamento){
+
+    public void setOrcamento(){
 
     }
 

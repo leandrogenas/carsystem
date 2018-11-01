@@ -1,35 +1,47 @@
+import atox.Configs;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class CarSystem extends Application {
 
-    private static String USUARIO = "admin";
-    private static String SENHA = "senha";
+    private Configs configs = Configs.getConfigs("carsystem.ini");
 
     private Stage mainStage;
+    private Scene scenePrincipal;
 
-    public boolean autenticar(String login, String senha){
-        return login.equals(USUARIO) && senha.equals(SENHA);
+
+    private boolean autenticar(String login, String senha){
+        return login.equals("admin") && senha.equals("senha");
     }
 
-    public void inicializaSistema(){
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/tela_principal.fxml"));
-            Scene scenePrincipal = new Scene(root, 1366, 768);
-            mainStage.setScene(scenePrincipal);
-            mainStage.show();
+    private void carregaTelaPrincipal() throws IOException {
+        Pane telaPrincipal = FXMLLoader.load(getClass().getResource("/fxml/tela_principal.fxml"));
+        scenePrincipal = new Scene(telaPrincipal, 900, 600);
+        mainStage.setScene(scenePrincipal);
+        mainStage.show();
+    }
+
+
+    private void inicializaSistema(){
+        try{
+            carregaTelaPrincipal();
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void exibeTela(){
+        mainStage.show();
     }
 
     private void inicializaLogin() throws IOException {
@@ -57,7 +69,8 @@ public class CarSystem extends Application {
     public void start(Stage mainStage) throws Exception{
         this.mainStage = mainStage;
 
-        inicializaLogin();
+        //inicializaLogin();
+        inicializaSistema();
     }
 
     public static void main(String[] args){

@@ -9,14 +9,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class Configs {
-    private static final String CAM_INI = "carsystem.ini";
     private static Configs instancia = null;
 
     private Wini ini;
 
-    public static Configs getConfigs() throws Exception{
-        if(instancia == null)
-            instancia = new Configs(new File(CAM_INI));
+    public static Configs getConfigs(String camConfigs){
+        if(instancia == null) {
+            try {
+                instancia = new Configs(new File(camConfigs));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         return instancia;
 
