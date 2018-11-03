@@ -11,7 +11,7 @@ public class BancoDeDados {
     private static String HOST = "localhost";
     private static String USER = "root";
     private static String PASS = "root";
-    private static String DB = "CarSystem";
+    private static String DB = "CarSystem1";
     private static int PORTA = 3306;
 
     // Objeto da própria instância (Singleton <- Gugol)

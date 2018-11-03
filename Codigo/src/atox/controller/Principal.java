@@ -1,6 +1,5 @@
 package atox.controller;
 
-import atox.tela.Tela;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
@@ -12,6 +11,7 @@ import java.io.IOException;
 
 public class Principal {
 
+    /*
     @FXML
     private ScrollPane paneConteudo;
 
@@ -54,5 +54,5 @@ public class Principal {
     @FXML
     private void carregaCadastroVeiculo(){ carregaPagina(new atox.tela.CadastroVeiculo());}
 
-
+*/
 }
