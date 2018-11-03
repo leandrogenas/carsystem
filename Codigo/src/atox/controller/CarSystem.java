@@ -36,27 +36,16 @@ public class CarSystem {
         inicio();
     }
 
-    @FXML
-    private void inicio(){ carregaTela(Tela.INICIAL);}
-    @FXML
-    private void novoOrcamento(){ carregaTela(Tela.NOVO_ORCAMENTO); }
-    @FXML
-    private void carregaServicos(){ carregaTela(Tela.INICIAR_ATENDIMENTO); }
-    @FXML
-    private void carregaFinanceiro(){ carregaTela(Tela.FINANCEIRO); }
-    @FXML
-    private void carregaEstoque(){ carregaTela(Tela.ESTOQUE);}
-    @FXML
-    private void carregaSelecaoCadastros(){ carregaTela(Tela.SELECAO_CADASTROS);}
-    @FXML
-    private void carregaHistoricoOrcamentos(){ carregaTela(Tela.HISTORICO_ORCAMENTOS);}
-    @FXML
-    private void carregaHistoricoServicos(){ carregaTela(Tela.HISTORICO_ATENDIMENTOS);}
-    @FXML
-    private void carregaCadastroCliente(){ carregaTela(Tela.CADASTRO_CLIENTE);}
-    @FXML
-    private void carregaCadastroFornecedor(){ carregaTela(Tela.CADASTRO_FORNECEDOR);}
-    @FXML
-    private void carregaCadastroVeiculo(){ carregaTela(Tela.CADASTRO_VEICULO);}
+    public void inicio               (){ carregaTela(Tela.INICIO); }
+    public void novoOrcamento        (){ carregaTela(Tela.NOVO_ORCAMENTO); }
+    public void atendimentos         (){ carregaTela(Tela.INICIAR_ATENDIMENTO); }
+    public void financeiro           (){ carregaTela(Tela.FINANCEIRO); }
+    public void estoque              (){ carregaTela(Tela.ESTOQUE); }
+    public void selecaoCadastros     (){ carregaTela(Tela.SELECAO_CADASTROS); }
+    public void historicoOrcamentos  (){ carregaTela(Tela.HISTORICO_ORCAMENTOS); }
+    public void historicoAtendimentos(){ carregaTela(Tela.HISTORICO_ATENDIMENTOS); }
+    public void cadastroCliente      (){ carregaTela(Tela.CADASTRO_CLIENTE); }
+    public void cadastroFornecedor   (){ carregaTela(Tela.CADASTRO_FORNECEDOR); }
+    public void cadastroVeiculo      (){ carregaTela(Tela.CADASTRO_VEICULO); }
 
 }
