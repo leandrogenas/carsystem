@@ -1,9 +1,11 @@
 package atox.controller;
 
-public class Inicial {
+import atox.Tela;
+import javafx.fxml.FXML;
 
-    public void initialize(){
-        System.out.println("Inicializou");
-    }
+public class Inicial {
+    private ViewController viewController;
+    @FXML
+    private void novoOrcamento(){ viewController.carregaTela(Tela.NOVO_ORCAMENTO); }
 
 }

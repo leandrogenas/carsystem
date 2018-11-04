@@ -12,9 +12,11 @@ public enum Tela {
     INICIAR_ATENDIMENTO("iniciar-atendimento", "Iniciar atendimentos", 1),
     NOVO_ORCAMENTO("novo-orcamento", "Novo orçamento", 4),
     ESTOQUE("estoque", "Estoque", 1),
-    CADASTRO_CLIENTE("cadastro-cliente", "Cadastro de clientes", 1),
-    CADASTRO_FORNECEDOR("cadastro-fornecedor", "Cadastro de fornecedores", 1),
-    CADASTRO_VEICULO("cadastro-veiculo", "Cadastro de veículos", 1);
+    CADASTRO_SERVICO("cadastro-servico", "Cadastro de Serviços", 1),
+    CADASTRO_CLIENTE("cadastro-cliente", "Cadastro de Clientes", 1),
+    CADASTRO_VEICULO("cadastro-veiculo", "Cadastro de Veículos", 1),
+    CADASTRO_FORNECEDOR("cadastro-fornecedor", "Cadastro de Fornecedores", 1),
+    FORNECEDOR_CADASTRADO("fornecedor-cadastrado", "Fornecedores Cadastrados", 1);
 
     private final String nomeFXML;
     private final String titulo;

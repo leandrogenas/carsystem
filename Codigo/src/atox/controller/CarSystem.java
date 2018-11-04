@@ -5,58 +5,52 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 
+//public class CarSystem extends ViewController{
 public class CarSystem {
+    @FXML
+    public AnchorPane paneTitulo;
 
     @FXML
-    private AnchorPane paneTitulo;
+    public AnchorPane paneConteudo;
 
     @FXML
-    private AnchorPane paneConteudo;
+    public Label lblTitulo;
 
-    @FXML
-    private Label lblTitulo;
-
-    private void carregaTela(Tela tela){
-        try {
-            Parent conteudo = tela.getFXMLLoader().load();
-
-            lblTitulo.setText(tela.getTitulo());
-            paneConteudo.getChildren().clear();
-            paneConteudo.getChildren().add(conteudo);
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
+    private ViewController viewController;
     public void initialize(){
+        viewController = new ViewController();
+        viewController.paneTitulo = paneTitulo;
+        viewController.paneConteudo = paneConteudo;
+        viewController.lblTitulo = lblTitulo;
         inicio();
     }
 
     @FXML
-    private void inicio(){ carregaTela(Tela.INICIAL);}
+    private void inicio(){ viewController.carregaTela(Tela.INICIAL);}
     @FXML
-    private void novoOrcamento(){ carregaTela(Tela.NOVO_ORCAMENTO); }
+    private void novoOrcamento(){ viewController.carregaTela(Tela.NOVO_ORCAMENTO); }
     @FXML
-    private void carregaServicos(){ carregaTela(Tela.INICIAR_ATENDIMENTO); }
+    private void carregaServicos(){ viewController.carregaTela(Tela.INICIAR_ATENDIMENTO); }
     @FXML
-    private void carregaFinanceiro(){ carregaTela(Tela.FINANCEIRO); }
+    private void carregaFinanceiro(){ viewController.carregaTela(Tela.FINANCEIRO); }
     @FXML
-    private void carregaEstoque(){ carregaTela(Tela.ESTOQUE);}
+    private void carregaEstoque(){ viewController.carregaTela(Tela.ESTOQUE);}
     @FXML
-    private void carregaSelecaoCadastros(){ carregaTela(Tela.SELECAO_CADASTROS);}
+    private void carregaSelecaoCadastros(){ viewController.carregaTela(Tela.SELECAO_CADASTROS);}
     @FXML
-    private void carregaHistoricoOrcamentos(){ carregaTela(Tela.HISTORICO_ORCAMENTOS);}
+    private void carregaHistoricoOrcamentos(){ viewController.carregaTela(Tela.HISTORICO_ORCAMENTOS);}
     @FXML
-    private void carregaHistoricoServicos(){ carregaTela(Tela.HISTORICO_ATENDIMENTOS);}
+    private void carregaHistoricoServicos(){ viewController.carregaTela(Tela.HISTORICO_ATENDIMENTOS);}
     @FXML
-    private void carregaCadastroCliente(){ carregaTela(Tela.CADASTRO_CLIENTE);}
+    private void carregaCadastroCliente(){ viewController.carregaTela(Tela.CADASTRO_CLIENTE);}
     @FXML
-    private void carregaCadastroFornecedor(){ carregaTela(Tela.CADASTRO_FORNECEDOR);}
+    private void carregaCadastroFornecedor(){ viewController.carregaTela(Tela.CADASTRO_FORNECEDOR);}
     @FXML
-    private void carregaCadastroVeiculo(){ carregaTela(Tela.CADASTRO_VEICULO);}
+    private void carregaCadastroVeiculo(){ viewController.carregaTela(Tela.CADASTRO_VEICULO);}
+    @FXML
+    private void carregaCadastroServico(){ viewController.carregaTela(Tela.CADASTRO_SERVICO);}
+    @FXML
+    private void carregaFornecedorCadastrado(){ viewController.carregaTela(Tela.FORNECEDOR_CADASTRADO);}
 
 }
