@@ -15,6 +15,6 @@ public class SelecaoCadastro {
     private void carregaCadastroFornecedor(){ viewController.carregaTela(Tela.CADASTRO_FORNECEDOR); }
     @FXML
     private void carregaCadastroServico(){ viewController.carregaTela(Tela.CADASTRO_SERVICO); }
-    @FXML
-    private void carregaFornecedorCadastrado(){ viewController.carregaTela(Tela.FORNECEDOR_CADASTRADO); }
+    //@FXML
+    //private void carregaFornecedorCadastrado(){ viewController.carregaTela(Tela.FORNECEDOR_CADASTRADO); }
 }

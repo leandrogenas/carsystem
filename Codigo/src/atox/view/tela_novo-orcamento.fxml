@@ -127,12 +127,12 @@
             </Label>
             <Line endX="28.0" endY="530.0" startX="28.0" />
             <Circle fx:id="shapeAvatar2111" fill="#b91212" layoutX="28.0" layoutY="54.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
-            <Button layoutX="469.0" layoutY="481.0" mnemonicParsing="false" onAction="#voltaPecas" text="Anterior">
+            <Button layoutX="467.0" layoutY="478.0" mnemonicParsing="false" onAction="#voltaPecas" text="Anterior">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button layoutX="566.0" layoutY="481.0" mnemonicParsing="false" onAction="#paraPagamento" style="-fx-background-color: green;" text="Próximo" textFill="WHITE">
+            <Button layoutX="566.0" layoutY="478.0" mnemonicParsing="false" onAction="#paraPagamento" style="-fx-background-color: green;" text="Próximo" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

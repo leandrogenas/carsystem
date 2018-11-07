@@ -37,44 +37,46 @@
                                 </AnchorPane>
                                 <VBox maxWidth="230.0" prefHeight="370.0" prefWidth="230.0">
                                     <children>
-                                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#inicio" prefHeight="25.0" prefWidth="230.0" text="Início" textAlignment="CENTER">
+                                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#inicio" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: green;" text="Início" textAlignment="CENTER" textFill="WHITE">
                                             <VBox.margin>
                                                 <Insets bottom="10.0" left="3.0" right="3.0" />
                                             </VBox.margin>
+                                            <font>
+                                                <Font name="System Bold" size="14.0" />
+                                            </font>
                                         </Button>
-                                        <SplitMenuButton mnemonicParsing="false" onAction="#novoOrcamento" popupSide="RIGHT" prefHeight="25.0" prefWidth="230.0" text="Orçamento">
+                                        <SplitMenuButton fx:id="btnOrcamento" mnemonicParsing="false" onAction="#novoOrcamento" popupSide="RIGHT" prefHeight="25.0" prefWidth="230.0" text="Novo Orçamento">
                                             <items>
-                                                <MenuItem mnemonicParsing="false" onAction="#carregaHistoricoOrcamentos" text="Histórico" />
+                                                <MenuItem mnemonicParsing="false" onAction="#historicoOrcamentos" text="Histórico" />
                                             </items>
                                             <VBox.margin>
                                                 <Insets bottom="3.0" left="3.0" right="3.0" />
                                             </VBox.margin>
                                         </SplitMenuButton>
-                                        <SplitMenuButton layoutX="10.0" layoutY="45.0" mnemonicParsing="false" onAction="#carregaServicos" popupSide="RIGHT" prefHeight="25.0" prefWidth="230.0" text="Serviços">
+                                        <SplitMenuButton layoutX="10.0" layoutY="45.0" mnemonicParsing="false" onAction="#atendimentos" popupSide="RIGHT" prefHeight="25.0" prefWidth="230.0" text="Atendimentos">
                                             <items>
-                                                <MenuItem mnemonicParsing="false" onAction="#carregaHistoricoServicos" text="Histórico" />
+                                                <MenuItem mnemonicParsing="false" onAction="#historicoAtendimentos" text="Histórico" />
                                             </items>
                                             <VBox.margin>
                                                 <Insets bottom="3.0" left="3.0" right="3.0" />
                                             </VBox.margin>
                                         </SplitMenuButton>
-                                        <Button fx:id="telaFinanceiro" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#carregaFinanceiro" prefHeight="25.0" prefWidth="230.0" text="Financeiro">
+                                        <Button fx:id="telaFinanceiro" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#financeiro" prefHeight="25.0" prefWidth="230.0" text="Financeiro">
                                             <VBox.margin>
                                                 <Insets bottom="3.0" left="3.0" right="3.0" />
                                             </VBox.margin>
                                         </Button>
-                                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="95.0" mnemonicParsing="false" onAction="#carregaEstoque" prefHeight="25.0" prefWidth="230.0" text="Estoque">
+                                        <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="95.0" mnemonicParsing="false" onAction="#estoque" prefHeight="25.0" prefWidth="230.0" text="Estoque">
                                             <VBox.margin>
                                                 <Insets bottom="3.0" left="3.0" right="3.0" />
                                             </VBox.margin>
                                         </Button>
-                                        <SplitMenuButton mnemonicParsing="false" onAction="#carregaSelecaoCadastros" popupSide="RIGHT" prefHeight="25.0" prefWidth="231.0" text="Cadastro">
+                                        <SplitMenuButton mnemonicParsing="false" onAction="#selecaoCadastros" popupSide="RIGHT" prefHeight="25.0" prefWidth="231.0" text="Cadastro">
                                             <items>
-                                                <MenuItem mnemonicParsing="false" onAction="#carregaCadastroCliente" text="Cliente" />
-                                                <MenuItem mnemonicParsing="false" onAction="#carregaCadastroVeiculo" text="Veículo" />
-                                                <MenuItem mnemonicParsing="false" onAction="#carregaCadastroFornecedor" text="Fornecedor" />
-                                                <MenuItem mnemonicParsing="false" onAction="#carregaFornecedorCadastrado" text="Fornecedor Cadastrado" />
-                                                <MenuItem mnemonicParsing="false" onAction="#carregaCadastroServico" text="Serviço" />
+                                                <MenuItem mnemonicParsing="false" onAction="#cadastroCliente" text="Cliente" />
+                                                <MenuItem mnemonicParsing="false" onAction="#cadastroVeiculo" text="Veículo" />
+                                                <MenuItem mnemonicParsing="false" onAction="#cadastroFornecedor" text="Fornecedor" />
+                                                <MenuItem mnemonicParsing="false" onAction="#cadastroServico" text="Serviços" />
                                             </items>
                                             <VBox.margin>
                                                 <Insets bottom="3.0" left="3.0" right="3.0" />

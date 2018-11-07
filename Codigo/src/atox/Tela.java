@@ -3,29 +3,26 @@ package atox;
 import javafx.fxml.FXMLLoader;
 
 public enum Tela {
-    PRINCIPAL("principal", "Car System", 1),
-    INICIAL("inicial", "Início", 1),
-    FINANCEIRO("financeiro", "Financeiro", 1),
-    HISTORICO_ORCAMENTOS("historico_orcamentos", "Histórico de orçamentos", 1),
-    HISTORICO_ATENDIMENTOS("historico_atendimentos", "Histórico de atendimentos", 1),
-    SELECAO_CADASTROS("selecao-cadastros", "Selecione um cadastro", 1),
-    INICIAR_ATENDIMENTO("iniciar-atendimento", "Iniciar atendimentos", 1),
-    NOVO_ORCAMENTO("novo-orcamento", "Novo orçamento", 4),
-    ESTOQUE("estoque", "Estoque", 1),
-    CADASTRO_SERVICO("cadastro-servico", "Cadastro de Serviços", 1),
-    CADASTRO_CLIENTE("cadastro-cliente", "Cadastro de Clientes", 1),
-    CADASTRO_VEICULO("cadastro-veiculo", "Cadastro de Veículos", 1),
-    CADASTRO_FORNECEDOR("cadastro-fornecedor", "Cadastro de Fornecedores", 1),
-    FORNECEDOR_CADASTRADO("fornecedor-cadastrado", "Fornecedores Cadastrados", 1);
+    PRINCIPAL("principal", "Car System"),
+    INICIO("inicio", "Início"),
+    FINANCEIRO("financeiro", "Financeiro"),
+    HISTORICO_ORCAMENTOS("historico-orcamentos", "Histórico de orçamentos"),
+    HISTORICO_ATENDIMENTOS("historico-atendimentos", "Histórico de atendimentos"),
+    SELECAO_CADASTROS("selecao-cadastros", "Selecione um cadastro"),
+    INICIAR_ATENDIMENTO("inicia-atendimento", "Iniciar atendimentos"),
+    NOVO_ORCAMENTO("novo-orcamento", "Novo orçamento"),
+    ESTOQUE("estoque", "Estoque"),
+    CADASTRO_CLIENTE("cadastro-cliente", "Cadastro de clientes"),
+    CADASTRO_FORNECEDOR("cadastro-fornecedor", "Cadastro de fornecedores"),
+    CADASTRO_VEICULO("cadastro-veiculo", "Cadastro de veículos"),
+    CADASTRO_SERVICO("cadastro-servico", "Cadastro de serviços");
 
     private final String nomeFXML;
     private final String titulo;
-    private final int qtdPags;
 
-    private Tela(String nomeFXML, String titulo, int qtdPags){
+    private Tela(String nomeFXML, String titulo){
         this.nomeFXML = nomeFXML;
         this.titulo = titulo;
-        this.qtdPags = qtdPags;
     }
 
     public String getTitulo(){
