@@ -3,7 +3,6 @@ package atox.controller;
 import atox.Tela;
 import javafx.fxml.FXML;
 
-//public class SelecaoCadastro extends  ViewController {
 public class SelecaoCadastro {
     private ViewController viewController;
     
@@ -15,6 +14,4 @@ public class SelecaoCadastro {
     private void carregaCadastroFornecedor(){ viewController.carregaTela(Tela.CADASTRO_FORNECEDOR); }
     @FXML
     private void carregaCadastroServico(){ viewController.carregaTela(Tela.CADASTRO_SERVICO); }
-    //@FXML
-    //private void carregaFornecedorCadastrado(){ viewController.carregaTela(Tela.FORNECEDOR_CADASTRADO); }
 }

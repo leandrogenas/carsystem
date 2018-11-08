@@ -21,7 +21,7 @@
                         <Font size="25.0" />
                     </font>
                 </Label>
-                <TextField layoutX="113.0" layoutY="55.0" prefHeight="25.0" prefWidth="149.0" promptText="Preencha o CPF" />
+                <TextField fx:id="cpfField" layoutX="113.0" layoutY="55.0" prefHeight="25.0" prefWidth="149.0" promptText="Preencha o CPF" />
                 <Label layoutX="41.0" layoutY="59.0" text="CPF">
                     <font>
                         <Font size="14.0" />

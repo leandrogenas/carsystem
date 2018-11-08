@@ -15,7 +15,7 @@
    <children>
       <AnchorPane fx:id="passoClienteVeiculo" maxHeight="530.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="670.0">
          <children>
-            <TextField layoutX="113.0" layoutY="52.0" prefHeight="25.0" prefWidth="149.0" promptText="Preencha o CPF" />
+            <TextField fx:id="cpfField" layoutX="113.0" layoutY="52.0" prefHeight="25.0" prefWidth="149.0" promptText="Preencha o CPF" />
             <Label layoutX="41.0" layoutY="56.0" text="CPF">
                <font>
                   <Font size="14.0" />
@@ -80,7 +80,7 @@
             </Label>
             <CheckBox disable="true" layoutX="248.0" layoutY="370.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Importado" />
             <TextField disable="true" layoutX="115.0" layoutY="157.0" prefHeight="25.0" prefWidth="188.0" />
-            <Button layoutX="269.0" layoutY="52.0" mnemonicParsing="false" text="Ok" />
+            <Button onAction="#validaCliente" layoutX="269.0" layoutY="52.0" mnemonicParsing="false" text="Ok" />
             <Button layoutX="198.0" layoutY="337.0" mnemonicParsing="false" text="Ok" />
             <Label layoutX="317.0" layoutY="160.0" text="Celular">
                <font>
