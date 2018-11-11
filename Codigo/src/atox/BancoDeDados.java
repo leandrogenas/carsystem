@@ -9,10 +9,10 @@ public class BancoDeDados {
 
     private static String DRIVER = "sqlserver";
     private static String HOST = "localhost";
-    private static String USER = "root";
-    private static String PASS = "root";
-    private static String DB = "CarSystem1";
-    private static int PORTA = 3306;
+    private static String USER = "CarSystemSvcUsr";
+    private static String PASS = "_svcUsrCarSystem";
+    private static String DB = "CarSystem";
+    private static int PORTA = 1433;
 
     // Objeto da própria instância (Singleton <- Gugol)
     private static BancoDeDados instancia;
@@ -48,12 +48,10 @@ public class BancoDeDados {
         return conn;
     }
 
-    private static BancoDeDados getInstancia(){
+    public static BancoDeDados getInstancia(){
         if(instancia == null)
             instancia = new BancoDeDados();
 
         return instancia;
-
     }
-
 }

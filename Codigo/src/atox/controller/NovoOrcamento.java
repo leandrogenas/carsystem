@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static atox.utils.Validators.isCNPJ;
 import static atox.utils.Validators.isCPF;
 
 public class NovoOrcamento {
@@ -42,12 +43,12 @@ public class NovoOrcamento {
         passoServicos.setVisible(false);
         passoPagamento.setVisible(false);
 
-        MaskFieldUtil.cpfMask(cpfField);
+        MaskFieldUtil.cpfCnpjMask(cpfField);
     }
 
     @FXML
     private void paraPecas(){
-        if(verificaCliente() && verificaVeiculo()) {
+        if(validaCliente() && verificaVeiculo()) {
             passoClienteVeiculo.setVisible(false);
             scroll(1);
             passoPecas.setVisible(true);
@@ -101,10 +102,6 @@ public class NovoOrcamento {
         container.setLayoutY(-530 * passo);
     }
 
-    private boolean verificaCliente(){
-        return true;
-    }
-
     private boolean verificaVeiculo(){
         return true;
     }
@@ -118,9 +115,10 @@ public class NovoOrcamento {
         alert.showAndWait();
     }
 
-    public void validaCliente() {
-        if(!isCPF(cpfField.getText())) {
-            return;
+    public boolean validaCliente() {
+        if(!isCPF(cpfField.getText()) || !isCNPJ(cpfField.getText())) {
+            return false;
         }
+        return true;
     }
 }

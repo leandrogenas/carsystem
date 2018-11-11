@@ -60,14 +60,33 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <CheckBox disable="true" layoutX="277.0" layoutY="336.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Importado" />
             <TextField disable="true" layoutX="81.0" layoutY="370.0" />
             <Label layoutX="41.0" layoutY="373.0" text="Cor">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField disable="true" layoutX="301.0" layoutY="337.0" />
-            <Label layoutX="245.0" layoutY="338.0" text="Modelo">
+            <TextField fx:id="marcaField" disable="true" layoutX="409.0" layoutY="370.0" />
+            <Label layoutX="277.0" layoutY="370.0" text="Marca">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="numParcelasField" disable="true" layoutX="409.0" layoutY="434.0" />
+            <Label layoutX="277.0" layoutY="437.0" text="Número de Parcelas">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="anoField" disable="true" layoutX="81.0" layoutY="434.0" />
+            <Label layoutX="42.0" layoutY="437.0" text="Ano">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="modeloField" disable="true" layoutX="409.0" layoutY="401.0" />
+            <Label layoutX="277.0" layoutY="402.0" text="Modelo">
                <font>
                   <Font size="14.0" />
                </font>
@@ -78,9 +97,8 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <CheckBox disable="true" layoutX="248.0" layoutY="370.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Importado" />
             <TextField disable="true" layoutX="115.0" layoutY="157.0" prefHeight="25.0" prefWidth="188.0" />
-            <Button onAction="#validaCliente" layoutX="269.0" layoutY="52.0" mnemonicParsing="false" text="Ok" />
+            <Button layoutX="269.0" layoutY="52.0" mnemonicParsing="false" onAction="#validaCliente" text="Ok" />
             <Button layoutX="198.0" layoutY="337.0" mnemonicParsing="false" text="Ok" />
             <Label layoutX="317.0" layoutY="160.0" text="Celular">
                <font>
