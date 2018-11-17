@@ -1,7 +1,10 @@
 package atox;
 
+import atox.model.Cliente;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 
@@ -10,7 +13,7 @@ public class BancoDeDados {
     private static String DRIVER = "sqlserver";
     private static String HOST = "localhost";
     private static String USER = "CarSystemSvcUsr";
-    private static String PASS = "_svcUsrCarSystem";
+    private static String PASS = "_svcusrCarSystem";
     private static String DB = "CarSystem";
     private static int PORTA = 1433;
 
@@ -53,5 +56,53 @@ public class BancoDeDados {
             instancia = new BancoDeDados();
 
         return instancia;
+    }
+
+    public static Cliente getCliente(String cpf) {
+        Cliente cliente = null;
+
+        try {
+            Statement stmt = getNewStatement();
+            ResultSet rSet = stmt.executeQuery("SELECT * FROM Cliente WHERE cpf = '"+cpf+"'");
+            rSet.next();
+            cliente = new Cliente(
+                    rSet.getString("cpf"),
+                    rSet.getString("nome"),
+                    rSet.getString("endereco"),
+                    rSet.getString("telefone"),
+                    rSet.getString("celular"),
+                    rSet.getString("email")
+            );
+        }
+        catch(Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return cliente;
+    }
+
+    public static boolean setCliente(Cliente cliente) throws Exception {
+        String insert = "INSERT INTO Cliente (cpf,nome,email,telefone,celular,endereco) VALUES ('";
+        insert += cliente.getCPF()+"','";
+        insert += cliente.getNome()+"','";
+        insert += cliente.getEmail()+"','";
+        insert += cliente.getTelefone()+"','";
+        insert += cliente.getCelular()+"','";
+        insert += cliente.getEndereco()+"')";
+        Statement stmt = getNewStatement();
+        stmt.execute(insert);
+        return true;
+    }
+
+    public static boolean updateCliente(Cliente cliente) throws Exception {
+        String update = "UPDATE Cliente SET ";
+        update += "nome = '"+cliente.getNome()+"',";
+        update += "email = '"+cliente.getEmail()+"',";
+        update += "telefone = '"+cliente.getTelefone()+"',";
+        update += "celular = '"+cliente.getCelular()+"',";
+        update += "endereco = '"+cliente.getEndereco()+"'";
+        update += " WHERE cpf = '"+cliente.getCPF()+"'";
+        Statement stmt = getNewStatement();
+        stmt.execute(update);
+        return true;
     }
 }

@@ -22,97 +22,102 @@
                         <Font size="25.0" />
                     </font>
                 </Label>
-                <TextField fx:id="cpfField" layoutX="113.0" layoutY="55.0" prefHeight="25.0" prefWidth="149.0" promptText="Preencha o CPF" />
                 <Label layoutX="41.0" layoutY="59.0" text="CPF">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="emailField" disable="true" layoutX="368.0" layoutY="88.0" prefHeight="25.0" prefWidth="210.0" />
+                <TextField fx:id="cpfField" layoutX="113.0" layoutY="55.0" prefHeight="25.0" prefWidth="149.0" promptText="Preencha o CPF" />
                 <Button layoutX="269.0" layoutY="55.0" mnemonicParsing="false" onAction="#validaCliente" text="Ok" />
-                <Label layoutX="316.0" layoutY="91.0" text="Email">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="nomeField" disable="true" layoutX="113.0" layoutY="88.0" prefHeight="31.0" prefWidth="194.0" />
                 <Label layoutX="43.0" layoutY="90.0" text="Nome">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <Label layoutX="43.0" layoutY="163.0" text="Telefone">
+                <TextField fx:id="nomeField" disable="true" layoutX="113.0" layoutY="88.0" prefHeight="31.0" prefWidth="194.0" />
+                <Label layoutX="316.0" layoutY="91.0" text="Email">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="telefoneField" disable="true" layoutX="115.0" layoutY="160.0" prefHeight="31.0" prefWidth="194.0" />
+                <TextField fx:id="emailField" disable="true" layoutX="368.0" layoutY="88.0" prefHeight="25.0" prefWidth="210.0" />
                 <Label layoutX="41.0" layoutY="127.0" text="Endereço">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
                 <TextField fx:id="enderecoField" disable="true" layoutX="114.0" layoutY="125.0" prefHeight="25.0" prefWidth="465.0" />
+                <Label layoutX="43.0" layoutY="163.0" text="Telefone">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="telefoneField" disable="true" layoutX="115.0" layoutY="160.0" prefHeight="31.0" prefWidth="194.0" />
                 <Label layoutX="317.0" layoutY="163.0" text="Celular">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
                 <TextField fx:id="celField" disable="true" layoutX="368.0" layoutY="160.0" prefHeight="25.0" prefWidth="210.0" />
-            <AnchorPane fx:id="paneVeiculo" disable="true" layoutY="199.0" maxHeight="530.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="670.0" visible="false">
-               <children>
-                  <Circle fx:id="shapeAvatar21" fill="#b91212" layoutX="28.0" layoutY="35.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
-                   <Label layoutX="40.0" layoutY="17.0" text="Veículo" textFill="#b91212">
-                       <font>
-                           <Font size="25.0" />
-                       </font>
-                   </Label>
-                   <ComboBox fx:id="placaCBox" editable="true" layoutX="81.0" layoutY="65.0" prefHeight="25.0" prefWidth="190" promptText="Preencha a placa" />
-                   <Button layoutX="280.0" layoutY="65.0" mnemonicParsing="false" text="Ok" />
-                   <Label layoutX="37.0" layoutY="67.0" text="Placa">
-                       <font>
-                           <Font size="14.0" />
-                       </font>
-                   </Label>
-                   <CheckBox fx:id="importadoCBox" disable="true" layoutX="410.0" layoutY="67.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Importado" />
-                   <TextField fx:id="corField" disable="true" layoutX="81.0" layoutY="101.0" />
-                   <Label layoutX="41.0" layoutY="104.0" text="Cor">
-                       <font>
-                           <Font size="14.0" />
-                       </font>
-                   </Label>
-                   <TextField fx:id="marcaField" disable="true" layoutX="409.0" layoutY="101.0" />
-                   <Label layoutX="277.0" layoutY="104.0" text="Marca">
-                       <font>
-                           <Font size="14.0" />
-                       </font>
-                   </Label>
-                   <TextField fx:id="kmField" disable="true" layoutX="81.0" layoutY="135.0" />
-                   <Label layoutX="42.0" layoutY="138.0" text="Km">
-                       <font>
-                           <Font size="14.0" />
-                       </font>
-                   </Label>
-                   <TextField fx:id="modeloField" disable="true" layoutX="409.0" layoutY="135.0" />
-                   <Label layoutX="277.0" layoutY="136.0" text="Modelo">
-                       <font>
-                           <Font size="14.0" />
-                       </font>
-                   </Label>
-                   <TextField fx:id="numParcelasField" disable="true" layoutX="409.0" layoutY="169.0" />
-                   <Label layoutX="277.0" layoutY="172.0" text="Número de Parcelas">
-                       <font>
-                           <Font size="14.0" />
-                       </font>
-                   </Label>
-                   <TextField fx:id="anoField" disable="true" layoutX="81.0" layoutY="169.0" />
-                   <Label layoutX="42.0" layoutY="172.0" text="Ano">
-                       <font>
-                           <Font size="14.0" />
-                       </font>
-                   </Label>
-               </children>
-            </AnchorPane>
+                <Button layoutX="566.0" layoutY="477.0" mnemonicParsing="false" onAction="#cadastrarCliente" style="-fx-background-color: green;" text="Cadastrar" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Button>
+                <AnchorPane fx:id="paneVeiculo" disable="true" layoutY="199.0" maxHeight="530.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="670.0" visible="false">
+                    <children>
+                        <Circle fx:id="shapeAvatar21" fill="#b91212" layoutX="28.0" layoutY="35.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
+                        <Label layoutX="40.0" layoutY="17.0" text="Veículo" textFill="#b91212">
+                            <font>
+                                <Font size="25.0" />
+                            </font>
+                        </Label>
+                        <ComboBox fx:id="placaComboBox" editable="true" layoutX="81.0" layoutY="65.0" prefHeight="25.0" prefWidth="190" promptText="Preencha a placa" />
+                        <Button layoutX="280.0" layoutY="65.0" mnemonicParsing="false" text="Ok" />
+                        <Label layoutX="37.0" layoutY="67.0" text="Placa">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <CheckBox fx:id="importadoCheckBox" disable="true" layoutX="410.0" layoutY="67.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Importado" />
+                        <TextField fx:id="corField" disable="true" layoutX="81.0" layoutY="101.0" />
+                        <Label layoutX="41.0" layoutY="104.0" text="Cor">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="marcaField" disable="true" layoutX="409.0" layoutY="101.0" />
+                        <Label layoutX="277.0" layoutY="104.0" text="Marca">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="kmField" disable="true" layoutX="81.0" layoutY="135.0" />
+                        <Label layoutX="42.0" layoutY="138.0" text="Km">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="modeloField" disable="true" layoutX="409.0" layoutY="135.0" />
+                        <Label layoutX="277.0" layoutY="136.0" text="Modelo">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="numParcelasField" disable="true" layoutX="409.0" layoutY="169.0" />
+                        <Label layoutX="277.0" layoutY="172.0" text="Número de Parcelas">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="anoField" disable="true" layoutX="81.0" layoutY="169.0" />
+                        <Label layoutX="42.0" layoutY="172.0" text="Ano">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
             </children>
         </AnchorPane>
     </children>

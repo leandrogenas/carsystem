@@ -1,5 +1,6 @@
 package atox.controller;
 
+import atox.BancoDeDados;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,7 +14,7 @@ public class Inicio {
     private Pane panePrincipal;
 
     public void initialize(){
-        System.out.println("Inicializou");
+        BancoDeDados instancia = BancoDeDados.getInstancia();
     }
 
     @FXML
