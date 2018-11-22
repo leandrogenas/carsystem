@@ -7,10 +7,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Cliente {
-
-    private int id;
-    private String nome;
     private String CPF;
+    private String nome;
     private String endereco;
     private String telefone;
     private String celular;
@@ -25,41 +23,20 @@ public class Cliente {
         setEmail(email);
     }
 
-    public String getNome() {
-        return nome;
-    }
-    public String getCPF() {
-        return CPF;
-    }
-    public String getTelefone() {
-        return telefone;
-    }
+    public String getNome() { return nome; }
+    public String getCPF() { return CPF; }
+    public String getTelefone() { return telefone; }
     public String getCelular() { return celular; }
-    public String getEmail() {
-        return email;
-    }
-    public String getEndereco() {
-        return endereco;
-    }
+    public String getEmail() { return email; }
+    public String getEndereco() { return endereco; }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setNome(String nome) { this.nome = nome; }
+    public void setCPF(String CPF) { this.CPF = CPF; }
+    public void setEndereco(String endereco) { this.endereco = endereco; }
+    public void setTelefone(String telefone) { this.telefone = telefone; }
+    public void setCelular(String celular) { this.celular = celular; }
+    public void setEmail(String email) { this.email = email; }
+
 
     public static Cliente buscaPorCPF(String cpf){
         Cliente cliente = null;

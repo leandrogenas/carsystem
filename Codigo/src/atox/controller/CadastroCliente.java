@@ -1,6 +1,6 @@
 package atox.controller;
 
-import atox.BancoDeDados;
+import atox.model.Cliente;
 import atox.utils.MaskFieldUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -9,21 +9,27 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+import static atox.BancoDeDados.getCliente;
+import static atox.BancoDeDados.setCliente;
+import static atox.BancoDeDados.updateCliente;
 import static atox.utils.Validators.isCNPJ;
 import static atox.utils.Validators.isCPF;
-import static atox.utils.DBManager.getCliente;
 
 public class CadastroCliente {
     @FXML
     private TextField cpfField, nomeField, emailField, enderecoField, telefoneField, celField,
             corField, modeloField, kmField, numParcelasField, anoField, marcaField;
     @FXML
-    private ComboBox<String> placaCBox;
+    private ComboBox<String> placaComboBox;
     @FXML
     private AnchorPane paneVeiculo;
     @FXML
-    private CheckBox importadoCBox;
+    private CheckBox importadoCheckBox;
 
+<<<<<<< HEAD
+=======
+    private Cliente cliente;
+>>>>>>> aa1168745d469a2459407fd4eba86af3948a0bce
 
     @FXML
     public void initialize() {
@@ -33,11 +39,14 @@ public class CadastroCliente {
         cpfField.textProperty().addListener((observable, oldValue, newValue) -> {
             setClienteFieldsDisabled(true);
         });
+<<<<<<< HEAD
 
+=======
+>>>>>>> aa1168745d469a2459407fd4eba86af3948a0bce
     }
 
     public boolean validaCliente() {
-        if(!isCPF(cpfField.getText()) && !isCNPJ(cpfField.getText())) {
+        if (!isCPF(cpfField.getText()) && !isCNPJ(cpfField.getText())) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("CPF ou CNPJ Inexistente");
             alert.setHeaderText(null);
@@ -47,29 +56,81 @@ public class CadastroCliente {
             return false;
         }
 
-        //TODO: validar se já existe no banco
-        if(getCliente(cpfField.getText()) != null) {
-            nomeField.setText("Nome");
-            emailField.setText("email");
-            enderecoField.setText("end");
-            telefoneField.setText("Tel");
-            celField.setText("cel");
+        cliente = getCliente(cpfField.getText());
+        if (cliente != null) {
+            nomeField.setText(cliente.getNome());
+            emailField.setText(cliente.getEmail());
+            enderecoField.setText(cliente.getEndereco());
+            telefoneField.setText(cliente.getTelefone());
+            celField.setText(cliente.getCelular());
         }
         setClienteFieldsDisabled(false);
 
         //TODO: puxar carro cadastrado no CPF/CNPJ
         setPanelVeiculoDisabled(false);
-        placaCBox.getItems().add("AAA-0000");
-        placaCBox.getSelectionModel().select("AAA-0000");
+        placaComboBox.getItems().add("AAA-0000");
+        placaComboBox.getSelectionModel().select("AAA-0000");
         corField.setText("Preto");
         kmField.setText("10000");
         anoField.setText("2018");
-        importadoCBox.setSelected(false);
+        importadoCheckBox.setSelected(false);
         marcaField.setText("Chevrolet");
         modeloField.setText("Chips");
         numParcelasField.setText("1");
 
         return true;
+    }
+
+    public void cadastrarCliente() {
+        if (cliente == null) {
+            cliente = new Cliente(
+                    cpfField.getText(),
+                    nomeField.getText(),
+                    emailField.getText(),
+                    enderecoField.getText(),
+                    telefoneField.getText(),
+                    celField.getText()
+            );
+            try{
+                setCliente(cliente);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Cliente cadastrado com sucesso!");
+                alert.setHeaderText(null);
+                alert.setContentText("Os dados do cliente foram cadastrados com sucesso!");
+
+                alert.showAndWait();
+            } catch (Exception ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Falha no cadastro do cliente!");
+                alert.setHeaderText(null);
+                alert.setContentText("Houve um erro no cadastro do cliente! Erro: "+ex.getMessage());
+
+                alert.showAndWait();
+            }
+        } else {
+            cliente.setCPF(cpfField.getText());
+            cliente.setNome(nomeField.getText());
+            cliente.setEmail(emailField.getText());
+            cliente.setEndereco(enderecoField.getText());
+            cliente.setTelefone(telefoneField.getText());
+            cliente.setCelular(celField.getText());
+            try {
+                updateCliente(cliente);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Dados atualizados com sucesso!");
+                alert.setHeaderText(null);
+                alert.setContentText("Os dados do cliente foram atualizados com sucesso!");
+
+                alert.showAndWait();
+            } catch (Exception ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Falha na atualização de dados!");
+                alert.setHeaderText(null);
+                alert.setContentText("Houve um erro na atualização dos dados do cliente! Erro: "+ex.getMessage());
+
+                alert.showAndWait();
+            }
+        }
     }
 
     public void setClienteFieldsDisabled(boolean disable) {
@@ -84,5 +145,12 @@ public class CadastroCliente {
     public void setPanelVeiculoDisabled(boolean disable) {
         paneVeiculo.setDisable(disable);
         paneVeiculo.setVisible(!disable);
+        corField.setDisable(disable);
+        modeloField.setDisable(disable);
+        kmField.setDisable(disable);
+        numParcelasField.setDisable(disable);
+        anoField.setDisable(disable);
+        marcaField.setDisable(disable);
+        importadoCheckBox.setDisable(disable);
     }
 }
