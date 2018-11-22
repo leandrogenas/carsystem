@@ -1,10 +1,7 @@
 package atox;
 
-import atox.controller.CarSystem;
-import atox.exception.CarSystemException;
-import javafx.application.Application;
+import atox.controller.Principal;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -12,11 +9,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public final class Telas {
+public final class CarSystem {
     private static final int LARG_TELA = 900;
     private static final int ALT_TELA = 600;
 
-    private static Telas instancia;
+    private static CarSystem instancia;
 
     private Stage stageCarSystem;
     private Scene scenePrincipal;
@@ -61,17 +58,17 @@ public final class Telas {
 
     }
 
-    private Telas(Stage stage){
+    private CarSystem(Stage stage){
         stageCarSystem = stage;
 
         if(setupStage())
-            muda(Tipo.INICIAL);
+            mudaTela(Tipo.INICIAL);
     }
 
     private boolean setupStage(){
         try {
             FXMLLoader loader = Tipo.PRINCIPAL.getFXMLLoader();
-            loader.setController(new CarSystem(this));
+            loader.setController(new Principal(this));
 
             scenePrincipal = new Scene(loader.load(), LARG_TELA, ALT_TELA);
             labelTitulo = (Label) scenePrincipal.lookup("#lblTitulo");
@@ -93,7 +90,7 @@ public final class Telas {
 
     }
 
-    public void muda(Tipo para){
+    public void mudaTela(Tipo para){
         labelTitulo.setText(para.getTitulo());
         try {
             paneConteudo.getChildren().clear();
@@ -103,17 +100,17 @@ public final class Telas {
         }
     }
 
-    public static Telas getInstancia() {
+    public static CarSystem getInstancia() {
         if(instancia == null)
-            System.err.println("Telas não foram inicializadas previamente!");
+            System.err.println("CarSystem não foram inicializadas previamente!");
 
         return instancia;
 
     }
 
-    public static Telas init(Stage stage){
+    public static CarSystem init(Stage stage){
         if(instancia == null)
-            instancia = new Telas(stage);
+            instancia = new CarSystem(stage);
 
         return instancia;
 

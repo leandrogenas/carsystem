@@ -14,7 +14,6 @@ public class BancoDeDados {
     private static String DB = "CarSystem";
     private static int PORTA = 1433;
 
-    // Objeto da própria instância (Singleton <- Gugol)
     private static BancoDeDados instancia;
 
     // Objeto de conexão
@@ -48,10 +47,4 @@ public class BancoDeDados {
         return conn;
     }
 
-    public static BancoDeDados getInstancia(){
-        if(instancia == null)
-            instancia = new BancoDeDados();
-
-        return instancia;
-    }
 }

@@ -1,29 +1,25 @@
 package atox.controller;
 
-import atox.Telas;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import atox.CarSystem;
 
-public class CarSystem {
+public class Principal {
 
-    private Telas telas;
+    private CarSystem cs;
 
-    public CarSystem(Telas t){
-        telas = t;
+    public Principal(CarSystem cs){
+        this.cs = cs;
     }
 
-    public void inicio               (){ telas.muda(Telas.Tipo.INICIAL); }
-    public void novoOrcamento        (){ telas.muda(Telas.Tipo.NOVO_ORCAMENTO); }
-    public void atendimentos         (){ telas.muda(Telas.Tipo.INICIAR_ATENDIMENTO); }
-    public void financeiro           (){ telas.muda(Telas.Tipo.FINANCEIRO); }
-    public void estoque              (){ telas.muda(Telas.Tipo.ESTOQUE); }
-    public void selecaoCadastros     (){ telas.muda(Telas.Tipo.SELECAO_CADASTROS); }
-    public void historicoOrcamentos  (){ telas.muda(Telas.Tipo.HISTORICO_ORCAMENTOS); }
-    public void historicoAtendimentos(){ telas.muda(Telas.Tipo.HISTORICO_ATENDIMENTOS); }
-    public void cadastroCliente      (){ telas.muda(Telas.Tipo.CADASTRO_CLIENTE); }
-    public void cadastroFornecedor   (){ telas.muda(Telas.Tipo.CADASTRO_FORNECEDOR); }
-    public void cadastroVeiculo      (){ telas.muda(Telas.Tipo.CADASTRO_VEICULO); }
-    public void cadastroServico      (){ telas.muda(Telas.Tipo.CADASTRO_SERVICO);}
+    public void inicio               (){ cs.mudaTela(atox.CarSystem.Tipo.INICIAL); }
+    public void novoOrcamento        (){ cs.mudaTela(atox.CarSystem.Tipo.NOVO_ORCAMENTO); }
+    public void atendimentos         (){ cs.mudaTela(atox.CarSystem.Tipo.INICIAR_ATENDIMENTO); }
+    public void financeiro           (){ cs.mudaTela(atox.CarSystem.Tipo.FINANCEIRO); }
+    public void estoque              (){ cs.mudaTela(atox.CarSystem.Tipo.ESTOQUE); }
+    public void selecaoCadastros     (){ cs.mudaTela(atox.CarSystem.Tipo.SELECAO_CADASTROS); }
+    public void historicoOrcamentos  (){ cs.mudaTela(atox.CarSystem.Tipo.HISTORICO_ORCAMENTOS); }
+    public void historicoAtendimentos(){ cs.mudaTela(atox.CarSystem.Tipo.HISTORICO_ATENDIMENTOS); }
+    public void cadastroCliente      (){ cs.mudaTela(atox.CarSystem.Tipo.CADASTRO_CLIENTE); }
+    public void cadastroFornecedor   (){ cs.mudaTela(atox.CarSystem.Tipo.CADASTRO_FORNECEDOR); }
+    public void cadastroVeiculo      (){ cs.mudaTela(atox.CarSystem.Tipo.CADASTRO_VEICULO); }
+    public void cadastroServico      (){ cs.mudaTela(atox.CarSystem.Tipo.CADASTRO_SERVICO);}
 }

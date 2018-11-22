@@ -24,7 +24,6 @@ public class CadastroCliente {
     @FXML
     private CheckBox importadoCBox;
 
-    private BancoDeDados instancia;
 
     @FXML
     public void initialize() {
@@ -35,7 +34,6 @@ public class CadastroCliente {
             setClienteFieldsDisabled(true);
         });
 
-        instancia = BancoDeDados.getInstancia();
     }
 
     public boolean validaCliente() {

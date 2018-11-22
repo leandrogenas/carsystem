@@ -1,9 +1,5 @@
-import atox.Tela;
-import atox.controller.CarSystem;
+import atox.CarSystem;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -23,12 +19,7 @@ public class Login {
 
     private void inicializaSistema(){
         try{
-
-            Stage stage = new Stage();
-            stage.setTitle("Car System");
-            stage.setScene(new Scene(Tela.PRINCIPAL.getFXMLLoader().load(), 900, 600));
-            stage.setResizable(false);
-            stage.show();
+            CarSystem.init(new Stage());
 
             fechaLogin();
         }catch (Exception e){

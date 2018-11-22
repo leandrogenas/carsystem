@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="panePrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="598.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.Inicio">
+<AnchorPane fx:id="panePrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="598.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.Inicial">
    <children>
       <Button layoutX="26.0" layoutY="32.0" mnemonicParsing="false" onAction="#novoOrcamento" prefHeight="68.0" prefWidth="248.0" style="-fx-background-color: green; -fx-border-width: 1px; -fx-border-color: black;" text="Novo Orçamento" textFill="WHITE">
          <font>
