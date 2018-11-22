@@ -26,10 +26,7 @@ public class CadastroCliente {
     @FXML
     private CheckBox importadoCheckBox;
 
-<<<<<<< HEAD
-=======
     private Cliente cliente;
->>>>>>> aa1168745d469a2459407fd4eba86af3948a0bce
 
     @FXML
     public void initialize() {
@@ -39,10 +36,6 @@ public class CadastroCliente {
         cpfField.textProperty().addListener((observable, oldValue, newValue) -> {
             setClienteFieldsDisabled(true);
         });
-<<<<<<< HEAD
-
-=======
->>>>>>> aa1168745d469a2459407fd4eba86af3948a0bce
     }
 
     public boolean validaCliente() {
