@@ -17,7 +17,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="85.0" prefWidth="600.0" style="-fx-border-color: #c1c1c1; -fx-border-style: line; -fx-border-width: 0 0 1 0;">
+      <AnchorPane prefHeight="85.0" prefWidth="600.0" style="-fx-border-color: #c1c1c1; -fx-border-width: 0 0 1 0;">
          <children>
             <Label layoutX="14.0" layoutY="7.0" text="Marca / Modelo ">
                <font>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.Fornecedores">
+   <children>
+      <Line endY="134.0" layoutX="38.0" layoutY="42.0" />
+      <Label layoutX="51.0" layoutY="24.0" text="Cadastrar um fornecedor" textFill="#b91212">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Circle fx:id="shapeAvatar2111" fill="#b91212" layoutX="38.0" layoutY="42.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label layoutX="51.0" layoutY="158.0" text="Fornecedores cadastrados" textFill="#b91212">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Circle fx:id="shapeAvatar21111" fill="#b91212" layoutX="38.0" layoutY="176.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <TableView layoutX="51.0" layoutY="194.0" prefHeight="192.0" prefWidth="604.0">
+        <columns>
+          <TableColumn prefWidth="169.0" text="Nome" />
+          <TableColumn prefWidth="150.0" text="CNPJ" />
+            <TableColumn minWidth="0.0" prefWidth="135.0" text="Telefone" />
+            <TableColumn prefWidth="149.0" text="Endereço" />
+        </columns>
+      </TableView>
+      <Button layoutX="126.0" layoutY="127.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Cadastrar" />
+      <Label layoutX="87.0" layoutY="67.0" text="Nome: " />
+      <Label layoutX="283.0" layoutY="67.0" text="CNPJ:" />
+      <Label layoutX="490.0" layoutY="98.0" text="Telefone:" />
+      <TextField layoutX="126.0" layoutY="63.0" />
+      <TextField layoutX="335.0" layoutY="63.0" />
+      <TextField layoutX="543.0" layoutY="94.0" prefHeight="25.0" prefWidth="65.0" />
+      <Label layoutX="74.0" layoutY="98.0" text="Telefone:" />
+      <TextField layoutX="126.0" layoutY="94.0" prefHeight="25.0" prefWidth="358.0" />
+   </children>
+</AnchorPane>
