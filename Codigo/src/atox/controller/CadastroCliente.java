@@ -1,6 +1,7 @@
 package atox.controller;
 
 import atox.model.Cliente;
+import atox.model.Documento;
 import atox.utils.MaskFieldUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -9,9 +10,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-import static atox.BancoDeDados.getCliente;
-import static atox.BancoDeDados.setCliente;
-import static atox.BancoDeDados.updateCliente;
 import static atox.utils.Validators.isCNPJ;
 import static atox.utils.Validators.isCPF;
 
@@ -49,7 +47,7 @@ public class CadastroCliente {
             return false;
         }
 
-        cliente = getCliente(cpfField.getText());
+        cliente = Cliente.buscaPorDocumento(Documento.Tipo.CPF, cpfField.getText());
         if (cliente != null) {
             nomeField.setText(cliente.getNome());
             emailField.setText(cliente.getEmail());
@@ -77,7 +75,7 @@ public class CadastroCliente {
     public void cadastrarCliente() {
         if (cliente == null) {
             cliente = new Cliente(
-                    cpfField.getText(),
+                    new Documento(Documento.Tipo.CPF, cpfField.getText()),
                     nomeField.getText(),
                     emailField.getText(),
                     enderecoField.getText(),
@@ -85,7 +83,7 @@ public class CadastroCliente {
                     celField.getText()
             );
             try{
-                setCliente(cliente);
+                Cliente.inserir(cliente);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Cliente cadastrado com sucesso!");
                 alert.setHeaderText(null);
@@ -108,7 +106,7 @@ public class CadastroCliente {
             cliente.setTelefone(telefoneField.getText());
             cliente.setCelular(celField.getText());
             try {
-                updateCliente(cliente);
+                Cliente.alterar(cliente);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Dados atualizados com sucesso!");
                 alert.setHeaderText(null);

@@ -79,7 +79,7 @@ public class Veiculo {
 
             veiculo = new Veiculo(
                     rSet.getString("placa"),
-                    Cliente.buscaPorCPF(rSet.getString("cpf_proprietario")),
+                    Cliente.buscaPorDocumento(Documento.Tipo.CPF, rSet.getString("cpf_proprietario")),
                     rSet.getString("modelo"),
                     rSet.getString("ano"),
                     rSet.getString("cor"),

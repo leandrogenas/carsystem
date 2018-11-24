@@ -96,7 +96,8 @@ public final class CarSystem {
             paneConteudo.getChildren().clear();
             paneConteudo.getChildren().add(para.getFXMLLoader().load());
         }catch (IOException e){
-            System.err.println("Erro ao carregar a tela " + para.nomeFXML);
+            e.printStackTrace();
+            System.err.println("Erro ao carregar tela_" + para.nomeFXML + ".fxml");
         }
     }
 
