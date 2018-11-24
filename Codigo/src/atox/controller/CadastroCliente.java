@@ -134,6 +134,7 @@ public class CadastroCliente {
             veiculo.setCor(corField.getText());
             veiculo.setModelo(modeloField.getText());
             veiculo.setMarca(marcaField.getText());
+            veiculo.setAno(anoField.getText());
             veiculo.setImportado(importadoCheckBox.isSelected());
             veiculo.setKm(Float.valueOf(kmField.getText()));
             try {

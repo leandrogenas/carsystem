@@ -18,7 +18,6 @@ public class BancoDeDados {
     private static String DB = "CarSystem";
     private static int PORTA = 1433;
 
-    // Objeto da própria instância (Singleton <- Gugol)
     private static BancoDeDados instancia;
 
     // Objeto de conexão
@@ -123,8 +122,9 @@ public class BancoDeDados {
                     rSet.getString("cor"),
                     rSet.getString("modelo"),
                     rSet.getString("marca"),
+                    rSet.getString("ano"),
                     rSet.getBoolean("importado"),
-                    rSet.getInt( "kilometragem")
+                    rSet.getFloat("kilometragem")
             );
         }
         catch(Exception ex) {
@@ -149,13 +149,14 @@ public class BancoDeDados {
     }
 
     public static boolean updateVeiculo(Veiculo veiculo) throws Exception {
-        String update = "UPDATE Cliente SET ";
+        String update = "UPDATE Veiculo SET ";
         update += " = '" + veiculo.getPlaca()+"',";
         update += " = '" + veiculo.getCpfProprietario()+"',";
         update += " = '" + veiculo.getNumParcelas()+"',";
         update += " = '" + veiculo.getCor()+"',";
         update += " = '" + veiculo.getModelo()+"',";
         update += " = '" + veiculo.getMarca()+"',";
+        update += " = '" + veiculo.getAno()+"',";
         update += " = '" + veiculo.isImportado()+"',";
         update += " = '" + veiculo.getKm()+"'";
         update += " WHERE cpf_proprietario = '"+veiculo.getCpfProprietario()+"'";

@@ -1,17 +1,17 @@
 package atox.controller;
 
-import atox.Tela;
+import atox.CarSystem;
 import javafx.fxml.FXML;
 
 public class SelecaoCadastro {
-    private ViewController viewController;
+    private CarSystem carSystem = CarSystem.getInstancia();
     
     @FXML
-    private void carregaCadastroCliente(){ viewController.carregaTela(Tela.CADASTRO_CLIENTE);}
+    private void carregaCadastroCliente(){ carSystem.mudaTela(CarSystem.Tipo.CADASTRO_CLIENTE);}
     @FXML
-    private void carregaCadastroVeiculo(){ viewController.carregaTela(Tela.CADASTRO_VEICULO); }
+    private void carregaCadastroVeiculo(){ carSystem.mudaTela(CarSystem.Tipo.CADASTRO_VEICULO); }
     @FXML
-    private void carregaCadastroFornecedor(){ viewController.carregaTela(Tela.CADASTRO_FORNECEDOR); }
+    private void carregaCadastroFornecedor(){ carSystem.mudaTela(CarSystem.Tipo.CADASTRO_FORNECEDOR); }
     @FXML
-    private void carregaCadastroServico(){ viewController.carregaTela(Tela.CADASTRO_SERVICO); }
+    private void carregaCadastroServico(){ carSystem.mudaTela(CarSystem.Tipo.CADASTRO_SERVICO); }
 }

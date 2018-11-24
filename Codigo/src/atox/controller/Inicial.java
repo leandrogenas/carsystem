@@ -8,7 +8,7 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
-public class Inicio {
+public class Inicial {
 
     @FXML
     private Pane panePrincipal;
