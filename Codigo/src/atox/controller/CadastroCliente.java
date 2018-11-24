@@ -1,6 +1,7 @@
 package atox.controller;
 
 import atox.model.Cliente;
+import atox.model.Veiculo;
 import atox.utils.MaskFieldUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -9,9 +10,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-import static atox.BancoDeDados.getCliente;
-import static atox.BancoDeDados.setCliente;
-import static atox.BancoDeDados.updateCliente;
+import static atox.BancoDeDados.*;
 import static atox.utils.Validators.isCNPJ;
 import static atox.utils.Validators.isCPF;
 
@@ -27,15 +26,15 @@ public class CadastroCliente {
     private CheckBox importadoCheckBox;
 
     private Cliente cliente;
+    private Veiculo veiculo;
 
     @FXML
     public void initialize() {
         MaskFieldUtil.cpfCnpjMask(cpfField);
         MaskFieldUtil.telefoneMask(telefoneField);
         MaskFieldUtil.telefoneMask(celField);
-        cpfField.textProperty().addListener((observable, oldValue, newValue) -> {
-            setClienteFieldsDisabled(true);
-        });
+        cpfField.textProperty().addListener((observable, oldValue, newValue) -> { setClienteFieldsDisabled(true); });
+        MaskFieldUtil.placaMask(placaComboBox);
     }
 
     public boolean validaCliente() {
@@ -59,17 +58,21 @@ public class CadastroCliente {
         }
         setClienteFieldsDisabled(false);
 
-        //TODO: puxar carro cadastrado no CPF/CNPJ
+        if(placaComboBox.getValue() != null) {
+            veiculo = getVeiculo(placaComboBox.getValue());
+        }
+
+        if (veiculo != null) {
+            placaComboBox.getItems().add(veiculo.getPlaca());
+            cpfField.setText(cliente.getCPF());
+            numParcelasField.setText(veiculo.getNumParcelas());
+            corField.setText(veiculo.getCor());
+            modeloField.setText(veiculo.getModelo());
+            marcaField.setText(veiculo.getMarca());
+            importadoCheckBox.setSelected(veiculo.isImportado());
+            kmField.setText(Float.toString(veiculo.getKm()));
+        }
         setPanelVeiculoDisabled(false);
-        placaComboBox.getItems().add("AAA-0000");
-        placaComboBox.getSelectionModel().select("AAA-0000");
-        corField.setText("Preto");
-        kmField.setText("10000");
-        anoField.setText("2018");
-        importadoCheckBox.setSelected(false);
-        marcaField.setText("Chevrolet");
-        modeloField.setText("Chips");
-        numParcelasField.setText("1");
 
         return true;
     }
@@ -123,6 +126,32 @@ public class CadastroCliente {
 
                 alert.showAndWait();
             }
+
+
+            veiculo.setPlaca(placaComboBox.getValue());
+            veiculo.setCpfProprietario(cpfField.getText());
+            veiculo.setNumParcelas(numParcelasField.getText());
+            veiculo.setCor(corField.getText());
+            veiculo.setModelo(modeloField.getText());
+            veiculo.setMarca(marcaField.getText());
+            veiculo.setImportado(importadoCheckBox.isSelected());
+            veiculo.setKm(Float.valueOf(kmField.getText()));
+            try {
+                updateVeiculo(veiculo);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Dados atualizados com sucesso!");
+                alert.setHeaderText(null);
+                alert.setContentText("Os dados do veiculo foram atualizados com sucesso!");
+
+                alert.showAndWait();
+            } catch (Exception ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Falha na atualização de dados!");
+                alert.setHeaderText(null);
+                alert.setContentText("Houve um erro na atualização dos dados do veiculo! Erro: "+ex.getMessage());
+
+                alert.showAndWait();
+            }
         }
     }
 
@@ -132,7 +161,7 @@ public class CadastroCliente {
         enderecoField.setDisable(disable);
         telefoneField.setDisable(disable);
         celField.setDisable(disable);
-        setPanelVeiculoDisabled(true);
+        setPanelVeiculoDisabled(disable);
     }
 
     public void setPanelVeiculoDisabled(boolean disable) {
