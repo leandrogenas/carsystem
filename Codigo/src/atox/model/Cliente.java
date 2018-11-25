@@ -14,7 +14,7 @@ import static atox.utils.Validators.isCPF;
 
 public class Cliente {
 
-    private Documento doc;
+    private String doc;
     private String nome;
     private String endereco;
     private String telefone;
@@ -24,7 +24,7 @@ public class Cliente {
     public Cliente(){
     }
 
-    public Cliente(Documento doc, String nome, String endereco, String telefone, String celular, String email) {
+    public Cliente(String doc, String nome, String endereco, String telefone, String celular, String email) {
         setDocumento(doc);
         setNome(nome);
         setEndereco(endereco);
@@ -34,35 +34,29 @@ public class Cliente {
     }
 
     public String getNome() { return nome; }
-    public Documento getDocumento() { return doc; }
+    public String getDocumento() { return doc; }
     public String getTelefone() { return telefone; }
     public String getCelular() { return celular; }
     public String getEmail() { return email; }
     public String getEndereco() { return endereco; }
 
     public void setNome(String nome) { this.nome = nome; }
-    public void setDocumento(Documento doc) { this.doc = doc; }
-    public void setCNPJ(String cnpj){ this.doc = new Documento(Documento.Tipo.CNPJ, cnpj); }
-    public void setCPF(String cpf){ this.doc = new Documento(Documento.Tipo.CPF, cpf); }
+    public void setDocumento(String doc) { this.doc = doc; }
     public void setEndereco(String endereco) { this.endereco = endereco; }
     public void setTelefone(String telefone) { this.telefone = telefone; }
     public void setCelular(String celular) { this.celular = celular; }
     public void setEmail(String email) { this.email = email; }
 
 
-    public static Cliente buscaPorDocumento(Documento.Tipo tpDoc, String doc){
+    public static Cliente buscaPorDocumento(String doc){
         Cliente cliente = null;
-
-        // CPF pra teste
-        if(doc.equals("12345678909"))
-            return Mock.mockCliente();
 
         try {
             Statement stmt = BancoDeDados.getNewStatement();
-            ResultSet rSet = stmt.executeQuery("SELECT * FROM Cliente WHERE nr_documento = '"+doc+"'");
+            ResultSet rSet = stmt.executeQuery("SELECT * FROM Cliente WHERE cpf = '"+doc+"'");
             rSet.next();
             cliente = new Cliente(
-                new Documento(tpDoc, doc),
+                doc,
                 rSet.getString("nome"),
                 rSet.getString("endereco"),
                 rSet.getString("telefone"),
@@ -78,7 +72,7 @@ public class Cliente {
 
     public static boolean inserir(Cliente cliente) throws Exception {
         String insert = "INSERT INTO Cliente (cpf,nome,email,telefone,celular,endereco) VALUES ('";
-        insert += cliente.getDocumento().getNumero()+"','";
+        insert += cliente.getDocumento()+"','";
         insert += cliente.getNome()+"','";
         insert += cliente.getEmail()+"','";
         insert += cliente.getTelefone()+"','";
@@ -96,16 +90,10 @@ public class Cliente {
         update += "telefone = '"+cliente.getTelefone()+"',";
         update += "celular = '"+cliente.getCelular()+"',";
         update += "endereco = '"+cliente.getEndereco()+"'";
-        update += " WHERE cpf = '"+cliente.getDocumento().getNumero()+"'";
+        update += " WHERE cpf = '"+cliente.getDocumento()+"'";
 
         Statement stmt = BancoDeDados.getNewStatement();
         return stmt.execute(update);
     }
-
-    public boolean validar(){
-        // Um cliente é válido
-        return doc.validar() && !(nome.isEmpty());
-    }
-
 }
 

@@ -41,7 +41,7 @@ use CarSystem;
  );
 
  create table Veiculo(
- placa varchar(7) not null,
+ placa varchar(8) not null,
  cpf_proprietario varchar(18) not null,
  num_parcelas int not null,
  cor varchar(20) not null,

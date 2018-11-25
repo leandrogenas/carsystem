@@ -7,7 +7,7 @@ public final class Mock {
 
     public static Cliente mockCliente(){
         return new Cliente(
-                new Documento(Documento.Tipo.CPF, "12345678909"),
+                "12345678909",
                 "Aznezio Ferreira",
                 "Rua dos aznezio, 3231",
                 "(11) 1234-5678",

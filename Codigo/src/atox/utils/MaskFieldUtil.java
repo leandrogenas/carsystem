@@ -1,11 +1,57 @@
 package atox.utils;
 
 import javafx.application.Platform;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 public abstract class MaskFieldUtil {
     public final static int cpfLength = 14;
     public final static int cnpjLength = 18;
+    public final static int telefoneLength = 14;
+    public final static int placaLength = 8;
+    public final static int anoLength = 4;
+    public final static int parcelasLength = 2;
+    public final static int kmLength = 6;
+
+    public static void anoMask(TextField textField) {
+        MaskFieldUtil.maxField(textField, anoLength);
+        textField.lengthProperty().addListener((observableValue, number, number2) -> {
+                    String value = textField.getText();
+                    value = value.replaceAll("[^0-9]", "");
+                    try {
+                        textField.setText(value);
+                        MaskFieldUtil.positionCaret(textField);
+                    }catch(Exception ex){}
+                }
+        );
+    }
+
+    public static void parcelasMask(TextField textField) {
+        MaskFieldUtil.maxField(textField, parcelasLength);
+        textField.lengthProperty().addListener((observableValue, number, number2) -> {
+                    String value = textField.getText();
+                    value = value.replaceAll("[^0-9]", "");
+                    try {
+                        textField.setText(value);
+                        MaskFieldUtil.positionCaret(textField);
+                    }catch(Exception ex){}
+                }
+        );
+    }
+
+    public static void kmMask(TextField textField) {
+        MaskFieldUtil.maxField(textField, kmLength);
+        textField.lengthProperty().addListener((observableValue, number, number2) -> {
+                    String value = textField.getText();
+                    value = value.replaceAll("[^0-9]", "");
+                    try {
+                        textField.setText(value);
+                        MaskFieldUtil.positionCaret(textField);
+                    }catch(Exception ex){}
+                }
+        );
+    }
+
     public static void cpfMask(TextField textField) {
         MaskFieldUtil.maxField(textField, cpfLength);
         textField.lengthProperty().addListener((observableValue, number, number2) -> {
@@ -60,7 +106,7 @@ public abstract class MaskFieldUtil {
     }
 
     public static void telefoneMask(TextField textField) {
-        MaskFieldUtil.maxField(textField, 14);
+        MaskFieldUtil.maxField(textField, telefoneLength);
         textField.lengthProperty().addListener((observableValue, number, number2) -> {
                     try {
                         String value = textField.getText();
@@ -79,6 +125,24 @@ public abstract class MaskFieldUtil {
                     }
                 }
         );
+    }
+
+    public static void placaMask(TextField textField) {
+        MaskFieldUtil.maxField(textField, placaLength);
+        textField.lengthProperty().addListener((observableValue, number, number2) -> {
+            try {
+                String value = textField.getText();
+                if(value.length() < 4) {
+                    value = value.replaceAll("[^A-Z]", "");
+                }
+                value = value.replaceAll("[^0-9A-Z]", "");
+                value = value.replaceFirst("(\\w{3})(\\w)", "$1-$2");
+                textField.setText(value);
+                MaskFieldUtil.positionCaret(textField);
+
+            } catch (Exception ex) {
+            }
+        });
     }
 
     public static void maxField(TextField textField, Integer length) {

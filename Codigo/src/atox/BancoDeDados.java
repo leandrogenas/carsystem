@@ -43,6 +43,9 @@ public class BancoDeDados {
     }
 
     public static Statement getNewStatement() throws Exception{
+        if(instancia == null) {
+            instancia = new BancoDeDados();
+        }
         return instancia.getConn().createStatement();
     }
 

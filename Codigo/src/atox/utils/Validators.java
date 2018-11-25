@@ -126,4 +126,15 @@ public abstract class Validators {
             return (false);
         }
     }
+
+    public static boolean isPlaca(String placa) {
+        String[] splitted = placa.split("-");
+        if(splitted[0].replaceAll("[A-Z]", "").length() > 0) {
+            return false;
+        }
+        if(splitted[1].replaceAll("[0-9]", "").length() > 0) {
+            return false;
+        }
+        return true;
+    }
 }
