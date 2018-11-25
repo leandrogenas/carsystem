@@ -31,10 +31,10 @@ public final class CarSystem {
         INICIAR_ATENDIMENTO("inicia-atendimento", "Iniciar atendimentos"),
         NOVO_ORCAMENTO("novo-orcamento", "Novo orçamento"),
         ESTOQUE("estoque", "Estoque"),
-        CADASTRO_CLIENTE("cadastro-cliente", "Cadastro de clientes"),
-        CADASTRO_FORNECEDOR("cadastro-fornecedor", "Cadastro de fornecedores"),
-        CADASTRO_VEICULO("cadastro-veiculo", "Cadastro de veículos"),
-        CADASTRO_SERVICO("cadastro-servico", "Cadastro de serviços");
+        CADASTRO_CLIENTE("clientes", "Clientes"),
+        CADASTRO_FORNECEDOR("fornecedores", "Fornecedores"),
+        CADASTRO_VEICULO("veiculos", "Veículos"),
+        CADASTRO_SERVICO("servicos", "Serviços");
 
         private final String nomeFXML;
         private final String titulo;

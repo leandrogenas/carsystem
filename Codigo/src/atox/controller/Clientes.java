@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import static atox.utils.Validators.isCNPJ;
 import static atox.utils.Validators.isCPF;
 
-public class CadastroCliente {
+public class Clientes {
     @FXML
     private TextField cpfField, nomeField, emailField, enderecoField, telefoneField, celField,
             corField, modeloField, kmField, numParcelasField, anoField, marcaField;
