@@ -51,8 +51,32 @@ public class Cliente {
     public SimpleStringProperty enderecoProperty(){ return new SimpleStringProperty(endereco); }
 
     public int getId(){ return id; }
-    public String getNome() { return nome; }
+    public static int getId(String docCliente){
+        try {
+            Statement stmt = BancoDeDados.getNewStatement();
+            ResultSet rSet = stmt.executeQuery("SELECT * FROM cliente WHERE nr_documento='"+docCliente+"'");
+            rSet.next();
+            return rSet.getInt("cod_cliente");
+        }
+        catch(Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+        return -1;
+    }
     public String getDocumento() { return documento; }
+    public static String getDocumento(int idCliente){
+        try {
+            Statement stmt = BancoDeDados.getNewStatement();
+            ResultSet rSet = stmt.executeQuery("SELECT * FROM cliente WHERE cod_cliente='"+idCliente+"'");
+            rSet.next();
+            return rSet.getString("nr_documento");
+        }
+        catch(Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+        return "";
+    }
+    public String getNome() { return nome; }
     public String getTelefone() { return telefone; }
     public String getCelular() { return celular; }
     public String getEmail() { return email; }

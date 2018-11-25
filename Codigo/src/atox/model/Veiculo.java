@@ -40,6 +40,17 @@ public class Veiculo {
         setImportado(importado);
         setKm(km);
     }
+    public Veiculo(String placa, String docCliente, String numParcelas, String cor, String modelo, String marca, String ano, boolean importado, float km) {
+        setPlaca(placa);
+        setCodProprietario(Cliente.getId(docCliente));
+        setNumParcelas(numParcelas);
+        setCor(cor);
+        setModelo(modelo);
+        setMarca(marca);
+        setAno(ano);
+        setImportado(importado);
+        setKm(km);
+    }
 
     public Veiculo(String placa){
         this.placa = placa;
@@ -125,10 +136,11 @@ public class Veiculo {
         return veiculo;
     }
 
-    public static List<Veiculo> buscaPorCliente(String cpfProprietario){
+    public static List<Veiculo> buscaPorCliente(String docProprietario){
         List<Veiculo> veiculos = new ArrayList<Veiculo>();
         try {
-            String sql = "SELECT * FROM veiculo WHERE cod_proprietario= '" + cpfProprietario+ "'";
+            int idCliente = Cliente.getId(docProprietario);
+            String sql = "SELECT * FROM veiculo WHERE cod_proprietario= '" + idCliente+ "'";
             ResultSet rSet = BancoDeDados.getNewStatement().executeQuery(sql);
             while(rSet.next()) {
                 Veiculo veiculo = new Veiculo(
