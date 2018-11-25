@@ -28,7 +28,7 @@ public final class CarSystem {
         HISTORICO_ORCAMENTOS("historico-orcamentos", "Histórico de orçamentos"),
         HISTORICO_ATENDIMENTOS("historico-atendimentos", "Histórico de atendimentos"),
         SELECAO_CADASTROS("selecao-cadastros", "Selecione um cadastro"),
-        INICIAR_ATENDIMENTO("inicia-atendimento", "Iniciar atendimentos"),
+        ATENDIMENTOS("atendimentos", "Atendimentos"),
         NOVO_ORCAMENTO("novo-orcamento", "Novo orçamento"),
         ESTOQUE("estoque", "Estoque"),
         CADASTRO_CLIENTE("clientes", "Clientes"),

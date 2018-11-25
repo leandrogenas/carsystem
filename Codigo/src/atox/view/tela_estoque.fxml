@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.Pecas">
+<AnchorPane prefHeight="400.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.Estoque">
    <children>
       <Line endY="118.0" layoutX="38.0" layoutY="42.0" />
       <Label layoutX="51.0" layoutY="24.0" text="Cadastrar uma peça" textFill="#b91212">

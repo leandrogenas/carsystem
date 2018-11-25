@@ -1,4 +1,4 @@
 package atox.controller;
 
-public class Pecas {
+public class Estoque {
 }
