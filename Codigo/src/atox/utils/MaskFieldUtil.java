@@ -153,7 +153,23 @@ public abstract class MaskFieldUtil {
                 }
         );
     }
+    public static void maxField(ComboBox<String> comboBox, Integer length) {
+        comboBox.editorProperty().addListener((observableValue, oldValue, newValue) -> {
+                    if (newValue == null || newValue.getText().length() > length) {
+                        comboBox.setValue(oldValue.getText());
+                    }
+                }
+        );
+    }
 
+    public static void positionCaret(ComboBox<String> comboBox) {
+        Platform.runLater(() -> {
+                    if (comboBox.getValue().length() != 0) {
+                        comboBox.getEditor().positionCaret(comboBox.getValue().length());
+                    }
+                }
+        );
+    }
     public static void positionCaret(TextField textField) {
         Platform.runLater(() -> {
                     if (textField.getText().length() != 0) {

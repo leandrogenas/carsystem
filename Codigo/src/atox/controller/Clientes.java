@@ -13,7 +13,7 @@ import java.util.List;
 
 import static atox.utils.Validators.*;
 
-public class CadastroCliente {
+public class Clientes {
     @FXML
     private TextField cpfField, nomeField, emailField, enderecoField, telefoneField, celField,
             corField, modeloField, kmField, numParcelasField, anoField, marcaField, placaField;
@@ -115,11 +115,11 @@ public class CadastroCliente {
             marcaField.setText(veiculo.getMarca());
             modeloField.setText(veiculo.getModelo());
             numParcelasField.setText(veiculo.getNumParcelas());
-            if(veiculo.getCpfProprietario() != cpfField.getText()) {
+            if(veiculo.getCodProprietario() != cliente.getId()) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Veículo de Outro Cliente!");
                 alert.setHeaderText(null);
-                alert.setContentText("O veículo procurado pertence a outro cliente! O dono do veículo procurado possui o seguinte documento: "+veiculo.getCpfProprietario());
+                alert.setContentText("O veículo procurado pertence a outro cliente! O dono do veículo procurado possui o seguinte documento: "+veiculo.getCodProprietario());
 
                 alert.showAndWait();
                 return false;
@@ -135,9 +135,9 @@ public class CadastroCliente {
                     cpfField.getText(),
                     nomeField.getText(),
                     emailField.getText(),
-                    enderecoField.getText(),
                     telefoneField.getText(),
-                    celField.getText()
+                    celField.getText(),
+                    enderecoField.getText()
             );
             try{
                 Cliente.inserir(cliente);
@@ -174,7 +174,7 @@ public class CadastroCliente {
         if (veiculo == null) {
             veiculo = new Veiculo(
                     placaField.getText(),
-                    cpfField.getText(),
+                    cliente.getId(),
                     numParcelasField.getText(),
                     corField.getText(),
                     modeloField.getText(),
@@ -202,7 +202,7 @@ public class CadastroCliente {
             }
         } else {
             veiculo.setPlaca(placaField.getText());
-            veiculo.setCpfProprietario(cpfField.getText());
+            veiculo.setCodProprietario(Integer.valueOf(cpfField.getText()));
             veiculo.setNumParcelas(numParcelasField.getText());
             veiculo.setCor(corField.getText());
             veiculo.setModelo(modeloField.getText());

@@ -10,14 +10,28 @@ import java.util.List;
 
 public class Veiculo {
 
-    private String placa, marca, modelo, ano, cor, numParcelas, cpfProprietario;
+    private int id, codProprietario;
+    private String placa, marca, modelo, ano, cor, numParcelas;
     private boolean importado;
     private float km;
+    private Cliente proprietario;
 
     public Veiculo() {}
-    public Veiculo(String placa, String cpfProprietario, String numParcelas, String cor, String modelo, String marca, String ano, boolean importado, float km) {
+    public Veiculo(String placa, int codProprietario, String numParcelas, String cor, String modelo, String marca, String ano, boolean importado, float km) {
         setPlaca(placa);
-        setCpfProprietario(cpfProprietario);
+        setCodProprietario(codProprietario);
+        setNumParcelas(numParcelas);
+        setCor(cor);
+        setModelo(modelo);
+        setMarca(marca);
+        setAno(ano);
+        setImportado(importado);
+        setKm(km);
+    }
+    public Veiculo(int id, String placa, int codProprietario, String numParcelas, String cor, String modelo, String marca, String ano, boolean importado, float km) {
+        this.id = id;
+        setPlaca(placa);
+        setCodProprietario(codProprietario);
         setNumParcelas(numParcelas);
         setCor(cor);
         setModelo(modelo);
@@ -27,11 +41,16 @@ public class Veiculo {
         setKm(km);
     }
 
+    public Veiculo(String placa){
+        this.placa = placa;
+    }
+
+    public int getId(){ return id; }
     public String getPlaca() {
         return placa;
     }
-    public String getCpfProprietario() {
-        return cpfProprietario;
+    public int getCodProprietario() {
+        return codProprietario;
     }
     public String getModelo() {
         return modelo;
@@ -41,6 +60,9 @@ public class Veiculo {
     }
     public String getCor() {
         return cor;
+    }
+    public float getKm() {
+        return km;
     }
 
     public void setPlaca(String placa) {
@@ -61,14 +83,14 @@ public class Veiculo {
     public boolean isImportado() {
         return importado;
     }
-    public void setCpfProprietario(String cpfProprietario) {
-        this.cpfProprietario = cpfProprietario;
+    public void setCodProprietario(int cpfProprietario) {
+        this.codProprietario = cpfProprietario;
+    }
+    public void setProprietario(Cliente proprietario) {
+        this.proprietario = proprietario;
     }
     public void setImportado(boolean importado) {
         this.importado = importado;
-    }
-    public float getKm() {
-        return km;
     }
     public String getNumParcelas() { return numParcelas; }
     public void setNumParcelas(String numParcelas) { this.numParcelas = numParcelas; }
@@ -84,8 +106,9 @@ public class Veiculo {
             rSet.next();
 
             veiculo = new Veiculo(
+                    rSet.getInt("cod_veiculo"),
                     rSet.getString("placa"),
-                    rSet.getString("cpf_proprietario"),
+                    rSet.getInt("cod_proprietario"),
                     rSet.getString("num_parcelas"),
                     rSet.getString("cor"),
                     rSet.getString("modelo"),
@@ -105,12 +128,12 @@ public class Veiculo {
     public static List<Veiculo> buscaPorCliente(String cpfProprietario){
         List<Veiculo> veiculos = new ArrayList<Veiculo>();
         try {
-            String sql = "SELECT * FROM veiculo WHERE cpf_proprietario= '" + cpfProprietario+ "'";
+            String sql = "SELECT * FROM veiculo WHERE cod_proprietario= '" + cpfProprietario+ "'";
             ResultSet rSet = BancoDeDados.getNewStatement().executeQuery(sql);
             while(rSet.next()) {
                 Veiculo veiculo = new Veiculo(
                         rSet.getString("placa"),
-                        rSet.getString("cpf_proprietario"),
+                        rSet.getInt("cod_proprietario"),
                         rSet.getString("num_parcelas"),
                         rSet.getString("cor"),
                         rSet.getString("modelo"),
@@ -128,9 +151,9 @@ public class Veiculo {
         return veiculos;
     }
     public static boolean inserir(Veiculo veiculo) throws Exception {
-        String insert = "INSERT INTO Veiculo (placa, cpf_proprietario, num_parcelas, cor, modelo, marca, ano, importado, kilometragem) VALUES ('";
+        String insert = "INSERT INTO Veiculo (placa, cod_proprietario, num_parcelas, cor, modelo, marca, ano, importado, kilometragem) VALUES ('";
         insert += veiculo.getPlaca()+"','";
-        insert += veiculo.getCpfProprietario()+"','";
+        insert += veiculo.getCodProprietario()+"','";
         insert += veiculo.getNumParcelas()+"','";
         insert += veiculo.getCor()+"','";
         insert += veiculo.getModelo()+"','";
@@ -146,7 +169,7 @@ public class Veiculo {
     public static boolean alterar(Veiculo veiculo) throws Exception {
         String update = "UPDATE Veiculo SET ";
         update += "placa = '"+veiculo.getPlaca()+"',";
-        update += "cpf_proprietario = '"+veiculo.getCpfProprietario()+"',";
+        update += "cod_proprietario = '"+veiculo.getCodProprietario()+"',";
         update += "num_parcelas = '"+veiculo.getNumParcelas()+"',";
         update += "cor = '"+veiculo.getCor()+"',";
         update += "modelo = '"+veiculo.getModelo()+"',";

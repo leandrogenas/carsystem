@@ -1,11 +1,6 @@
 package atox;
 
-import atox.model.Cliente;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 
 public class BancoDeDados {
@@ -24,7 +19,7 @@ public class BancoDeDados {
 
     public BancoDeDados(){
         try {
-            conn = DriverManager.getConnection(getStringConn());
+            conn = DriverManager.getConnection(getStringConn(), USER, PASS);
         }catch(Exception e){
             System.err.println(e.getMessage());
         }
@@ -33,19 +28,17 @@ public class BancoDeDados {
     private String getStringConn(){
         StringBuilder sb = new StringBuilder();
         sb.append("jdbc:").append(DRIVER).append("://")
-          .append(HOST).append(":")
-          .append(PORTA).append(";")
-          .append("databaseName=").append(DB).append(";")
-          .append("user=").append(USER).append(";")
-          .append("password=").append(PASS);
+                .append(HOST).append(":")
+                .append(PORTA).append(";")
+                .append("databaseName=").append(DB);
 
         return sb.toString();
     }
 
-    public static Statement getNewStatement() throws Exception{
-        if(instancia == null) {
+    public static Statement getNewStatement() throws SQLException {
+        if(instancia == null || instancia.conn == null)
             instancia = new BancoDeDados();
-        }
+
         return instancia.getConn().createStatement();
     }
 
