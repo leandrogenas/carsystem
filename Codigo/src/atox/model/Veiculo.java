@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 
 public class Veiculo {
 
+    private int id;
     private String placa;
     private Cliente proprietario;
     private String modelo;
@@ -15,7 +16,11 @@ public class Veiculo {
     private boolean importado;
     private float km;
 
-    Veiculo(String placa, Cliente proprietario, String modelo, String ano, String cor, boolean importado, float km){
+    public Veiculo(String placa){
+        this.placa = placa;
+    }
+
+    public Veiculo(String placa, Cliente proprietario, String modelo, String ano, String cor, boolean importado, float km){
         this.placa = placa;
         this.proprietario = proprietario;
         this.modelo = modelo;
@@ -23,9 +28,14 @@ public class Veiculo {
         this.cor = cor;
         this.importado = importado;
         this.km = km;
-
     }
 
+    public Veiculo(int id, String placa, Cliente proprietario, String modelo, String ano, String cor, boolean importado, float km){
+        this(placa, proprietario, modelo, ano, cor, importado, km);
+        this.id = id;
+    }
+
+    public int getId(){ return id; }
     public String getPlaca() {
         return placa;
     }
@@ -41,10 +51,11 @@ public class Veiculo {
     public String getCor() {
         return cor;
     }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
+    public float getKm() {
+        return km;
     }
+    public boolean isImportado() { return importado; }
+
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
@@ -57,17 +68,11 @@ public class Veiculo {
     public void setCor(String cor) {
         this.cor = cor;
     }
-    public boolean isImportado() {
-        return importado;
-    }
     public void setProprietario(Cliente proprietario) {
         this.proprietario = proprietario;
     }
     public void setImportado(boolean importado) {
         this.importado = importado;
-    }
-    public float getKm() {
-        return km;
     }
 
     private static Veiculo buscaPorPlaca(String placa){
@@ -78,14 +83,19 @@ public class Veiculo {
             rSet.next();
 
             veiculo = new Veiculo(
+                    rSet.getInt("cod_veiculo"),
                     rSet.getString("placa"),
-                    Cliente.buscaPorDocumento(Documento.Tipo.CPF, rSet.getString("cpf_proprietario")),
+                    Cliente.buscaPorId(rSet.getInt("cod_proprietario")),
+                    rSet.getString("cor"),
                     rSet.getString("modelo"),
                     rSet.getString("ano"),
-                    rSet.getString("cor"),
                     rSet.getBoolean("importado"),
                     rSet.getFloat("kilometragem")
             );
+
+            veiculo.setAno(rSet.getString("ano"));
+            veiculo.setCor(rSet.getString("cor"));
+            veiculo.setModelo(rSet.getString("modelo"));
         }catch (Exception e){
             e.printStackTrace();
             System.err.println(e.getMessage());

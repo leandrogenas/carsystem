@@ -2,10 +2,7 @@ package atox;
 
 import atox.model.Cliente;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 
 public class BancoDeDados {
@@ -40,7 +37,7 @@ public class BancoDeDados {
         return sb.toString();
     }
 
-    public static Statement getNewStatement() throws Exception{
+    public static Statement getNewStatement() throws SQLException {
         if(instancia == null)
             instancia = new BancoDeDados();
 

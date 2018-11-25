@@ -3,71 +3,102 @@ package atox.model;
 
 import atox.BancoDeDados;
 import atox.utils.Mock;
-import com.sun.xml.txw2.Document;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
-import javax.print.Doc;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import static atox.utils.Validators.isCNPJ;
-import static atox.utils.Validators.isCPF;
-
 public class Cliente {
 
-    private Documento doc;
+    private int id;
+    private String documento;
     private String nome;
     private String endereco;
     private String telefone;
     private String celular;
     private String email;
 
-    public Cliente(){
+    public Cliente(String documento){
+        this.documento = documento;
     }
 
-    public Cliente(Documento doc, String nome, String endereco, String telefone, String celular, String email) {
-        setDocumento(doc);
-        setNome(nome);
-        setEndereco(endereco);
-        setTelefone(telefone);
-        setCelular(celular);
-        setEmail(email);
+    public Cliente(String documento, String nome, String email, String telefone, String celular, String endereco) {
+        this.documento = documento;
+        this.nome = nome;
+        this.email = email;
+        this.celular = celular;
+        this.telefone = telefone;
+        this.endereco = endereco;
     }
 
+    public Cliente(int id, String documento, String nome, String email, String telefone, String celular, String endereco) {
+        this(documento, nome, email, telefone, celular, endereco);
+        this.id = id;
+    }
+
+    public SimpleIntegerProperty idProperty(){ return new SimpleIntegerProperty(id); }
+    public SimpleStringProperty documentoProperty(){ return new SimpleStringProperty(documento); }
+    public SimpleStringProperty nomeProperty(){ return new SimpleStringProperty(nome); }
+    public SimpleStringProperty emailProperty(){ return new SimpleStringProperty(email); }
+    public SimpleStringProperty telefoneProperty(){ return new SimpleStringProperty(telefone); }
+    public SimpleStringProperty celularProperty(){ return new SimpleStringProperty(celular); }
+    public SimpleStringProperty enderecoProperty(){ return new SimpleStringProperty(endereco); }
+
+    public int getId(){ return id; }
     public String getNome() { return nome; }
-    public Documento getDocumento() { return doc; }
+    public String getDocumento() { return documento; }
     public String getTelefone() { return telefone; }
     public String getCelular() { return celular; }
     public String getEmail() { return email; }
     public String getEndereco() { return endereco; }
 
     public void setNome(String nome) { this.nome = nome; }
-    public void setDocumento(Documento doc) { this.doc = doc; }
-    public void setCNPJ(String cnpj){ this.doc = new Documento(Documento.Tipo.CNPJ, cnpj); }
-    public void setCPF(String cpf){ this.doc = new Documento(Documento.Tipo.CPF, cpf); }
+    public void setDocumento(String doc){ this.documento = doc; }
     public void setEndereco(String endereco) { this.endereco = endereco; }
     public void setTelefone(String telefone) { this.telefone = telefone; }
     public void setCelular(String celular) { this.celular = celular; }
     public void setEmail(String email) { this.email = email; }
 
 
-    public static Cliente buscaPorDocumento(Documento.Tipo tpDoc, String doc){
+    public static Cliente buscaPorId(int id){
         Cliente cliente = null;
-
-        // CPF pra teste
-        if(doc.equals("12345678909"))
-            return Mock.mockCliente();
 
         try {
             Statement stmt = BancoDeDados.getNewStatement();
-            ResultSet rSet = stmt.executeQuery("SELECT * FROM Cliente WHERE nr_documento = '"+doc+"'");
+            ResultSet rSet = stmt.executeQuery("SELECT * FROM cliente WHERE cod_cliente="+id+"");
             rSet.next();
             cliente = new Cliente(
-                new Documento(tpDoc, doc),
-                rSet.getString("nome"),
-                rSet.getString("endereco"),
-                rSet.getString("telefone"),
-                rSet.getString("celular"),
-                rSet.getString("email")
+                    rSet.getInt("cod_cliente"),
+                    rSet.getString("cpf"),
+                    rSet.getString("nome"),
+                    rSet.getString("email"),
+                    rSet.getString("telefone"),
+                    rSet.getString("celular"),
+                    rSet.getString("endereco")
+            );
+        }
+        catch(Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+        return cliente;
+    }
+
+    public static Cliente buscaPorDocumento(String doc){
+        Cliente cliente = null;
+
+        try {
+            Statement stmt = BancoDeDados.getNewStatement();
+            ResultSet rSet = stmt.executeQuery("SELECT * FROM cliente WHERE nr_documento = '"+doc+"'");
+            rSet.next();
+            cliente = new Cliente(
+                    rSet.getInt("cod_cliente"),
+                    rSet.getString("cpf"),
+                    rSet.getString("nome"),
+                    rSet.getString("email"),
+                    rSet.getString("telefone"),
+                    rSet.getString("celular"),
+                    rSet.getString("endereco")
             );
         }
         catch(Exception ex) {
@@ -77,8 +108,8 @@ public class Cliente {
     }
 
     public static boolean inserir(Cliente cliente) throws Exception {
-        String insert = "INSERT INTO Cliente (cpf,nome,email,telefone,celular,endereco) VALUES ('";
-        insert += cliente.getDocumento().getNumero()+"','";
+        String insert = "INSERT INTO cliente (cpf,nome,email,telefone,celular,endereco) VALUES ('";
+        insert += cliente.getDocumento()+"','";
         insert += cliente.getNome()+"','";
         insert += cliente.getEmail()+"','";
         insert += cliente.getTelefone()+"','";
@@ -90,13 +121,13 @@ public class Cliente {
     }
 
     public static boolean alterar(Cliente cliente) throws Exception {
-        String update = "UPDATE Cliente SET ";
+        String update = "UPDATE cliente SET ";
         update += "nome = '"+cliente.getNome()+"',";
         update += "email = '"+cliente.getEmail()+"',";
         update += "telefone = '"+cliente.getTelefone()+"',";
         update += "celular = '"+cliente.getCelular()+"',";
         update += "endereco = '"+cliente.getEndereco()+"'";
-        update += " WHERE cpf = '"+cliente.getDocumento().getNumero()+"'";
+        update += " WHERE cpf = '"+cliente.getDocumento()+"'";
 
         Statement stmt = BancoDeDados.getNewStatement();
         return stmt.execute(update);
@@ -104,7 +135,8 @@ public class Cliente {
 
     public boolean validar(){
         // Um cliente é válido
-        return doc.validar() && !(nome.isEmpty());
+        return true;
+        //return doc.validar() && !(nome.isEmpty());
     }
 
 }

@@ -10,32 +10,36 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.Servicos">
+<AnchorPane prefHeight="530.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.Servicos">
    <children>
-      <Line endY="118.0" layoutX="38.0" layoutY="42.0" />
-      <Label layoutX="51.0" layoutY="24.0" text="Cadastrar um serviço" textFill="#b91212">
+      <Line endY="176.0" layoutX="38.0" layoutY="42.0" />
+      <Label fx:id="lblTopo" layoutX="51.0" layoutY="24.0" text="Cadastrar um serviço" textFill="#b91212">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
       <Circle fx:id="shapeAvatar2111" fill="#b91212" layoutX="38.0" layoutY="42.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label layoutX="51.0" layoutY="142.0" text="Serviços cadastrados" textFill="#b91212">
+      <Label layoutX="51.0" layoutY="200.0" text="Serviços cadastrados" textFill="#b91212">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Circle fx:id="shapeAvatar21111" fill="#b91212" layoutX="38.0" layoutY="160.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
-      <TableView layoutX="51.0" layoutY="181.0" prefHeight="205.0" prefWidth="604.0">
+      <Circle fx:id="shapeAvatar21111" fill="#b91212" layoutX="38.0" layoutY="218.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+      <TableView fx:id="tabServicos" editable="true" layoutX="51.0" layoutY="249.0" prefHeight="264.0" prefWidth="604.0">
         <columns>
-          <TableColumn prefWidth="297.99998474121094" text="Descrição" />
-          <TableColumn prefWidth="224.0" text="Modelo" />
-            <TableColumn minWidth="0.0" text="Em estoque" />
+          <TableColumn fx:id="colNome" prefWidth="195.0" text="Nome" />
+          <TableColumn fx:id="colDescr" prefWidth="408.0" text="Descrição" />
         </columns>
       </TableView>
-      <Button layoutX="126.0" layoutY="121.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="78.0" text="Cadastrar" />
+      <Button fx:id="btnEfetivar" layoutX="126.0" layoutY="123.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="25.0" prefWidth="78.0" text="Cadastrar" />
       <Label layoutX="87.0" layoutY="67.0" text="Nome: " />
-      <Label layoutX="68.0" layoutY="93.0" text="Descrição: " />
-      <TextField layoutX="126.0" layoutY="63.0" prefHeight="25.0" prefWidth="353.0" />
-      <TextField layoutX="126.0" layoutY="91.0" prefHeight="25.0" prefWidth="353.0" />
+      <Label layoutX="68.0" layoutY="95.0" text="Descrição: " />
+      <TextField fx:id="nome" layoutX="126.0" layoutY="63.0" prefHeight="25.0" prefWidth="353.0" />
+      <TextField fx:id="descricao" layoutX="126.0" layoutY="93.0" prefHeight="25.0" prefWidth="353.0" />
+      <Label layoutX="52.0" layoutY="230.0" text="Botão direito para ver opções">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

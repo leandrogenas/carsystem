@@ -1,7 +1,6 @@
 package atox.controller;
 
 import atox.model.Cliente;
-import atox.model.Documento;
 import atox.utils.MaskFieldUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -47,7 +46,7 @@ public class Clientes {
             return false;
         }
 
-        cliente = Cliente.buscaPorDocumento(Documento.Tipo.CPF, cpfField.getText());
+        cliente = Cliente.buscaPorDocumento(cpfField.getText());
         if (cliente != null) {
             nomeField.setText(cliente.getNome());
             emailField.setText(cliente.getEmail());
@@ -75,12 +74,12 @@ public class Clientes {
     public void cadastrarCliente() {
         if (cliente == null) {
             cliente = new Cliente(
-                    new Documento(Documento.Tipo.CPF, cpfField.getText()),
+                    cpfField.getText(),
                     nomeField.getText(),
                     emailField.getText(),
-                    enderecoField.getText(),
                     telefoneField.getText(),
-                    celField.getText()
+                    celField.getText(),
+                    enderecoField.getText()
             );
             try{
                 Cliente.inserir(cliente);
@@ -99,7 +98,7 @@ public class Clientes {
                 alert.showAndWait();
             }
         } else {
-            cliente.setCPF(cpfField.getText());
+            cliente.setDocumento(cpfField.getText());
             cliente.setNome(nomeField.getText());
             cliente.setEmail(emailField.getText());
             cliente.setEndereco(enderecoField.getText());

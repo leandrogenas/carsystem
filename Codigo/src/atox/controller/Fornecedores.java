@@ -2,6 +2,7 @@ package atox.controller;
 
 import atox.exception.CarSystemException;
 import atox.model.Fornecedor;
+import atox.model.Servico;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,73 +10,91 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 public class Fornecedores {
-
-    class FornecedorTable{
-        private SimpleStringProperty nome;
-        private SimpleStringProperty cnpj;
-        private SimpleStringProperty endereco;
-        private SimpleStringProperty telefone;
-
-        public FornecedorTable(Fornecedor forn){
-            nome = new SimpleStringProperty(forn.getNome());
-            cnpj = new SimpleStringProperty(forn.getCNPJ());
-            endereco = new SimpleStringProperty(forn.getEndereco());
-            telefone = new SimpleStringProperty(forn.getTelefone());
-        }
-
-        public void setNome(String nome){ this.nome.set(nome); }
-        public void setCnpj(String cnpj){ this.cnpj.set(cnpj); }
-        public void setEndereco(String endereco){ this.endereco.set(endereco); }
-        public void setTelefone(String telefone){ this.telefone.set(telefone); }
-        public String getNome(){ return nome.get(); }
-        public String getCnpj(){ return cnpj.get(); }
-        public String getEndereco(){ return endereco.get(); }
-        public String getTelefone(){ return telefone.get(); }
-    }
 
     public TextField nome;
     public TextField cnpj;
     public TextField endereco;
     public TextField telefone;
 
-    public TableView tabFornecedores;
-    public TableColumn colNome;
-    public TableColumn colCNPJ;
-    public TableColumn colTelefone;
-    public TableColumn colEndereco;
+    public TableView<Fornecedor> tabFornecedores;
+    public TableColumn<Fornecedor, String> colNome;
+    public TableColumn<Fornecedor, String> colCNPJ;
+    public TableColumn<Fornecedor, String> colTelefone;
+    public TableColumn<Fornecedor, String> colEndereco;
 
     private ObservableList<Fornecedor> dadosTabela;
 
-    public void initialize(){
+    public Fornecedores(){
         dadosTabela = FXCollections.observableArrayList(Fornecedor.todos());
-
-        colNome.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("nome"));
-        colCNPJ.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("cnpj"));
-        colEndereco.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("endereco"));
-        colTelefone.setCellValueFactory(new PropertyValueFactory<Fornecedor, String>("telefone"));
-
-        tabFornecedores.setItems(dadosTabela);
-
-        ContextMenu cmTab = new ContextMenu();
-        cmTab.getItems().add(new MenuItem("Excluir fornecedor"));
-
-        tabFornecedores.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            if(event.getButton() == MouseButton.SECONDARY)
-                cmTab.show(tabFornecedores, event.getScreenX(), event.getScreenY());
-        });
-
-        cmTab.setOnAction((ActionEvent event) -> {
-            Fornecedor sel = (Fornecedor) tabFornecedores.getSelectionModel().getSelectedItem();
-            System.out.println(sel.getNome());
-        });
-
     }
 
-    private void inserirLinha(Fornecedor forn){
+    public void initialize(){
+        // Atrela as propriedades do modelo às colunas
+        colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colNome.setCellFactory(TextFieldTableCell.forTableColumn());
+        colNome.setOnEditCommit(ev -> {
+            // Altera o dado na classe
+            ev.getRowValue().setNome(ev.getNewValue());
+
+            // Altera no BD
+            Fornecedor.alterar(ev.getRowValue());
+        });
+
+        colCNPJ.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
+        colCNPJ.setCellFactory(TextFieldTableCell.forTableColumn());
+        colCNPJ.setOnEditCommit(ev -> {
+            // Altera o dado na classe
+            ev.getRowValue().setCNPJ(ev.getNewValue());
+
+            // Altera no BD
+            Fornecedor.alterar(ev.getRowValue());
+        });
+
+        colEndereco.setCellValueFactory(new PropertyValueFactory<>("endereco"));
+        colEndereco.setCellFactory(TextFieldTableCell.forTableColumn());
+        colEndereco.setOnEditCommit(ev -> {
+            // Altera o dado na classe
+            ev.getRowValue().setEndereco(ev.getNewValue());
+
+            // Altera no BD
+            Fornecedor.alterar(ev.getRowValue());
+        });
+
+        colTelefone.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+        colTelefone.setCellFactory(TextFieldTableCell.forTableColumn());
+        colTelefone.setOnEditCommit(ev -> {
+            // Altera o dado na classe
+            ev.getRowValue().setTelefone(ev.getNewValue());
+
+            // Altera no BD
+            Fornecedor.alterar(ev.getRowValue());
+        });
+
+
+        // Cria menu de contexto para opções adicionais
+        MenuItem iExc = new MenuItem("Excluir");
+        iExc.setOnAction(ev -> {
+            Fornecedor fornSel = tabFornecedores.getSelectionModel().getSelectedItem();
+            Fornecedor.excluir(fornSel.getId());
+            dadosTabela.remove(fornSel);
+        });
+
+        ContextMenu cmTab = new ContextMenu();
+        cmTab.getItems().add(iExc);
+
+        // Adiciona handlers para os eventos de contexto
+        tabFornecedores.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            if(event.getButton() == MouseButton.SECONDARY) {
+                cmTab.show(tabFornecedores, event.getScreenX(), event.getScreenY());
+            }
+        });
+
+        tabFornecedores.setItems(dadosTabela);
 
     }
 
