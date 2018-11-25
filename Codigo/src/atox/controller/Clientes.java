@@ -1,7 +1,6 @@
 package atox.controller;
 
 import atox.model.Cliente;
-import atox.model.Veiculo;
 import atox.utils.MaskFieldUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -10,11 +9,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-import static atox.BancoDeDados.*;
 import static atox.utils.Validators.isCNPJ;
 import static atox.utils.Validators.isCPF;
 
-public class CadastroCliente {
+public class Clientes {
     @FXML
     private TextField cpfField, nomeField, emailField, enderecoField, telefoneField, celField,
             corField, modeloField, kmField, numParcelasField, anoField, marcaField;
@@ -26,15 +24,15 @@ public class CadastroCliente {
     private CheckBox importadoCheckBox;
 
     private Cliente cliente;
-    private Veiculo veiculo;
 
     @FXML
     public void initialize() {
         MaskFieldUtil.cpfCnpjMask(cpfField);
         MaskFieldUtil.telefoneMask(telefoneField);
         MaskFieldUtil.telefoneMask(celField);
-        cpfField.textProperty().addListener((observable, oldValue, newValue) -> { setClienteFieldsDisabled(true); });
-        MaskFieldUtil.placaMask(placaComboBox);
+        cpfField.textProperty().addListener((observable, oldValue, newValue) -> {
+            setClienteFieldsDisabled(true);
+        });
     }
 
     public boolean validaCliente() {
@@ -48,7 +46,7 @@ public class CadastroCliente {
             return false;
         }
 
-        cliente = getCliente(cpfField.getText());
+        cliente = Cliente.buscaPorDocumento(cpfField.getText());
         if (cliente != null) {
             nomeField.setText(cliente.getNome());
             emailField.setText(cliente.getEmail());
@@ -58,21 +56,17 @@ public class CadastroCliente {
         }
         setClienteFieldsDisabled(false);
 
-        if(placaComboBox.getValue() != null) {
-            veiculo = getVeiculo(placaComboBox.getValue());
-        }
-
-        if (veiculo != null) {
-            placaComboBox.getItems().add(veiculo.getPlaca());
-            cpfField.setText(cliente.getCPF());
-            numParcelasField.setText(veiculo.getNumParcelas());
-            corField.setText(veiculo.getCor());
-            modeloField.setText(veiculo.getModelo());
-            marcaField.setText(veiculo.getMarca());
-            importadoCheckBox.setSelected(veiculo.isImportado());
-            kmField.setText(Float.toString(veiculo.getKm()));
-        }
+        //TODO: puxar carro cadastrado no CPF/CNPJ
         setPanelVeiculoDisabled(false);
+        placaComboBox.getItems().add("AAA-0000");
+        placaComboBox.getSelectionModel().select("AAA-0000");
+        corField.setText("Preto");
+        kmField.setText("10000");
+        anoField.setText("2018");
+        importadoCheckBox.setSelected(false);
+        marcaField.setText("Chevrolet");
+        modeloField.setText("Chips");
+        numParcelasField.setText("1");
 
         return true;
     }
@@ -83,12 +77,12 @@ public class CadastroCliente {
                     cpfField.getText(),
                     nomeField.getText(),
                     emailField.getText(),
-                    enderecoField.getText(),
                     telefoneField.getText(),
-                    celField.getText()
+                    celField.getText(),
+                    enderecoField.getText()
             );
             try{
-                setCliente(cliente);
+                Cliente.inserir(cliente);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Cliente cadastrado com sucesso!");
                 alert.setHeaderText(null);
@@ -104,14 +98,14 @@ public class CadastroCliente {
                 alert.showAndWait();
             }
         } else {
-            cliente.setCPF(cpfField.getText());
+            cliente.setDocumento(cpfField.getText());
             cliente.setNome(nomeField.getText());
             cliente.setEmail(emailField.getText());
             cliente.setEndereco(enderecoField.getText());
             cliente.setTelefone(telefoneField.getText());
             cliente.setCelular(celField.getText());
             try {
-                updateCliente(cliente);
+                Cliente.alterar(cliente);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Dados atualizados com sucesso!");
                 alert.setHeaderText(null);
@@ -126,33 +120,6 @@ public class CadastroCliente {
 
                 alert.showAndWait();
             }
-
-
-            veiculo.setPlaca(placaComboBox.getValue());
-            veiculo.setCpfProprietario(cpfField.getText());
-            veiculo.setNumParcelas(numParcelasField.getText());
-            veiculo.setCor(corField.getText());
-            veiculo.setModelo(modeloField.getText());
-            veiculo.setMarca(marcaField.getText());
-            veiculo.setAno(anoField.getText());
-            veiculo.setImportado(importadoCheckBox.isSelected());
-            veiculo.setKm(Float.valueOf(kmField.getText()));
-            try {
-                updateVeiculo(veiculo);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Dados atualizados com sucesso!");
-                alert.setHeaderText(null);
-                alert.setContentText("Os dados do veiculo foram atualizados com sucesso!");
-
-                alert.showAndWait();
-            } catch (Exception ex) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Falha na atualização de dados!");
-                alert.setHeaderText(null);
-                alert.setContentText("Houve um erro na atualização dos dados do veiculo! Erro: "+ex.getMessage());
-
-                alert.showAndWait();
-            }
         }
     }
 
@@ -162,7 +129,7 @@ public class CadastroCliente {
         enderecoField.setDisable(disable);
         telefoneField.setDisable(disable);
         celField.setDisable(disable);
-        setPanelVeiculoDisabled(disable);
+        setPanelVeiculoDisabled(true);
     }
 
     public void setPanelVeiculoDisabled(boolean disable) {

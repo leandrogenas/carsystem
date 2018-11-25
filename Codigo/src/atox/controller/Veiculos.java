@@ -1,4 +1,4 @@
 package atox.controller;
 
-public class CadastroPeca {
+public class Veiculos {
 }

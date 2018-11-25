@@ -14,7 +14,7 @@ public class Inicial {
     private Pane panePrincipal;
 
     public void initialize(){
-        BancoDeDados instancia = BancoDeDados.getInstancia();
+
     }
 
     @FXML

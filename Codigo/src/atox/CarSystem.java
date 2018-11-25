@@ -28,13 +28,13 @@ public final class CarSystem {
         HISTORICO_ORCAMENTOS("historico-orcamentos", "Histórico de orçamentos"),
         HISTORICO_ATENDIMENTOS("historico-atendimentos", "Histórico de atendimentos"),
         SELECAO_CADASTROS("selecao-cadastros", "Selecione um cadastro"),
-        INICIAR_ATENDIMENTO("inicia-atendimento", "Iniciar atendimentos"),
+        ATENDIMENTOS("atendimentos", "Atendimentos"),
         NOVO_ORCAMENTO("novo-orcamento", "Novo orçamento"),
         ESTOQUE("estoque", "Estoque"),
-        CADASTRO_CLIENTE("cadastro-cliente", "Cadastro de clientes"),
-        CADASTRO_FORNECEDOR("cadastro-fornecedor", "Cadastro de fornecedores"),
-        CADASTRO_VEICULO("cadastro-veiculo", "Cadastro de veículos"),
-        CADASTRO_SERVICO("cadastro-servico", "Cadastro de serviços");
+        CADASTRO_CLIENTE("clientes", "Clientes"),
+        CADASTRO_FORNECEDOR("fornecedores", "Fornecedores"),
+        CADASTRO_VEICULO("veiculos", "Veículos"),
+        CADASTRO_SERVICO("servicos", "Serviços");
 
         private final String nomeFXML;
         private final String titulo;
@@ -96,7 +96,8 @@ public final class CarSystem {
             paneConteudo.getChildren().clear();
             paneConteudo.getChildren().add(para.getFXMLLoader().load());
         }catch (IOException e){
-            System.err.println("Erro ao carregar a tela " + para.nomeFXML);
+            e.printStackTrace();
+            System.err.println("Erro ao carregar tela_" + para.nomeFXML + ".fxml");
         }
     }
 

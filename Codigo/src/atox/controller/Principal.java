@@ -12,7 +12,7 @@ public class Principal {
 
     public void inicio               (){ cs.mudaTela(atox.CarSystem.Tipo.INICIAL); }
     public void novoOrcamento        (){ cs.mudaTela(atox.CarSystem.Tipo.NOVO_ORCAMENTO); }
-    public void atendimentos         (){ cs.mudaTela(atox.CarSystem.Tipo.INICIAR_ATENDIMENTO); }
+    public void atendimentos         (){ cs.mudaTela(atox.CarSystem.Tipo.ATENDIMENTOS); }
     public void financeiro           (){ cs.mudaTela(atox.CarSystem.Tipo.FINANCEIRO); }
     public void estoque              (){ cs.mudaTela(atox.CarSystem.Tipo.ESTOQUE); }
     public void selecaoCadastros     (){ cs.mudaTela(atox.CarSystem.Tipo.SELECAO_CADASTROS); }
