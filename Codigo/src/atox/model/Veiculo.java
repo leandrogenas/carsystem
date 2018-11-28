@@ -11,6 +11,7 @@ public class Veiculo {
     private String placa;
     private Cliente proprietario;
     private String modelo;
+    private String marca;
     private String ano;
     private String cor;
     private boolean importado;
@@ -20,9 +21,10 @@ public class Veiculo {
         this.placa = placa;
     }
 
-    public Veiculo(String placa, Cliente proprietario, String modelo, String ano, String cor, boolean importado, float km){
+    public Veiculo(String placa, Cliente proprietario, String marca, String modelo, String ano, String cor, boolean importado, float km){
         this.placa = placa;
         this.proprietario = proprietario;
+        this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
         this.cor = cor;
@@ -30,8 +32,8 @@ public class Veiculo {
         this.km = km;
     }
 
-    public Veiculo(int id, String placa, Cliente proprietario, String modelo, String ano, String cor, boolean importado, float km){
-        this(placa, proprietario, modelo, ano, cor, importado, km);
+    public Veiculo(int id, String placa, Cliente proprietario, String marca, String modelo, String ano, String cor, boolean importado, float km){
+        this(placa, proprietario, modelo, marca, ano, cor, importado, km);
         this.id = id;
     }
 
@@ -39,6 +41,7 @@ public class Veiculo {
     public String getPlaca() {
         return placa;
     }
+    public String getMarca() { return marca; }
     public Cliente getProprietario() {
         return proprietario;
     }
@@ -51,14 +54,14 @@ public class Veiculo {
     public String getCor() {
         return cor;
     }
-    public float getKm() {
-        return km;
-    }
+    public float getKm() { return km; }
+
     public boolean isImportado() { return importado; }
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
+    public void setMarca(String marca){ this.marca = marca; }
     public void setKm(float km) {
         this.km = km;
     }
@@ -75,27 +78,27 @@ public class Veiculo {
         this.importado = importado;
     }
 
-    private static Veiculo buscaPorPlaca(String placa){
+    public static Veiculo buscaPorPlaca(String placa){
         Veiculo veiculo = null;
         try {
-            String sql = "SELECT * FROM veiculo WHERE placa=" + placa + " LIMIT 1";
+            String sql = "SELECT * FROM veiculo WHERE placa=" + placa;
             ResultSet rSet = BancoDeDados.getNewStatement().executeQuery(sql);
-            rSet.next();
+
+            if(!rSet.next())
+                return null;
 
             veiculo = new Veiculo(
                     rSet.getInt("cod_veiculo"),
                     rSet.getString("placa"),
                     Cliente.buscaPorId(rSet.getInt("cod_proprietario")),
                     rSet.getString("cor"),
+                    rSet.getString("marca"),
                     rSet.getString("modelo"),
                     rSet.getString("ano"),
                     rSet.getBoolean("importado"),
                     rSet.getFloat("kilometragem")
             );
 
-            veiculo.setAno(rSet.getString("ano"));
-            veiculo.setCor(rSet.getString("cor"));
-            veiculo.setModelo(rSet.getString("modelo"));
         }catch (Exception e){
             e.printStackTrace();
             System.err.println(e.getMessage());

@@ -56,7 +56,7 @@ public class Servico {
             rSet.close();
 
         }catch (SQLException e){
-            System.err.println("Erro ao obter os fornecedores");
+            System.err.println("Erro ao obter os serviços");
         }catch (Exception e){
             e.printStackTrace();
         }

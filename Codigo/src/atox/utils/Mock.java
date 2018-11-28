@@ -10,7 +10,6 @@ public final class Mock {
                 "Aznezio Ferreira",
                 "Rua dos aznezio, 3231",
                 "(11) 1234-5678",
-                "(11) 12345-6789",
                 "zezniao@ig.com.br"
         );
     }

@@ -106,7 +106,8 @@ public class Fornecedores {
             Fornecedor forn = new Fornecedor(
                     nome.getText(),
                     cnpj.getText(),
-                    telefone.getText()
+                    telefone.getText(),
+                    endereco.getText()
             );
             forn.setEndereco(endereco.getText());
 

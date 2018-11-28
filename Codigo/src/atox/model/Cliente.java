@@ -8,6 +8,8 @@ import javafx.beans.property.SimpleStringProperty;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cliente {
 
@@ -16,24 +18,22 @@ public class Cliente {
     private String nome;
     private String endereco;
     private String telefone;
-    private String celular;
     private String email;
 
     public Cliente(String documento){
         this.documento = documento;
     }
 
-    public Cliente(String documento, String nome, String email, String telefone, String celular, String endereco) {
+    public Cliente(String documento, String nome, String email, String telefone, String endereco) {
         this.documento = documento;
         this.nome = nome;
         this.email = email;
-        this.celular = celular;
         this.telefone = telefone;
         this.endereco = endereco;
     }
 
-    public Cliente(int id, String documento, String nome, String email, String telefone, String celular, String endereco) {
-        this(documento, nome, email, telefone, celular, endereco);
+    public Cliente(int id, String documento, String nome, String email, String telefone, String endereco) {
+        this(documento, nome, email, telefone, endereco);
         this.id = id;
     }
 
@@ -42,14 +42,12 @@ public class Cliente {
     public SimpleStringProperty nomeProperty(){ return new SimpleStringProperty(nome); }
     public SimpleStringProperty emailProperty(){ return new SimpleStringProperty(email); }
     public SimpleStringProperty telefoneProperty(){ return new SimpleStringProperty(telefone); }
-    public SimpleStringProperty celularProperty(){ return new SimpleStringProperty(celular); }
     public SimpleStringProperty enderecoProperty(){ return new SimpleStringProperty(endereco); }
 
     public int getId(){ return id; }
     public String getNome() { return nome; }
     public String getDocumento() { return documento; }
     public String getTelefone() { return telefone; }
-    public String getCelular() { return celular; }
     public String getEmail() { return email; }
     public String getEndereco() { return endereco; }
 
@@ -57,7 +55,6 @@ public class Cliente {
     public void setDocumento(String doc){ this.documento = doc; }
     public void setEndereco(String endereco) { this.endereco = endereco; }
     public void setTelefone(String telefone) { this.telefone = telefone; }
-    public void setCelular(String celular) { this.celular = celular; }
     public void setEmail(String email) { this.email = email; }
 
 
@@ -74,7 +71,6 @@ public class Cliente {
                     rSet.getString("nome"),
                     rSet.getString("email"),
                     rSet.getString("telefone"),
-                    rSet.getString("celular"),
                     rSet.getString("endereco")
             );
         }
@@ -89,15 +85,15 @@ public class Cliente {
 
         try {
             Statement stmt = BancoDeDados.getNewStatement();
+            System.out.println("SELECT * FROM cliente WHERE nr_documento = '"+doc+"'");
             ResultSet rSet = stmt.executeQuery("SELECT * FROM cliente WHERE nr_documento = '"+doc+"'");
             rSet.next();
             cliente = new Cliente(
                     rSet.getInt("cod_cliente"),
-                    rSet.getString("cpf"),
+                    rSet.getString("nr_documento"),
                     rSet.getString("nome"),
                     rSet.getString("email"),
                     rSet.getString("telefone"),
-                    rSet.getString("celular"),
                     rSet.getString("endereco")
             );
         }
@@ -113,7 +109,6 @@ public class Cliente {
         insert += cliente.getNome()+"','";
         insert += cliente.getEmail()+"','";
         insert += cliente.getTelefone()+"','";
-        insert += cliente.getCelular()+"','";
         insert += cliente.getEndereco()+"')";
 
         Statement stmt = BancoDeDados.getNewStatement();
@@ -125,7 +120,6 @@ public class Cliente {
         update += "nome = '"+cliente.getNome()+"',";
         update += "email = '"+cliente.getEmail()+"',";
         update += "telefone = '"+cliente.getTelefone()+"',";
-        update += "celular = '"+cliente.getCelular()+"',";
         update += "endereco = '"+cliente.getEndereco()+"'";
         update += " WHERE cpf = '"+cliente.getDocumento()+"'";
 

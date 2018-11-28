@@ -52,7 +52,6 @@ public class Clientes {
             emailField.setText(cliente.getEmail());
             enderecoField.setText(cliente.getEndereco());
             telefoneField.setText(cliente.getTelefone());
-            celField.setText(cliente.getCelular());
         }
         setClienteFieldsDisabled(false);
 
@@ -78,7 +77,6 @@ public class Clientes {
                     nomeField.getText(),
                     emailField.getText(),
                     telefoneField.getText(),
-                    celField.getText(),
                     enderecoField.getText()
             );
             try{
@@ -103,7 +101,6 @@ public class Clientes {
             cliente.setEmail(emailField.getText());
             cliente.setEndereco(enderecoField.getText());
             cliente.setTelefone(telefoneField.getText());
-            cliente.setCelular(celField.getText());
             try {
                 Cliente.alterar(cliente);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
