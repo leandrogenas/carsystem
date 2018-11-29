@@ -136,7 +136,6 @@ public class Clientes {
                     nomeField.getText(),
                     emailField.getText(),
                     telefoneField.getText(),
-                    celField.getText(),
                     enderecoField.getText()
             );
             try{
@@ -156,7 +155,6 @@ public class Clientes {
             cliente.setEmail(emailField.getText());
             cliente.setEndereco(enderecoField.getText());
             cliente.setTelefone(telefoneField.getText());
-            cliente.setCelular(celField.getText());
             try {
                 Cliente.alterar(cliente);
             } catch (Exception ex) {

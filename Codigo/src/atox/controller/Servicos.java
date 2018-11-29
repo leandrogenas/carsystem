@@ -53,14 +53,13 @@ public class Servicos {
         });
 
         // Cria menu de contexto para opções adicionais
+        ContextMenu cmTab = new ContextMenu();
         MenuItem iExc = new MenuItem("Excluir");
         iExc.setOnAction(ev -> {
             Servico svcSel = tabServicos.getSelectionModel().getSelectedItem();
             Servico.excluir(svcSel.getId());
             dadosTabela.remove(svcSel);
         });
-
-        ContextMenu cmTab = new ContextMenu();
         cmTab.getItems().add(iExc);
 
         // Adiciona handlers para os eventos de contexto

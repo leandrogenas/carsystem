@@ -10,12 +10,12 @@ public class PassoFinalizacao extends Passos {
     }
 
     @Override
-    public void validarPasso() throws CarSystemException {
-
+    public boolean passoValido() {
+        return false;
     }
 
     @Override
-    public void carregar() {
+    public void carregarElementos() {
 
     }
 

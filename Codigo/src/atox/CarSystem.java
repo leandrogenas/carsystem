@@ -81,7 +81,7 @@ public final class CarSystem {
             stageCarSystem.show();
         }catch (IOException e){
             e.printStackTrace();
-            System.err.println("Erro ao carregar tela principal, fechando...");
+            System.err.println("Erro ao carregarElementos tela principal, fechando...");
 
             return false;
         }
@@ -97,7 +97,7 @@ public final class CarSystem {
             paneConteudo.getChildren().add(para.getFXMLLoader().load());
         }catch (IOException e){
             e.printStackTrace();
-            System.err.println("Erro ao carregar tela_" + para.nomeFXML + ".fxml");
+            System.err.println("Erro ao carregarElementos tela_" + para.nomeFXML + ".fxml");
         }
     }
 
