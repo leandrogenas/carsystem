@@ -8,7 +8,7 @@ import java.sql.*;
 public class BancoDeDados {
 
     private static String DRIVER = "sqlserver";
-    private static String HOST = "127.0.0.1\\SQLEXPRESS01";
+    private static String HOST = "127.0.0.1\\SQLEXPRESS";
     private static String USER = "sa";
     private static String PASS = "Password123";
     private static String DB = "CarSystem";

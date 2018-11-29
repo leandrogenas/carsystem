@@ -2,56 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d11931b3-0b88-4126-ada0-5b225b6740d4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/Atendimentos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/Fornecedores.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/HistoricoAtendimentos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/Veiculos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/NovoOrcamento.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/PassoClienteVeiculo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/PassoFinalizacao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/PassoPecas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/PassoServicos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/Passos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/model/Servico.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/utils/ModeloTabela.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/view/tela_atendimentos.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/view/tela_estoque.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/view/tela_fornecedores.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/view/tela_servicos.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/model/ModeloDados.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/model/Peca.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Build/production/carsystem/atox/BancoDeDados.class" beforeDir="false" afterPath="$PROJECT_DIR$/Build/production/carsystem/atox/BancoDeDados.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Build/production/carsystem/atox/controller/CadastroCliente.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Build/production/carsystem/atox/model/Veiculo.class" beforeDir="false" afterPath="$PROJECT_DIR$/Build/production/carsystem/atox/model/Veiculo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Build/production/carsystem/atox/view/tela_novo-orcamento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Build/production/carsystem/atox/view/tela_novo-orcamento.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Codigo/src/atox/BancoDeDados.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/BancoDeDados.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Codigo/src/atox/CarSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/CarSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/CadastroCliente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/CadastroFornecedor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/CadastroPeca.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/Estoque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/CadastroServico.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/CadastroVeiculo.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/Clientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/Clientes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/HistoricoServicos.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/Inicial.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/Inicial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/NovoOrcamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/NovoOrcamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/Principal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/Servicos.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/Servicos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/NovoOrcamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/NovoOrcamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/PassoClienteVeiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/PassoClienteVeiculo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/PassoFinalizacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/PassoFinalizacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/PassoPecas.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/PassoPecas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/PassoServicos.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/PassoServicos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/Passos.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/Passos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Codigo/src/atox/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/model/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/model/Documento.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/model/Fornecedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/model/Fornecedor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/model/Servico.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/model/Servico.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Codigo/src/atox/model/Veiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/model/Veiculo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Codigo/src/atox/utils/Mock.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/utils/Mock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_cadastro-cliente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/view/tela_clientes.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_cadastro-fornecedor.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_cadastro-peca.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_cadastro-servico.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_cadastro-servicos.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_cadastro-veiculo.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_financeiro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/view/tela_financeiro.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_historico-atendimentos.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/view/tela_historico-atendimentos.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_historico-orcamentos.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/view/tela_historico-orcamentos.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_inicia-atendimento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/view/tela_veiculos.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_novo-orcamento.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/view/tela_novo-orcamento.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -77,7 +44,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="2" />
-          <entry key="fxml" value="57" />
+          <entry key="fxml" value="58" />
           <entry key="ini" value="1" />
           <entry key="java" value="71" />
           <entry key="jpg" value="1" />
@@ -91,7 +58,7 @@
           <entry key="JAVA" value="71" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SQL" value="1" />
-          <entry key="XML" value="57" />
+          <entry key="XML" value="58" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -115,24 +82,71 @@
     <favorites_list name="carsystem" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/HistoricoOrcamentos.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/model/Orcamento.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/HistoricoAtendimentos.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_novo-orcamento.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
+            <state relative-caret-position="453">
+              <caret line="283" column="7" selection-start-line="283" selection-start-column="7" selection-end-line="283" selection-end-column="7" />
             </state>
           </provider>
           <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/NovoOrcamento.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/model/Pagamento.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            <state relative-caret-position="51">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_historico-atendimentos.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="178" selection-start-line="6" selection-start-column="178" selection-end-line="6" selection-end-column="178" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_historico-orcamentos.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" selection-end-line="20" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
     </leaf>
@@ -255,8 +269,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -296,32 +311,38 @@
               <item name="Codigo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="atox" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="novo_orcamento" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="carsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="carsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="Codigo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="atox" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543161231810" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543462694603" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Codigo/lib" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\git\carsystem\Codigo\src\atox\view" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\git\carsystem\Codigo\src\containers\ComplexApplication_css" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="atox.controller" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\git\carsystem\Codigo\src\containers\ComplexApplication_css" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\git\carsystem\Codigo\src\atox\view" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -394,7 +415,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4987715" visible="true" weight="0.21677852" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4987715" visible="true" weight="0.22885907" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -403,13 +424,13 @@
       <window_info id="Favorites" order="6" sideWeight="0.5012285" side_tool="true" weight="0.21140939" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49932885" weight="0.32907802" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49798658" visible="true" weight="0.47801417" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48657718" visible="true" weight="0.2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.28936172" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32907802" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32907802" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50201344" side_tool="true" visible="true" weight="0.47801417" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.51342285" side_tool="true" visible="true" weight="0.2" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49127516" weight="0.3531915" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -471,8 +492,12 @@
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/CadastroServico.java" />
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_cadastro-servico.fxml" />
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_historico-orcamentos.fxml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-end-line="20" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_cadastro-veiculo.fxml" />
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_financeiro.fxml">
@@ -636,13 +661,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/NovoOrcamento.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/NovoOrcamento.java" />
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/BancoDeDados.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -668,20 +687,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_novo-orcamento.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/novo_orcamento/NovoOrcamento.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/HistoricoAtendimentos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_novo-orcamento.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="283" column="7" selection-start-line="283" selection-start-column="7" selection-end-line="283" selection-end-column="7" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
   </component>
   <component name="masterDetails">

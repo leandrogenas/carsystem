@@ -1,6 +1,5 @@
 package atox.controller.novo_orcamento;
 
-import atox.exception.CarSystemException;
 import javafx.scene.layout.AnchorPane;
 
 public abstract class Passos {
@@ -10,15 +9,15 @@ public abstract class Passos {
     Passos(AnchorPane pane){
         this.container = pane;
         setVisible(false);
-        carregar();
+        carregarElementos();
     }
 
     public void setVisible(boolean visible){
         container.setVisible(visible);
     }
 
-    public abstract void validarPasso() throws CarSystemException;
-    public abstract void carregar();
+    public abstract boolean passoValido();
+    public abstract void carregarElementos();
 
 
 }
