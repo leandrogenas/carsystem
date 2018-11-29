@@ -89,7 +89,7 @@ public class Fornecedor {
 
     }
 
-    public static boolean alterar(Fornecedor forn) {
+    public static void alterar(Fornecedor forn) throws SQLException {
         String update = "UPDATE fornecedor SET ";
         update += "nome = '"+forn.getNome()+"',";
         update += "cnpj = '"+forn.getCNPJ()+"',";
@@ -97,12 +97,7 @@ public class Fornecedor {
         update += "endereco = '"+forn.getEndereco()+"'";
         update += " WHERE cod_fornecedor = '"+forn.getId()+"'";
 
-        try {
-            return BancoDeDados.getNewStatement().execute(update);
-        }catch (SQLException e){
-            System.err.println(e.getMessage());
-            return false;
-        }
+        BancoDeDados.getNewStatement().execute(update);
 
     }
 

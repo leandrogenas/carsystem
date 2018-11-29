@@ -84,18 +84,13 @@ public class Servico {
         }
     }
 
-    public static boolean alterar(Servico svc){
+    public static void alterar(Servico svc) throws SQLException{
         String update = "UPDATE servico SET ";
         update += "nome = '"+svc.getNome()+"',";
         update += "descricao = '"+svc.getDescricao()+"'";
         update += " WHERE cod_servico = '"+svc.getId()+"'";
 
-        try {
-            return BancoDeDados.getNewStatement().execute(update);
-        }catch (SQLException e){
-            System.err.println(e.getMessage());
-            return false;
-        }
+        BancoDeDados.getNewStatement().execute(update);
     }
 
 }
