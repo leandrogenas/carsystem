@@ -83,8 +83,6 @@ public class Atendimentos {
 
     public void initialize(){
         container.getChildren().add(new LinhaAtendimento("Marca", "preto", "inicial"));
-
-
     }
 
 }

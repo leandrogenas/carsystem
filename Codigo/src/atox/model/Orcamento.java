@@ -15,7 +15,7 @@ public class Orcamento {
     private static String codigoTitle = "Cód",
             veiculoTittle = "Veículo",
             pagamentoTittle = "Forma de Pag.",
-            dataHoraTittle = "Data",
+            inicioTittle = "Início",
             precoTittle = "Preço",
             seguradoraTittle = "Seguradora",
             statusTitle = "Status";
@@ -26,6 +26,7 @@ public class Orcamento {
     private static Date dataInicio, dataFim;
     private String seguradora, statusAtual, preco;
 
+    public Orcamento() {}
     public Orcamento(int codigo, Veiculo veiculo, Pagamento pagamento, Date dataInicio, Date dataFim, String preco, String seguradora, String statusAtual) {
         this.codigo = codigo;
         this.veiculo = veiculo;
@@ -82,8 +83,8 @@ public class Orcamento {
         return pagamentoTittle;
     }
 
-    public static String dataHoraTittle() {
-        return dataHoraTittle;
+    public static String inicioTittle() {
+        return inicioTittle;
     }
 
     public static String precoTitle() {
@@ -110,7 +111,7 @@ public class Orcamento {
         return new SimpleStringProperty(pagamento.getForma());
     }
 
-    public SimpleStringProperty dataHoraProperty() {
+    public SimpleStringProperty inicioProperty() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         return new SimpleStringProperty(format.format(dataInicio));
     }
@@ -127,9 +128,12 @@ public class Orcamento {
         return new SimpleStringProperty(statusAtual);
     }
 
+    public int getId() { return codigo; }
+    public String getPreco() { return preco; }
+
     public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        String detailText = "Código: " + codigo + "\nData de início: " + format.format(dataInicio)+"\nTérmino previsto: " + format.format(dataInicio);
+        String detailText = "Código: " + codigo + "\nData de início: " + format.format(dataInicio)+"\nTérmino previsto: " + format.format(dataFim);
         detailText += "\n\nPreço: R$" + preco;
         detailText += "\n\nVeículo:";
         detailText += "\n\tPlaca: " + veiculo.getPlaca() + "\tModelo: " + veiculo.getModelo() + "\tMarca: " + veiculo.getMarca() + "\tCor: " + veiculo.getCor();
@@ -139,5 +143,38 @@ public class Orcamento {
         detailText += "\n\nStatus: " + statusAtual;
 
         return detailText;
+    }
+
+    public static Orcamento buscaPorId(int id){
+        Orcamento orcamento = new Orcamento();
+        try {
+            Statement stmt = BancoDeDados.getNewStatement();
+            ResultSet rSet = stmt.executeQuery("SELECT * FROM orcamento WHERE cod_orcamento = "+id);
+            rSet.next();
+            orcamento = new Orcamento(
+                    rSet.getInt("cod_orcamento"),
+                    Veiculo.buscaPorId(rSet.getInt("cod_veiculo")),
+                    Pagamento.buscaPorId(rSet.getInt("cod_pagamento")),
+                    rSet.getDate("data_inicio"),
+                    rSet.getDate("termino_previsto"),
+                    rSet.getString("preco"),
+                    rSet.getString("seguradora"),
+                    rSet.getString("iniciado"));
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+        //TODO: retirar esse treco abaixo
+        for (int i = 1; i <= 10; i++) {
+            orcamento = new Orcamento(i,
+                    new Veiculo(),
+                    new Pagamento(),
+                    new Date(),
+                    new Date(),
+                    "10.00",
+                    "Porto Seguro",
+                    "Iniciado");
+        }
+
+        return orcamento;
     }
 }

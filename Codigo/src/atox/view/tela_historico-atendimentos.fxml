@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="530.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.HistoricoAtendimentos">
-   <children>
-      <TableView fx:id="tabHistAtendimentos" layoutX="14.0" layoutY="14.0" prefHeight="370.0" prefWidth="640.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-        <columns>
-          <TableColumn prefWidth="324.0" text="Veículo atendido" />
-          <TableColumn minWidth="0.0" prefWidth="103.0" text="Data de início" />
-            <TableColumn prefWidth="132.0" text="Forma de pagamento" />
-            <TableColumn prefWidth="90.0" text="Valor total" />
-        </columns>
-      </TableView>
-   </children>
+<AnchorPane prefHeight="530.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.HistoricoAtendimentos">
+    <children>
+        <TableView fx:id="tabHistAtendimento" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <columns>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+    </children>
 </AnchorPane>
