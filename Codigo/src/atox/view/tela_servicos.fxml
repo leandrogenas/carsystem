@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="530.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.Servicos">
+<AnchorPane prefHeight="530.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.Servicos">
    <children>
       <Line endY="176.0" layoutX="38.0" layoutY="42.0" />
       <Label fx:id="lblTopo" layoutX="51.0" layoutY="24.0" text="Cadastrar um serviço" textFill="#b91212">
@@ -31,11 +31,11 @@
           <TableColumn fx:id="colDescr" prefWidth="408.0" text="Descrição" />
         </columns>
       </TableView>
-      <Button fx:id="btnEfetivar" layoutX="126.0" layoutY="123.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="25.0" prefWidth="78.0" text="Cadastrar" />
+      <Button fx:id="btnEfetivar" layoutX="139.0" layoutY="123.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="31.0" prefWidth="109.0" text="Cadastrar" />
       <Label layoutX="87.0" layoutY="67.0" text="Nome: " />
       <Label layoutX="68.0" layoutY="95.0" text="Descrição: " />
-      <TextField fx:id="nome" layoutX="126.0" layoutY="63.0" prefHeight="25.0" prefWidth="353.0" />
-      <TextField fx:id="descricao" layoutX="126.0" layoutY="93.0" prefHeight="25.0" prefWidth="353.0" />
+      <TextField fx:id="nome" layoutX="139.0" layoutY="63.0" prefHeight="25.0" prefWidth="353.0" />
+      <TextField fx:id="descricao" layoutX="139.0" layoutY="93.0" prefHeight="25.0" prefWidth="353.0" />
       <Label layoutX="52.0" layoutY="230.0" text="Botão direito para ver opções">
          <font>
             <Font name="System Italic" size="12.0" />

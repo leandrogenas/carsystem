@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.Fornecedores">
+<AnchorPane prefHeight="400.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.Fornecedores">
    <children>
       <Line endY="134.0" layoutX="38.0" layoutY="42.0" />
       <Label layoutX="51.0" layoutY="24.0" text="Cadastrar um fornecedor" textFill="#b91212">
@@ -33,15 +33,15 @@
             <TableColumn fx:id="colEndereco" prefWidth="149.0" text="Endereço" />
         </columns>
       </TableView>
-      <Button layoutX="126.0" layoutY="127.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="25.0" prefWidth="76.0" text="Cadastrar" />
-      <Label layoutX="87.0" layoutY="67.0" text="Nome: " />
+      <Button layoutX="126.0" layoutY="127.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="31.0" prefWidth="98.0" text="Cadastrar" />
+      <Label layoutX="70.0" layoutY="67.0" text="Nome: " />
       <Label layoutX="420.0" layoutY="67.0" text="CNPJ:" />
-      <Label layoutX="435.0" layoutY="98.0" text="Telefone:" />
+      <Label layoutX="421.0" layoutY="98.0" text="Telefone:" />
       <TextField fx:id="nome" layoutX="126.0" layoutY="63.0" prefHeight="25.0" prefWidth="288.0" />
-      <TextField fx:id="cnpj" layoutX="460.0" layoutY="63.0" />
-      <TextField fx:id="telefone" layoutX="491.0" layoutY="94.0" prefHeight="25.0" prefWidth="119.0" />
-      <Label layoutX="70.0" layoutY="98.0" text="Endereço:" />
-      <TextField fx:id="endereco" layoutX="126.0" layoutY="94.0" prefHeight="25.0" prefWidth="305.0" />
+      <TextField fx:id="cnpj" layoutX="485.0" layoutY="63.0" prefHeight="31.0" prefWidth="162.0" />
+      <TextField fx:id="telefone" layoutX="486.0" layoutY="94.0" prefHeight="31.0" prefWidth="162.0" />
+      <Label layoutX="50.0" layoutY="98.0" text="Endereço:" />
+      <TextField fx:id="endereco" layoutX="126.0" layoutY="94.0" prefHeight="31.0" prefWidth="288.0" />
       <Label layoutX="52.0" layoutY="190.0" text="Botão direito para ver opções">
          <font>
             <Font name="System Italic" size="12.0" />

@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d11931b3-0b88-4126-ada0-5b225b6740d4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Build/production/carsystem/atox/model/Veiculo.class" beforeDir="false" afterPath="$PROJECT_DIR$/Build/production/carsystem/atox/model/Veiculo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/Veiculos.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/Veiculos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/model/Cliente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Codigo/src/atox/utils/TableWithCustomRow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/controller/HistoricoOrcamentos.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/controller/HistoricoOrcamentos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/model/Orcamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/model/Orcamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/model/Pagamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/model/Pagamento.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Codigo/src/atox/model/Veiculo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/model/Veiculo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_veiculos.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/view/tela_veiculos.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_estoque.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/view/tela_estoque.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_fornecedores.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/view/tela_fornecedores.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_historico-orcamentos.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/view/tela_historico-orcamentos.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Codigo/src/atox/view/tela_servicos.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Codigo/src/atox/view/tela_servicos.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,22 +23,24 @@
     <session id="-1563549117">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.37" value="1" />
           <entry key="project.open.time.63" value="1" />
           <entry key="project.open.time.67" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.open.time.88" value="1" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="2" />
-          <entry key="fxml" value="59" />
+          <entry key="fxml" value="65" />
           <entry key="ini" value="1" />
-          <entry key="java" value="83" />
+          <entry key="java" value="100" />
           <entry key="jpg" value="1" />
           <entry key="sql" value="1" />
         </counts>
@@ -42,24 +49,24 @@
         <counts>
           <entry key="CSS" value="2" />
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="83" />
+          <entry key="JAVA" value="100" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SQL" value="1" />
-          <entry key="XML" value="59" />
+          <entry key="XML" value="65" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="7401" />
+          <entry key="JAVA" value="9945" />
           <entry key="SQL" value="19" />
-          <entry key="XML" value="687" />
+          <entry key="XML" value="793" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="fxml" value="687" />
-          <entry key="java" value="7401" />
+          <entry key="fxml" value="793" />
+          <entry key="java" value="9945" />
           <entry key="sql" value="19" />
         </counts>
       </usages-collector>
@@ -69,65 +76,87 @@
     <favorites_list name="carsystem" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_clientes.fxml">
+        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/HistoricoOrcamentos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="65" column="52" lean-forward="true" selection-start-line="65" selection-start-column="52" selection-end-line="65" selection-end-column="52" />
+            <state relative-caret-position="170">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
             </state>
           </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_veiculos.fxml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="74" column="26" lean-forward="true" selection-start-line="74" selection-start-column="26" selection-end-line="74" selection-end-column="26" />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/model/Veiculo.java">
+        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/utils/TableWithCustomRow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="193" column="56" lean-forward="true" selection-start-line="193" selection-start-column="56" selection-end-line="193" selection-end-column="56" />
+            <state relative-caret-position="-8">
+              <caret line="59" column="41" lean-forward="true" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1528#1529#0" expanded="true" />
-                <element signature="e#1557#1558#0" expanded="true" />
-                <element signature="e#1641#1642#0" expanded="true" />
-                <element signature="e#1667#1668#0" expanded="true" />
-                <element signature="e#3787#3796#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/Veiculos.java">
+        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/model/Orcamento.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+            <state relative-caret-position="264">
+              <caret line="65" column="33" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1220#1231#0" expanded="true" />
+                <element signature="e#1027#1028#0" expanded="true" />
+                <element signature="e#1050#1051#0" expanded="true" />
+                <element signature="e#1104#1105#0" expanded="true" />
+                <element signature="e#1138#1139#0" expanded="true" />
+                <element signature="e#1182#1183#0" expanded="true" />
+                <element signature="e#1216#1217#0" expanded="true" />
+                <element signature="e#1722#1723#0" expanded="true" />
+                <element signature="e#1753#1754#0" expanded="true" />
+                <element signature="e#1398#1399#0" expanded="true" />
+                <element signature="e#1435#1436#0" expanded="true" />
+                <element signature="e#2905#2906#0" expanded="true" />
+                <element signature="e#2944#2945#0" expanded="true" />
+                <element signature="e#1332#1333#0" expanded="true" />
+                <element signature="e#1366#1367#0" expanded="true" />
+                <element signature="e#1165#1166#0" expanded="true" />
+                <element signature="e#1221#1222#0" expanded="true" />
+                <element signature="e#1273#1274#0" expanded="true" />
+                <element signature="e#1333#1334#0" expanded="true" />
+                <element signature="e#1656#1657#0" expanded="true" />
+                <element signature="e#1712#1713#0" expanded="true" />
+                <element signature="e#2407#2408#0" expanded="true" />
+                <element signature="e#2479#2480#0" expanded="true" />
+                <element signature="e#3776#3777#0" expanded="true" />
+                <element signature="e#3835#3836#0" expanded="true" />
+                <element signature="e#1874#1875#0" expanded="true" />
+                <element signature="e#1934#1935#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/Clientes.java">
+        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/model/Veiculo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="41" selection-start-line="41" selection-end-line="50" />
+            <state relative-caret-position="175">
+              <caret line="111" selection-start-line="111" selection-end-line="137" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#validaVeiculo#0;class#Clientes#0" />
-                <element signature="method#cadastrarCliente#0;class#Clientes#0" />
+                <element signature="method#buscaPorPlaca#0;class#Veiculo#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/model/Pagamento.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="159">
+              <caret line="12" column="13" lean-forward="true" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -136,10 +165,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Codigo/src/atox/model/Cliente.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="68" column="14" lean-forward="true" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
+            <state relative-caret-position="391">
+              <caret line="110" column="9" lean-forward="true" selection-start-line="94" selection-start-column="8" selection-end-line="110" selection-end-column="9" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_historico-orcamentos.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
     </leaf>
@@ -153,12 +192,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>carregaTela</find>
-      <find>paneConteudo</find>
-      <find>11</find>
-      <find>Preencha</find>
-      <find>valida</find>
-      <find>validaCliente</find>
       <find>cor</find>
       <find>OK</find>
       <find>ano</find>
@@ -183,6 +216,12 @@
       <find>documento</find>
       <find>String documento, String nome, String email, String telefone, String celular, String endereco</find>
       <find>anchorpane</find>
+      <find>main</find>
+      <find>getName</find>
+      <find>getcod</find>
+      <find>column</find>
+      <find>icon</find>
+      <find>createDetailsPane</find>
     </findStrings>
     <replaceStrings>
       <replace>BLACK</replace>
@@ -237,10 +276,18 @@
         <option value="$PROJECT_DIR$/Codigo/src/atox/utils/MaskFieldUtil.java" />
         <option value="$PROJECT_DIR$/Codigo/src/atox/BancoDeDados.java" />
         <option value="$PROJECT_DIR$/Codigo/src/atox/controller/Clientes.java" />
-        <option value="$PROJECT_DIR$/Codigo/src/atox/model/Veiculo.java" />
         <option value="$PROJECT_DIR$/Codigo/src/atox/view/tela_veiculos.fxml" />
         <option value="$PROJECT_DIR$/Codigo/src/atox/model/Cliente.java" />
         <option value="$PROJECT_DIR$/Codigo/src/atox/controller/Veiculos.java" />
+        <option value="$PROJECT_DIR$/Codigo/src/atox/view/tela_fornecedores.fxml" />
+        <option value="$PROJECT_DIR$/Codigo/src/atox/view/tela_servicos.fxml" />
+        <option value="$PROJECT_DIR$/Codigo/src/atox/view/tela_estoque.fxml" />
+        <option value="$PROJECT_DIR$/Codigo/src/atox/view/tela_historico-orcamentos.fxml" />
+        <option value="$PROJECT_DIR$/Codigo/src/atox/utils/TableWithCustomRow.java" />
+        <option value="$PROJECT_DIR$/Codigo/src/atox/model/Veiculo.java" />
+        <option value="$PROJECT_DIR$/Codigo/src/atox/model/Pagamento.java" />
+        <option value="$PROJECT_DIR$/Codigo/src/atox/controller/HistoricoOrcamentos.java" />
+        <option value="$PROJECT_DIR$/Codigo/src/atox/model/Orcamento.java" />
       </list>
     </option>
   </component>
@@ -251,10 +298,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="1940" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -264,8 +311,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -299,15 +347,30 @@
               <item name="atox" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="carsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="carsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="Codigo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="atox" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="carsystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="carsystem" type="462c0819:PsiDirectoryNode" />
+              <item name="Codigo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="atox" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543189185262" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543460752246" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Codigo/lib" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -373,7 +436,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7e51b639-eab0-4146-bd40-f76df4838361" name="Default Changelist" comment="" />
+      <changelist id="d11931b3-0b88-4126-ada0-5b225b6740d4" name="Default Changelist" comment="" />
       <created>1541275566563</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -394,7 +457,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4987715" weight="0.447651" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4987715" visible="true" weight="0.22885907" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -403,15 +466,15 @@
       <window_info id="Favorites" order="6" sideWeight="0.5012285" side_tool="true" weight="0.21140939" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49932885" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49261746" weight="0.2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49463087" visible="true" weight="0.28936172" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.48657718" visible="true" weight="0.2" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.490604" weight="0.28936172" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32907802" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932885" weight="0.32907802" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5053691" side_tool="true" visible="true" weight="0.28936172" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.51342285" side_tool="true" visible="true" weight="0.2" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.48389262" weight="0.3531915" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4818792" weight="0.3531915" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -445,7 +508,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Codigo/src/atox/model/Veiculo.java</url>
-          <line>176</line>
+          <line>203</line>
           <properties />
           <option name="timeStamp" value="26" />
         </line-breakpoint>
@@ -467,43 +530,17 @@
           <properties />
           <option name="timeStamp" value="30" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Codigo/src/atox/model/Orcamento.java</url>
+          <line>131</line>
+          <properties />
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/application/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="252" selection-start-line="252" selection-end-line="252" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Codigo/carsystem.ini">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Codigo/src/logo.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Codigo/src/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="49" column="5" lean-forward="true" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/Principal.java" />
-    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/containers/ComplexApplication_css/ComplexApplication.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Build/production/carsystem/containers/ComplexApplication.css" />
-    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/CadastroPeca.java" />
-    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_cadastro-peca.fxml" />
-    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/CadastroServico.java" />
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_cadastro-servico.fxml" />
-    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_historico-orcamentos.fxml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_cadastro-veiculo.fxml" />
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_financeiro.fxml">
       <provider editor-type-id="text-editor" />
@@ -515,14 +552,6 @@
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_inicial.fxml" />
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/Inicial.java" />
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/Tela.java" />
-    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_selecao-cadastros.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5">
-          <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/SelecaoCadastro.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -531,13 +560,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/CarSystem.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="1770" selection-start-line="1770" selection-end-line="1770" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_principal.fxml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="617">
@@ -588,13 +610,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/CadastroCliente.java" />
-    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/NovoOrcamento.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/NovoOrcamento.java" />
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/model/Fornecedor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1853">
@@ -616,16 +632,6 @@
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/utils/MaskFieldUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2465">
-          <caret line="145" selection-start-line="145" selection-end-line="145" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/BancoDeDados.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -656,9 +662,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="68" selection-start-line="68" selection-end-line="68" />
-          <folding>
-            <element signature="method#isCPF#0;class#Validators#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -668,6 +671,36 @@
           <caret line="74" column="26" lean-forward="true" selection-start-line="74" selection-start-column="26" selection-end-line="74" selection-end-column="26" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/Veiculos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-563">
+          <caret line="75" column="30" lean-forward="true" selection-start-line="75" selection-start-column="30" selection-end-line="75" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_fornecedores.fxml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_selecao-cadastros.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_servicos.fxml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_estoque.fxml">
+      <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_clientes.fxml">
@@ -680,8 +713,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/Clientes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="41" selection-start-line="41" selection-end-line="50" />
+        <state relative-caret-position="153">
+          <caret line="51" column="36" selection-start-line="51" selection-start-column="36" selection-end-line="51" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#validaVeiculo#0;class#Clientes#0" />
@@ -690,34 +723,127 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/model/Veiculo.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/collections/ModifiableObservableListBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="193" column="56" lean-forward="true" selection-start-line="193" selection-start-column="56" selection-end-line="193" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1528#1529#0" expanded="true" />
-            <element signature="e#1557#1558#0" expanded="true" />
-            <element signature="e#1641#1642#0" expanded="true" />
-            <element signature="e#1667#1668#0" expanded="true" />
-            <element signature="e#3787#3796#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="175">
+          <caret line="91" selection-start-line="91" selection-end-line="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="579">
+          <caret line="2585" selection-start-line="2585" selection-end-line="2585" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/utils/MaskFieldUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2431">
+          <caret line="145" selection-start-line="145" selection-end-line="145" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/function/Function.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="48" column="6" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/view/tela_historico-orcamentos.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/control/Cell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="396" column="35" selection-start-line="396" selection-start-column="35" selection-end-line="396" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Codigo/src/atox/model/Cliente.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="68" column="14" lean-forward="true" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
+        <state relative-caret-position="391">
+          <caret line="110" column="9" lean-forward="true" selection-start-line="94" selection-start-column="8" selection-end-line="110" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/Veiculos.java">
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/model/Veiculo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+        <state relative-caret-position="175">
+          <caret line="111" selection-start-line="111" selection-end-line="137" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#buscaPorPlaca#0;class#Veiculo#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/model/Pagamento.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="12" column="13" lean-forward="true" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/utils/TableWithCustomRow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="59" column="41" lean-forward="true" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/controller/HistoricoOrcamentos.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Codigo/src/atox/model/Orcamento.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="65" column="33" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1220#1231#0" expanded="true" />
+            <element signature="e#1027#1028#0" expanded="true" />
+            <element signature="e#1050#1051#0" expanded="true" />
+            <element signature="e#1104#1105#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#1182#1183#0" expanded="true" />
+            <element signature="e#1216#1217#0" expanded="true" />
+            <element signature="e#1722#1723#0" expanded="true" />
+            <element signature="e#1753#1754#0" expanded="true" />
+            <element signature="e#1398#1399#0" expanded="true" />
+            <element signature="e#1435#1436#0" expanded="true" />
+            <element signature="e#2905#2906#0" expanded="true" />
+            <element signature="e#2944#2945#0" expanded="true" />
+            <element signature="e#1332#1333#0" expanded="true" />
+            <element signature="e#1366#1367#0" expanded="true" />
+            <element signature="e#1165#1166#0" expanded="true" />
+            <element signature="e#1221#1222#0" expanded="true" />
+            <element signature="e#1273#1274#0" expanded="true" />
+            <element signature="e#1333#1334#0" expanded="true" />
+            <element signature="e#1656#1657#0" expanded="true" />
+            <element signature="e#1712#1713#0" expanded="true" />
+            <element signature="e#2407#2408#0" expanded="true" />
+            <element signature="e#2479#2480#0" expanded="true" />
+            <element signature="e#3776#3777#0" expanded="true" />
+            <element signature="e#3835#3836#0" expanded="true" />
+            <element signature="e#1874#1875#0" expanded="true" />
+            <element signature="e#1934#1935#0" expanded="true" />
           </folding>
         </state>
       </provider>

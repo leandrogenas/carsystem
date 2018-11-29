@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.Estoque">
+<AnchorPane prefHeight="400.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.Estoque">
    <children>
       <Line endY="118.0" layoutX="38.0" layoutY="42.0" />
       <Label layoutX="51.0" layoutY="24.0" text="Cadastrar uma peça" textFill="#b91212">
@@ -32,12 +32,12 @@
             <TableColumn minWidth="0.0" text="Em estoque" />
         </columns>
       </TableView>
-      <Button layoutX="127.0" layoutY="97.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Cadastrar" />
-      <Label layoutX="87.0" layoutY="67.0" text="Nome: " />
-      <Label layoutX="283.0" layoutY="67.0" text="Modelo: " />
-      <Label layoutX="493.0" layoutY="67.0" text="Quantidade:" />
-      <TextField layoutX="126.0" layoutY="63.0" />
-      <TextField layoutX="335.0" layoutY="63.0" />
-      <TextField layoutX="567.0" layoutY="63.0" prefHeight="25.0" prefWidth="65.0" />
+      <Button layoutX="312.0" layoutY="96.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" text="Cadastrar" />
+      <Label layoutX="55.0" layoutY="67.0" text="Nome: " />
+      <Label layoutX="43.0" layoutY="101.0" text="Modelo: " />
+      <Label layoutX="312.0" layoutY="67.0" text="Quantidade:" />
+      <TextField layoutX="105.0" layoutY="63.0" />
+      <TextField layoutX="105.0" layoutY="96.0" />
+      <TextField layoutX="394.0" layoutY="63.0" prefHeight="25.0" prefWidth="65.0" />
    </children>
 </AnchorPane>

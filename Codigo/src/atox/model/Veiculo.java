@@ -109,6 +109,33 @@ public class Veiculo {
 
     public void setMarca(String marca) { this.marca = marca; }
 
+    public static Veiculo buscaPorId(int id){
+        Veiculo veiculo = null;
+        try {
+            String sql = "SELECT * FROM Veiculo WHERE cod_veiculo= " + id;
+            ResultSet rSet = BancoDeDados.getNewStatement().executeQuery(sql);
+            rSet.next();
+
+            veiculo = new Veiculo(
+                    rSet.getInt("cod_veiculo"),
+                    rSet.getString("placa"),
+                    rSet.getInt("cod_proprietario"),
+                    rSet.getString("num_parcelas"),
+                    rSet.getString("cor"),
+                    rSet.getString("modelo"),
+                    rSet.getString("marca"),
+                    rSet.getString("ano"),
+                    rSet.getBoolean("importado"),
+                    rSet.getFloat("kilometragem")
+            );
+        }catch (Exception e){
+            e.printStackTrace();
+            System.err.println(e.getMessage());
+        }
+
+        return veiculo;
+    }
+
     public static Veiculo buscaPorPlaca(String placa){
         Veiculo veiculo = null;
         try {
