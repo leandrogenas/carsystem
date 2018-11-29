@@ -5,6 +5,14 @@ import java.util.Date;
 
 public class Orcamento {
 
+    public static String codigoTitle = "Cód",
+            veiculoTittle = "Veículo",
+            pagamentoTittle = "Forma de Pag.",
+            inicioTittle = "Início",
+            precoTittle = "Preço",
+            seguradoraTitle = "Seguradora",
+            statusTitle = "Status";
+
     private int id;
     private double valor;
     private Veiculo veiculo;

@@ -42,6 +42,7 @@ public class Veiculo {
         this.id = id;
     }
 
+
     public int getId(){ return id; }
 
     public String getPlaca() {
@@ -212,4 +213,29 @@ public class Veiculo {
             return false;
         }
     }
+
+    public static Veiculo buscaPorId(int id){
+        Veiculo veic = null;
+
+        try {
+            Statement stmt = BancoDeDados.getNewStatement();
+            ResultSet rSet = stmt.executeQuery("SELECT * FROM cliente WHERE cod_veiculo="+id+"");
+            rSet.next();
+            veic = new Veiculo(
+                    rSet.getString("placa"),
+                    Cliente.buscaPorId(Integer.parseInt(rSet.getString("cod_proprietario"))),
+                    rSet.getString("marca"),
+                    rSet.getString("modelo"),
+                    rSet.getString("ano"),
+                    rSet.getString("cor"),
+                    rSet.getBoolean("importado"),
+                    rSet.getInt("kilometragem")
+            );
+        }
+        catch(Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+        return veic;
+    }
+
 }
