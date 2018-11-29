@@ -14,14 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 class ServicoEscolhido {
+    private int id;
     private String nome;
     private double maoDeObra;
 
-    public ServicoEscolhido(String nome, double maoDeObra){
+    public ServicoEscolhido(int id, String nome, double maoDeObra){
+        this.id = id;
         this.nome = nome;
         this.maoDeObra = maoDeObra;
     }
 
+    public int getId(){ return id; }
     public String getNome(){ return nome; }
     public double getMaoDeObra(){ return maoDeObra; }
 
@@ -92,7 +95,7 @@ public class PassoServicos extends Passos {
             String strCustoSvc = custoServico.getText();
             strCustoSvc = strCustoSvc.replace(".", "").replace(",", ".");
 
-            servicos.add(new ServicoEscolhido(svcSel.getNome(), Double.parseDouble(strCustoSvc)));
+            servicos.add(new ServicoEscolhido(svcSel.getId(), svcSel.getNome(), Double.parseDouble(strCustoSvc)));
 
             Label lblPeca = new Label("- " + svcSel.getNome());
             lblPeca.setLayoutY((servicos.size() - 1) * 20);

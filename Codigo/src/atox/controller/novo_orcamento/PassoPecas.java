@@ -16,18 +16,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 class PecaUtilizada {
+    private int id;
     private String peca;
     private int qtd;
     private double unit;
     private double total;
 
-    public PecaUtilizada(String peca, int qtd, double valUnit){
+    public PecaUtilizada(int id, String peca, int qtd, double valUnit){
+        this.id = id;
         this.peca = peca;
         this.qtd = qtd;
         this.unit = valUnit;
         this.total = valUnit * qtd;
     }
 
+    public int getId(){ return id; }
     public String getPeca(){ return peca; }
     public int getQtd(){ return qtd; }
     public double getValUnit(){ return unit; }
@@ -91,7 +94,7 @@ public class PassoPecas extends Passos{
                 throw new CarSystemException("Erro ao encontrar a peça");
 
 
-            pecasUtilizadas.add(new PecaUtilizada(pecaSel.getNome(), qtdPecas, pecaSel.getValUnit()));
+            pecasUtilizadas.add(new PecaUtilizada(pecaSel.getId(), pecaSel.getNome(), qtdPecas, pecaSel.getValUnit()));
 
             Label lblPeca = new Label("- " + pecaSel.getNome() + " (" + pecaSel.getModelo() + "), " + qtdPecas + " unidades");
             lblPeca.setLayoutY((pecasUtilizadas.size() - 1) * 20);
