@@ -50,12 +50,6 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="15.0" layoutY="153.0" text="Nº Parcelas:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="parcelasVeiculo" disable="true" layoutX="95.0" layoutY="150.0" prefHeight="25.0" prefWidth="99.0" />
                   <Label layoutX="11.0" layoutY="58.0" text="Informações adicionais" textFill="#a83636">
                      <font>
                         <Font size="15.0" />
@@ -80,12 +74,12 @@
             <Pane fx:id="paneDadosCliente" layoutX="41.0" layoutY="44.0" prefHeight="200.0" prefWidth="619.0">
                <children>
                   <Line endY="100.0" layoutY="89.0" />
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="11.0" layoutY="14.0" text="Documento*:">
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="7.0" layoutY="14.0" text="Documento*:">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="docCliente" layoutX="159.0" layoutY="12.0" prefHeight="25.0" prefWidth="149.0" promptText="Número do documento" />
+                  <TextField fx:id="docCliente" layoutX="95.0" layoutY="12.0" prefHeight="25.0" prefWidth="213.0" promptText="Número do documento" />
                   <Button fx:id="okDoc" layoutX="313.0" layoutY="12.0" mnemonicParsing="false" text="Ok" />
                   <TextField fx:id="emailCliente" disable="true" layoutX="94.0" layoutY="104.0" prefHeight="25.0" prefWidth="465.0" />
                   <Label layoutX="27.0" layoutY="106.0" prefHeight="20.0" prefWidth="60.0" text="Email:">
@@ -111,7 +105,6 @@
                   </Label>
                   <TextField fx:id="enderecoCliente" disable="true" layoutX="94.0" layoutY="132.0" prefHeight="25.0" prefWidth="465.0" />
                   <TextField fx:id="telefoneCliente" disable="true" layoutX="94.0" layoutY="161.0" prefHeight="25.0" prefWidth="188.0" />
-                  <ChoiceBox fx:id="tpDocCliente" layoutX="95.0" layoutY="12.0" prefHeight="25.0" prefWidth="56.0" />
                   <Label layoutX="8.0" layoutY="78.0" text="Informações adicionais" textFill="#a83636">
                      <font>
                         <Font size="15.0" />

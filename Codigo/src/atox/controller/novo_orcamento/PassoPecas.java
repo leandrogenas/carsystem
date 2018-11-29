@@ -16,11 +16,7 @@ import java.util.List;
 public class PassoPecas extends Passos{
 
     private TableView<Peca> tblPecas;
-    private TableColumn<Peca, String> colNomeCodigo;
-    private TableColumn<Peca, String> colQtd;
-    private TableColumn<Peca, String> colValUnit;
-    private TableColumn<Peca, String> colValTotal;
-
+    private TableColumn<Peca, String> colNomeCodigo, colQtd, colValUnit, colValTotal;
     private ChoiceBox<String> cbPecas;
     private Spinner<Integer> spinQtd;
     private Button btnAdcPeca;

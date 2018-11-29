@@ -3,6 +3,7 @@ package atox.controller.novo_orcamento;
 import atox.exception.CarSystemException;
 import atox.model.Cliente;
 import atox.model.Veiculo;
+import atox.utils.MaskFieldUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
@@ -19,28 +20,18 @@ public class PassoClienteVeiculo extends Passos {
 
     // Campos do cliente
     private Pane dadosCliente;
-    private TextField docCliente;
-    private TextField nomeCliente;
-    private TextField emailCliente;
-    private TextField enderecoCliente;
-    private TextField telefoneCliente;
-    private Button okDocumento;
-
     private Pane dadosVeiculo;
-    private TextField placaVeiculo;
-    private TextField marcaVeiculo;
-    private TextField modeloVeiculo;
-    private TextField corVeiculo;
-    private TextField anoVeiculo;
-    private TextField kmVeiculo;
-    private CheckBox importadoVeiculo;
+    private Button okDocumento;
     private Button okPlaca;
+    private TextField docCliente, nomeCliente, emailCliente, enderecoCliente, telefoneCliente;
+    private TextField placaVeiculo, marcaVeiculo, modeloVeiculo, corVeiculo, kmVeiculo, anoVeiculo;
+    private CheckBox importadoVeiculo;
 
-
-    private ChoiceBox<String> tpDocCliente;
 
     PassoClienteVeiculo(AnchorPane pane){
         super(pane);
+
+        MaskFieldUtil.placaMask(placaVeiculo);
     }
 
     @Override
@@ -198,12 +189,6 @@ public class PassoClienteVeiculo extends Passos {
         emailCliente = (TextField) container.lookup("#emailCliente");
         enderecoCliente = (TextField) container.lookup("#enderecoCliente");
         telefoneCliente = (TextField) container.lookup("#telefoneCliente");
-
-        //  Tipo de documento
-        tpDocCliente = (ChoiceBox<String>) container.lookup("#tpDocCliente");
-        tpDocCliente.getItems().setAll("CPF", "CNPJ");
-        tpDocCliente.setValue("CPF");
-        tpDocCliente.show();
 
         //  Ação ao clicar em Ok no documento
         okDocumento = (Button) container.lookup("#okDoc");

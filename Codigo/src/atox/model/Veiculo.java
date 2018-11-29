@@ -89,7 +89,7 @@ public class Veiculo {
     public static Veiculo buscaPorPlaca(String placa){
         Veiculo veiculo = null;
         try {
-            String sql = "SELECT * FROM veiculo WHERE placa=" + placa;
+            String sql = "SELECT * FROM veiculo WHERE placa='" + placa + "'";
             ResultSet rSet = BancoDeDados.getNewStatement().executeQuery(sql);
 
             if(!rSet.next())
