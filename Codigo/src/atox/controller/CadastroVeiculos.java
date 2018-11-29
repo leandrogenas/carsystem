@@ -44,6 +44,7 @@ public class CadastroVeiculos {
         MaskFieldUtil.placaMask(placaField);
         MaskFieldUtil.anoMask(anoField);
         MaskFieldUtil.kmMask(kmField);
+        MaskFieldUtil.cpfMask(docField);
 
         tblVeiculo.setRowFactory(tv -> {
             TableRow<Veiculo> linha = new TableRow<>();

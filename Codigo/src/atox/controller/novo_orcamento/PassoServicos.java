@@ -76,7 +76,7 @@ public class PassoServicos extends Passos {
         for(Servico svc: Servico.todos())
             cbServicos.getItems().add(String.format("%03d", svc.getId()) + "-" + svc.getNome());
 
-        cbServicos.setValue(cbServicos.getItems().get(0));
+        //cbServicos.setValue(cbServicos.getItems().get(0));
 
         MaskFieldUtil.valorMask(custoServico);
     }

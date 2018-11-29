@@ -38,7 +38,7 @@ public class Veiculo {
     }
 
     public Veiculo(int id, String placa, Cliente proprietario, String marca, String modelo, String ano, String cor, boolean importado, int km){
-        this(placa, proprietario, modelo, marca, ano, cor, importado, km);
+        this(placa, proprietario, marca, modelo, ano, cor, importado, km);
         this.id = id;
     }
 

@@ -27,11 +27,15 @@ public class PassoClienteVeiculo extends Passos {
     private TextField placaVeiculo, marcaVeiculo, modeloVeiculo, corVeiculo, kmVeiculo, anoVeiculo;
     private CheckBox importadoVeiculo;
 
+    //Veiculo
+    private Veiculo veiculo;
+
 
     PassoClienteVeiculo(AnchorPane pane){
         super(pane);
 
         MaskFieldUtil.placaMask(placaVeiculo);
+        MaskFieldUtil.cpfMask(docCliente);
     }
 
     @Override
@@ -165,7 +169,7 @@ public class PassoClienteVeiculo extends Passos {
         limpaCamposVeiculo();
 
         // Busca o cliente
-        Veiculo veiculo = Veiculo.buscaPorPlaca(placa);
+        veiculo = Veiculo.buscaPorPlaca(placa);
 
         liberaCamposVeiculo();
         if(veiculo != null){
@@ -173,7 +177,7 @@ public class PassoClienteVeiculo extends Passos {
             modeloVeiculo.setText(veiculo.getModelo());
             corVeiculo.setText(veiculo.getCor());
             anoVeiculo.setText(veiculo.getAno());
-            kmVeiculo.setText(Float.toString(veiculo.getKm()));
+            kmVeiculo.setText(Integer.toString(veiculo.getKm()));
             importadoVeiculo.setSelected(veiculo.isImportado());
             // ?
             //((TextField) container.lookup("#parcelasVeiculo")).setText(veiculo.get());
@@ -222,16 +226,14 @@ public class PassoClienteVeiculo extends Passos {
     }
 
     public Veiculo getDadosVeiculo(){
-        return new Veiculo(
-                placaVeiculo.getText(),
-                getDadosCliente(),
-                marcaVeiculo.getText(),
-                modeloVeiculo.getText(),
-                anoVeiculo.getText(),
-                corVeiculo.getText(),
-                Boolean.parseBoolean(importadoVeiculo.getText()),
-                (!kmVeiculo.getText().isEmpty()) ? Integer.parseInt(kmVeiculo.getText()) : 0
-        );
-    }
+        //TODO: cadastrar ou atualizar o veiculo
+        if(veiculo == null) {
+            //cadastrar e pegar o id
+            //busca por placa
+        } else {
+            //atualiza
+        }
 
+        return veiculo;
+    }
 }

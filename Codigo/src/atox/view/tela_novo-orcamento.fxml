@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2124.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.novo_orcamento.NovoOrcamento">
+<VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2124.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.novo_orcamento.NovoOrcamento">
    <children>
       <AnchorPane fx:id="passoCV" maxHeight="530.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="670.0">
          <children>
@@ -245,7 +245,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Label layoutX="239.0" layoutY="120.0" text="Forma de pagamento" />
+            <Label layoutX="239.0" layoutY="107.0" text="Forma de pagamento" />
             <Label layoutX="56.0" layoutY="86.0" text="Pagamento" textFill="#b91212">
                <font>
                   <Font size="15.0" />
@@ -272,7 +272,9 @@
             </Label>
             <CheckBox fx:id="chkEnviarOrcamentoEmail" layoutX="55.0" layoutY="199.0" mnemonicParsing="false" text="Enviar o orçamento para o email do cliente" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="7.0" layoutX="40.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-            <ChoiceBox fx:id="cbFormasPag" layoutX="361.0" layoutY="116.0" prefHeight="25.0" prefWidth="234.0" />
+            <ChoiceBox fx:id="cbFormasPag" layoutX="361.0" layoutY="103.0" prefHeight="25.0" prefWidth="234.0" />
+            <Label layoutX="239.0" layoutY="134.0" text="Número de parcelas:" />
+            <TextField fx:id="numParcelas" layoutX="361.0" layoutY="130.0" />
          </children>
       </AnchorPane>
    </children>

@@ -74,7 +74,7 @@ public class PassoPecas extends Passos{
         for(Peca peca: Peca.todos())
             cbPecas.getItems().add(String.format("%03d", peca.getId()) + "-" + peca.getNome() + " (" + peca.getModelo() + ")");
 
-        cbPecas.setValue(cbPecas.getItems().get(0));
+        //cbPecas.setValue(cbPecas.getItems().get(0));
 
         lblEstoqueNegativo.setVisible(false);
     }

@@ -8,12 +8,11 @@ import atox.model.Servico;
 import atox.model.Veiculo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
+import javax.xml.soap.Text;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -21,6 +20,7 @@ import java.util.List;
 public class PassoFinalizacao extends Passos {
 
     public Label totalPecas, totalMaoDeObra;
+    public TextField numParcelas;
 
     public ChoiceBox<String> cbFormasPag;
     public CheckBox chkEnviarOrcamentoEmail;
@@ -44,6 +44,7 @@ public class PassoFinalizacao extends Passos {
 
     @Override
     public void carregarElementos() {
+        numParcelas = (TextField) container.lookup("#numParcelas");
         totalMaoDeObra = (Label) container.lookup("#totalMaoDeObra");
         totalPecas = (Label) container.lookup("#totalPecas");
         cbFormasPag = (ChoiceBox) container.lookup("#cbFormasPag");
@@ -80,14 +81,27 @@ public class PassoFinalizacao extends Passos {
 
         try {
             Statement st = BancoDeDados.getNewStatement();
+            ResultSet rSet;
+            st.execute("INSERT INTO pagamento (forma_pagamento, num_parcelas, pago) VALUES ('"+cbFormasPag.getValue()+"',"+Integer.valueOf(numParcelas.getText())+ ", 0)");
+
+            rSet = st.executeQuery("SELECT max(cod_pagamento) AS cod_pagamento FROM pagamento");
+            rSet.next();
+            int cod_pagamento = rSet.getInt("cod_pagamento");
+
+            double precoTotal = totalMDOVal + totalPecasVal;
+            st.execute("INSERT INTO orcamento (cod_veiculo, preco, seguradora, cod_pagamento) VALUES ("+veiculo.getId()+", "+ precoTotal+",'',"+ cod_pagamento+")");
+
+            rSet = st.executeQuery("SELECT max(cod_orcamento) AS cod_orcamento FROM orcamento");
+            rSet.next();
+            int cod_orcamento = rSet.getInt("cod_orcamento");
+
             for(PecaUtilizada pc: pecas) {
-                st.execute("INSERT into atendimento_peca (cod_peca, quantidade) VALUES ("+pc.getId()+", "+pc.getQtd()+")");
+                st.execute("INSERT into orcamento_peca (cod_orcamento, cod_peca, quantidade) VALUES ("+cod_orcamento+","+pc.getId()+", "+pc.getQtd()+")");
             }
 
             for(ServicoEscolhido svc: servicos)
-                st.execute("INSERT INTO atendimento_servico (cod_servico) VALUES ("+svc.getId()+ ")");
+                st.execute("INSERT INTO orcamento_servico (cod_servico) VALUES ("+svc.getId()+ ")");
 
-            st.execute("INSERT INTO orcamento (cod_veiculo, preco) VALUES ("+veiculo.getId()+", "+ totalMDOVal + totalPecasVal+ ")");
         } catch (SQLException e) {
             e.printStackTrace();
         }

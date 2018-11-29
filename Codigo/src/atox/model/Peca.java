@@ -56,7 +56,7 @@ public class Peca {
             while(rSet.next()) {
                 Peca peca = new Peca(
                         rSet.getInt("cod_peca"),
-                        rSet.getInt("quantidade"),
+                        rSet.getInt("em_estoque"),
                         rSet.getString("nome"),
                         rSet.getString("modelo"),
                         rSet.getDouble("valor_unit")
@@ -87,7 +87,7 @@ public class Peca {
 
             peca =  new Peca(
                     rSet.getInt("cod_peca"),
-                    rSet.getInt("quantidade"),
+                    rSet.getInt("em_estoque"),
                     rSet.getString("nome"),
                     rSet.getString("modelo"),
                     rSet.getDouble("valor_unit")
@@ -102,7 +102,7 @@ public class Peca {
     }
 
     public static boolean inserir(Peca peca) throws Exception {
-        String insert = "INSERT INTO peca (nome,modelo,quantidade,valor_unit) VALUES ('";
+        String insert = "INSERT INTO peca (nome,modelo,em_estoque,valor_unit) VALUES ('";
         insert += peca.getNome()+"','";
         insert += peca.getModelo()+"','";
         insert += peca.getQuantidade()+"','";
@@ -117,7 +117,7 @@ public class Peca {
         String update = "UPDATE peca SET ";
         update += "nome = '"+peca.getNome()+"',";
         update += "modelo = '"+peca.getModelo()+"',";
-        update += "quantidade = '"+peca.getQuantidade()+"',";
+        update += "em_estoque = '"+peca.getQuantidade()+"',";
         update += "valor_unit = '"+peca.getValUnit()+"'";
         update += " WHERE cod_peca = '"+peca.getId()+"'";
 
