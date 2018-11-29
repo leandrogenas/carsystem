@@ -230,7 +230,7 @@ public class PassoClienteVeiculo extends Passos {
                 anoVeiculo.getText(),
                 corVeiculo.getText(),
                 Boolean.parseBoolean(importadoVeiculo.getText()),
-                Integer.parseInt(kmVeiculo.getText())
+                (!kmVeiculo.getText().isEmpty()) ? Integer.parseInt(kmVeiculo.getText()) : 0
         );
     }
 

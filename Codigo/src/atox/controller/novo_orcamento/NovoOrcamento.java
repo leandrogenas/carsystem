@@ -22,13 +22,14 @@ public class NovoOrcamento {
     private PassoServicos passoServicos;
     private PassoFinalizacao passoFinalizacao;
 
+
+
     @FXML
     private void initialize(){
         passoCV = new PassoClienteVeiculo((AnchorPane) container.lookup("#passoCV"));
         passoPecas = new PassoPecas((AnchorPane) container.lookup("#passoPecas"));
         passoServicos = new PassoServicos((AnchorPane) container.lookup("#passoServicos"));
         passoFinalizacao = new PassoFinalizacao((AnchorPane) container.lookup("#passoFinalizacao"));
-
 
         numPasso = 1;
         passoAtual = passoCV;
@@ -51,13 +52,22 @@ public class NovoOrcamento {
             case 3: passoAtual = (praFrente) ? passoFinalizacao : passoPecas; break;
             case 4: passoAtual = passoServicos;
         }
+
+        if(passoAtual instanceof PassoFinalizacao)
+            ((PassoFinalizacao) passoAtual).setDados(
+                passoCV.getDadosCliente(),
+                passoCV.getDadosVeiculo(),
+                passoPecas.getPecas(),
+                passoServicos.getServicos()
+            );
+
         scroll((praFrente) ? ++numPasso : --numPasso);
         passoAtual.setVisible(true);
 
     }
 
     public void finalizarOrcamento(){
-
+        passoFinalizacao.finalizarOrcamento();
     }
 
     private void scroll(int passo){

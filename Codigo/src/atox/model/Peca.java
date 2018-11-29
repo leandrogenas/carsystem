@@ -14,32 +14,37 @@ public class Peca {
 
     private int id;
     private int qtd;
+    private double valUnit;
     private String nome;
     private String modelo;
 
-    public Peca(int qtd, String nome, String modelo){
+    public Peca(int qtd, String nome, String modelo, double valUnit){
         this.qtd = qtd;
         this.nome = nome;
         this.modelo = modelo;
+        this.valUnit = valUnit;
     }
 
-    public Peca(int id, int qtd, String nome, String modelo){
-        this(qtd, nome, modelo);
+    public Peca(int id, int qtd, String nome, String modelo, double valUnit){
+        this(qtd, nome, modelo, valUnit);
         this.id = id;
     }
 
     public int getId() { return id; }
-    public int getQtd() { return qtd; }
+    public int getQuantidade() { return qtd; }
     public String getModelo() { return modelo; }
+    public double getValUnit() { return valUnit; }
+
     public String getNome() { return nome; }
-
-    public void setQtd(int qtd) { this.qtd = qtd; }
+    public void setQuantidade(int qtd) { this.qtd = qtd; }
     public void setNome(String nome) { this.nome = nome; }
-    public void setModelo(String modelo) { this.modelo = modelo; }
+    public void setValUnit(double val){ this.valUnit = val; }
 
+    public void setModelo(String modelo) { this.modelo = modelo; }
     public SimpleIntegerProperty idProperty(){ return new SimpleIntegerProperty(id); }
     public SimpleIntegerProperty qtdProperty(){ return new SimpleIntegerProperty(qtd); }
     public SimpleStringProperty nomeProperty(){ return new SimpleStringProperty(nome); }
+
     public SimpleStringProperty modeloProperty(){ return new SimpleStringProperty(modelo); }
 
     public static List<Peca> todos(){
@@ -53,7 +58,8 @@ public class Peca {
                         rSet.getInt("cod_peca"),
                         rSet.getInt("quantidade"),
                         rSet.getString("nome"),
-                        rSet.getString("modelo")
+                        rSet.getString("modelo"),
+                        rSet.getDouble("valor_unit")
                 );
 
                 saida.add(peca);
@@ -83,7 +89,8 @@ public class Peca {
                     rSet.getInt("cod_peca"),
                     rSet.getInt("quantidade"),
                     rSet.getString("nome"),
-                    rSet.getString("modelo")
+                    rSet.getString("modelo"),
+                    rSet.getDouble("valor_unit")
             );
 
         }catch (Exception e){
@@ -94,4 +101,38 @@ public class Peca {
         return peca;
     }
 
+    public static boolean inserir(Peca peca) throws Exception {
+        String insert = "INSERT INTO peca (nome,modelo,quantidade,valor_unit) VALUES ('";
+        insert += peca.getNome()+"','";
+        insert += peca.getModelo()+"','";
+        insert += peca.getQuantidade()+"','";
+        insert += peca.getValUnit()+"')";
+
+        Statement stmt = BancoDeDados.getNewStatement();
+        return stmt.execute(insert);
+
+    }
+
+    public static void alterar(Peca peca) throws SQLException {
+        String update = "UPDATE peca SET ";
+        update += "nome = '"+peca.getNome()+"',";
+        update += "modelo = '"+peca.getModelo()+"',";
+        update += "quantidade = '"+peca.getQuantidade()+"',";
+        update += "valor_unit = '"+peca.getValUnit()+"'";
+        update += " WHERE cod_peca = '"+peca.getId()+"'";
+
+        BancoDeDados.getNewStatement().execute(update);
+
+    }
+
+    public static boolean excluir(int id){
+        String delete = "DELETE FROM peca WHERE cod_peca="+id;
+
+        try {
+            return BancoDeDados.getNewStatement().execute(delete);
+        }catch (SQLException e){
+            System.err.println(e.getMessage());
+            return false;
+        }
+    }
 }

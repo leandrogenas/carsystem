@@ -2,8 +2,9 @@ package atox.controller.novo_orcamento;
 
 import atox.exception.CarSystemException;
 import atox.model.Peca;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -11,18 +12,40 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class PassoPecas extends Passos{
+class PecaUtilizada {
+    private String peca;
+    private int qtd;
+    private double unit;
+    private double total;
 
-    private TableView<Peca> tblPecas;
-    private TableColumn<Peca, String> colNomeCodigo, colQtd, colValUnit, colValTotal;
+    public PecaUtilizada(String peca, int qtd, double valUnit){
+        this.peca = peca;
+        this.qtd = qtd;
+        this.unit = valUnit;
+        this.total = valUnit * qtd;
+    }
+
+    public String getPeca(){ return peca; }
+    public int getQtd(){ return qtd; }
+    public double getValUnit(){ return unit; }
+    public double getValTotal(){ return total; }
+
+}
+
+public class PassoPecas extends Passos{
+    private ScrollPane panePecas;
+    private Label lblNenhumaPeca;
+
     private ChoiceBox<String> cbPecas;
-    private Spinner<Integer> spinQtd;
+    private TextField qtdPeca;
     private Button btnAdcPeca;
+
     private Label lblEstoqueNegativo;
 
-    private ObservableList<Peca> pecasUtilizadas;
+    private List<PecaUtilizada> pecasUtilizadas = new ArrayList<>();
 
     PassoPecas(AnchorPane pane){
         super(pane);
@@ -30,19 +53,50 @@ public class PassoPecas extends Passos{
 
     @Override
     public boolean passoValido(){
-        return false;
+        return true;
+    }
+
+    @Override
+    public void carregarElementos(){
+        panePecas = (ScrollPane) container.lookup("#panePecas");
+        lblNenhumaPeca = (Label) ((AnchorPane) panePecas.getContent()).lookup("#lblNenhumaPeca");
+
+        cbPecas = (ChoiceBox) container.lookup("#cbPecas");
+        qtdPeca = (TextField) container.lookup("#qtdPeca");
+        lblEstoqueNegativo = (Label) container.lookup("#lblEstoqueNegativo");
+
+        btnAdcPeca = (Button) container.lookup("#btnAdcPeca");
+        btnAdcPeca.setOnAction(ev -> adcPeca());
+
+        for(Peca peca: Peca.todos())
+            cbPecas.getItems().add(String.format("%03d", peca.getId()) + "-" + peca.getNome() + " (" + peca.getModelo() + ")");
+
+        cbPecas.setValue(cbPecas.getItems().get(0));
+
+        lblEstoqueNegativo.setVisible(false);
     }
 
     private void adcPeca() {
+        lblNenhumaPeca.setVisible(false);
+
         String strPeca = cbPecas.getValue();
 
         Peca pecaSel = Peca.buscaPorId(Integer.parseInt(strPeca.substring(0, 3)));
-
         try {
+            int qtdPecas = Integer.parseInt(qtdPeca.getText());
+
+            if(qtdPecas == 0)
+                throw new CarSystemException("Informe uma quantidade!");
             if (pecaSel == null)
                 throw new CarSystemException("Erro ao encontrar a peça");
 
-            pecasUtilizadas.add(pecaSel);
+
+            pecasUtilizadas.add(new PecaUtilizada(pecaSel.getNome(), qtdPecas, pecaSel.getValUnit()));
+
+            Label lblPeca = new Label("- " + pecaSel.getNome() + " (" + pecaSel.getModelo() + "), " + qtdPecas + " unidades");
+            lblPeca.setLayoutY((pecasUtilizadas.size() - 1) * 20);
+
+            ((AnchorPane) panePecas.getContent()).getChildren().add(lblPeca);
         }catch (CarSystemException e){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Erro!");
@@ -54,35 +108,8 @@ public class PassoPecas extends Passos{
 
     }
 
-    @Override
-    public void carregarElementos(){
-        pecasUtilizadas = FXCollections.observableArrayList();
-
-        tblPecas = (TableView) container.lookup("#tblPecas");
-        colNomeCodigo = (TableColumn<Peca, String>) tblPecas.getColumns().get(0);
-        colNomeCodigo.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getNome() + " / " + param.getValue().getModelo()));
-
-        colQtd = (TableColumn<Peca, String>) tblPecas.getColumns().get(1);
-        colQtd.setCellValueFactory(new PropertyValueFactory<>("qtd"));
-
-        colValUnit = (TableColumn<Peca, String>) tblPecas.getColumns().get(2);
-        colValUnit.setCellValueFactory(new PropertyValueFactory<>(""));
-
-        colValTotal = (TableColumn<Peca, String>) tblPecas.getColumns().get(3);
-
-        cbPecas = (ChoiceBox) container.lookup("#cbPecas");
-        spinQtd = (Spinner) container.lookup("#spinQtd");
-        btnAdcPeca = (Button) container.lookup("#btnAdcPeca");
-        lblEstoqueNegativo = (Label) container.lookup("#lblEstoqueNegativo");
-
-        btnAdcPeca.setOnAction(ev -> adcPeca());
-
-        for(Peca peca: Peca.todos())
-            cbPecas.getItems().add(String.format("%03d", peca.getId()) + "-" + peca.getNome() + " (" + peca.getModelo() + ")");
-
-        cbPecas.setValue(cbPecas.getItems().get(0));
-
-        lblEstoqueNegativo.setVisible(false);
+    public List<PecaUtilizada> getPecas(){
+        return pecasUtilizadas;
     }
 
 }

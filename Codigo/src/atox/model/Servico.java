@@ -27,16 +27,16 @@ public class Servico {
     }
 
     public SimpleIntegerProperty idProperty(){ return new SimpleIntegerProperty(id); }
+
     public SimpleStringProperty nomeProperty(){ return new SimpleStringProperty(nome); }
     public SimpleStringProperty descricaoProperty(){ return new SimpleStringProperty(descricao); }
-
     public String getDescricao() { return descricao; }
+
     public String getNome() { return nome; }
     public int getId() { return id; }
-
     public void setDescricao(String descricao) { this.descricao = descricao; }
-    public void setNome(String nome) { this.nome = nome; }
 
+    public void setNome(String nome) { this.nome = nome; }
     public static List<Servico> todos(){
         ArrayList<Servico> saida = new ArrayList<>();
         try {
@@ -62,6 +62,29 @@ public class Servico {
         }
 
         return saida;
+    }
+
+    public static Servico buscaPorId(int id) {
+        Servico svc = null;
+        try {
+            String sql = "SELECT * FROM servico WHERE cod_servico=" + id;
+            ResultSet rSet = BancoDeDados.getNewStatement().executeQuery(sql);
+
+            if(!rSet.next())
+                return null;
+
+            svc =  new Servico(
+                    rSet.getInt("cod_servico"),
+                    rSet.getString("nome"),
+                    rSet.getString("descricao")
+            );
+
+        }catch (Exception e){
+            e.printStackTrace();
+            System.err.println(e.getMessage());
+        }
+
+        return svc;
     }
 
     public static boolean inserir(Servico svc) throws Exception {

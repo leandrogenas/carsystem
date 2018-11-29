@@ -13,6 +13,20 @@ public abstract class MaskFieldUtil {
     public final static int parcelasLength = 2;
     public final static int kmLength = 6;
 
+    public static void valorMask(TextField textField) {
+        textField.lengthProperty().addListener((observableValue, number, number2) -> {
+            String value = textField.getText();
+            value = value.replaceAll("[^0-9]", "");
+            value = value.replaceAll("([0-9]{1})([0-9]{14})$", "$1.$2");
+            value = value.replaceAll("([0-9]{1})([0-9]{11})$", "$1.$2");
+            value = value.replaceAll("([0-9]{1})([0-9]{8})$", "$1.$2");
+            value = value.replaceAll("([0-9]{1})([0-9]{5})$", "$1.$2");
+            value = value.replaceAll("([0-9]{1})([0-9]{2})$", "$1,$2");
+            textField.setText(value);
+            MaskFieldUtil.positionCaret(textField);
+        });
+    }
+
     public static void anoMask(TextField textField) {
         MaskFieldUtil.maxField(textField, anoLength);
         textField.lengthProperty().addListener((observableValue, number, number2) -> {
