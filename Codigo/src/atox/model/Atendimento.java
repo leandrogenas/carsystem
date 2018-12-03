@@ -40,7 +40,7 @@ public class Atendimento {
             System.err.println(ex.getMessage());
         }
         //TODO: retirar esse treco abaixo
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 100; i++) {
             atendimentos.add(new Atendimento(i,
                     new Orcamento(),
                     "fase",
@@ -69,17 +69,6 @@ public class Atendimento {
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
-        //TODO: retirar esse treco abaixo
-        for (int i = 1; i <= 10; i++) {
-            orcamento = new Orcamento(i,
-                    new Veiculo(),
-                    new Pagamento(),
-                    new Date(),
-                    new Date(),
-                    "10.00",
-                    "Porto Seguro",
-                    "Iniciado");
-        }
         return orcamento;
     }
     */
@@ -102,9 +91,9 @@ public class Atendimento {
     public SimpleIntegerProperty codigoProperty() {
         return new SimpleIntegerProperty(codigo);
     }
-//    public SimpleStringProperty orcamentoProperty() {
-//        return new SimpleStringProperty(orcamento);
-//    }
+    public SimpleStringProperty orcamentoProperty() {
+        return new SimpleStringProperty(orcamento.getPreco());
+    }
     public SimpleStringProperty faseProperty() {
         return new SimpleStringProperty(fase);
     }
@@ -117,12 +106,12 @@ public class Atendimento {
         return new SimpleStringProperty(format.format(dataFim));
     }
 
-    /*public String toString() {
+    public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         String detailText = "Código: " + codigo + "\nData de início: " + format.format(dataInicio)+"\nTérmino previsto: " + format.format(dataFim);
         detailText += "\n\nOrçamento:";
         detailText += "\n\nCódigo: "+orcamento.getId()+"\t\tPreço: R$" + orcamento.getPreco();
         detailText += "\n\nFase: " + fase;
         return detailText;
-    }*/
+    }
 }

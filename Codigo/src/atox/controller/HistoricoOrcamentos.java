@@ -14,7 +14,6 @@ public class HistoricoOrcamentos {
     private TableView<Orcamento> tabHistOrcamentos;
 
     public void initialize() {
-        /*
         List<Orcamento> orcamentos = Orcamento.buscarTodos();
         TableWithCustomRow.createTable(tabHistOrcamentos, "Orçamento");
         tabHistOrcamentos.getItems().addAll(orcamentos);
@@ -25,6 +24,5 @@ public class HistoricoOrcamentos {
         tabHistOrcamentos.getColumns().add(column(Orcamento.precoTitle(), Orcamento::precoProperty));
         tabHistOrcamentos.getColumns().add(column(Orcamento.seguradoraTitle(), Orcamento::seguradoraProperty));
         tabHistOrcamentos.getColumns().add(column(Orcamento.statusTitle(), Orcamento::statusProperty));
-        */
     }
 }

@@ -10,7 +10,6 @@ public class HistoricoAtendimentos {
     @FXML
     private TableView<Atendimento> tabHistAtendimento;
     public void initialize() {
-        /*
         List<Atendimento> Atendimentos = Atendimento.buscarTodos();
         TableWithCustomRow.createTable(tabHistAtendimento, "Atendimento");
         tabHistAtendimento.getItems().addAll(Atendimentos);
@@ -20,6 +19,5 @@ public class HistoricoAtendimentos {
         tabHistAtendimento.getColumns().add(column(Atendimento.inicioTittle(), Atendimento::inicioProperty));
         tabHistAtendimento.getColumns().add(column(Atendimento.terminoTittle(), Atendimento::terminoProperty)
         );
-        */
     }
 }

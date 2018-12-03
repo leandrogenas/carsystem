@@ -122,7 +122,6 @@ public class Peca {
         update += " WHERE cod_peca = '"+peca.getId()+"'";
 
         BancoDeDados.getNewStatement().execute(update);
-
     }
 
     public static boolean excluir(int id){
