@@ -5,8 +5,10 @@ import javafx.scene.layout.AnchorPane;
 public abstract class Passos {
 
     protected AnchorPane container;
+    protected NovoOrcamento contrNovoOrcamento;
 
-    Passos(AnchorPane pane){
+    Passos(NovoOrcamento contr, AnchorPane pane){
+        this.contrNovoOrcamento = contr;
         this.container = pane;
         setVisible(false);
         carregarElementos();

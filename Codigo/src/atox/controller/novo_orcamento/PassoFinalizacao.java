@@ -33,7 +33,7 @@ public class PassoFinalizacao extends Passos {
     private double totalMDOVal = 0.0;
     private double totalPecasVal = 0.0;
 
-    PassoFinalizacao(AnchorPane pane){
+    PassoFinalizacao(NovoOrcamento contr, AnchorPane pane){
         super(pane);
     }
 
@@ -69,11 +69,11 @@ public class PassoFinalizacao extends Passos {
 
         for(ServicoEscolhido svc: servicos)
             totalMDOVal += svc.getMaoDeObra();
-        totalMaoDeObra.setText("R$"+ Double.toString(totalMDOVal));
+        totalMaoDeObra.setText("R$"+ totalMDOVal);
 
         for(PecaUtilizada peca: pecas)
             totalPecasVal += peca.getValTotal();
-        totalPecas.setText("R$"+ Double.toString(totalPecasVal));
+        totalPecas.setText("R$"+ totalPecasVal);
 
     }
 
@@ -81,29 +81,26 @@ public class PassoFinalizacao extends Passos {
 
         try {
             Statement st = BancoDeDados.getNewStatement();
-            ResultSet rSet;
-            st.execute("INSERT INTO pagamento (forma_pagamento, num_parcelas, pago) VALUES ('"+cbFormasPag.getValue()+"',"+Integer.valueOf(numParcelas.getText())+ ", 0)");
 
-            rSet = st.executeQuery("SELECT max(cod_pagamento) AS cod_pagamento FROM pagamento");
-            rSet.next();
-            int cod_pagamento = rSet.getInt("cod_pagamento");
+            // Insere o pagamento
+            int codPag = st.executeUpdate("INSERT INTO pagamento (forma_pagamento, num_parcelas, pago) VALUES ('" +cbFormasPag.getValue()+ "'," +Integer.valueOf(numParcelas.getText())+ ", 0)", Statement.RETURN_GENERATED_KEYS);
 
+
+            // Insere o orçamento
             double precoTotal = totalMDOVal + totalPecasVal;
-            st.execute("INSERT INTO orcamento (cod_veiculo, preco, seguradora, cod_pagamento) VALUES ("+veiculo.getId()+", "+ precoTotal+",'',"+ cod_pagamento+")");
+            int codOrc = st.executeUpdate("INSERT INTO orcamento (cod_veiculo, cod_cliente, preco, seguradora, cod_pagamento) VALUES (" +veiculo.getId()+ ", " +cliente.getId()+ ", " +precoTotal+ ",''," +codPag+ ")", Statement.RETURN_GENERATED_KEYS);
 
-            rSet = st.executeQuery("SELECT max(cod_orcamento) AS cod_orcamento FROM orcamento");
-            rSet.next();
-            int cod_orcamento = rSet.getInt("cod_orcamento");
-
-            for(PecaUtilizada pc: pecas) {
-                st.execute("INSERT into orcamento_peca (cod_orcamento, cod_peca, quantidade) VALUES ("+cod_orcamento+","+pc.getId()+", "+pc.getQtd()+")");
-            }
-
+            // Insere as peças e os serviços
+            for(PecaUtilizada pc: pecas)
+                st.execute("INSERT into orcamento_peca (cod_orcamento, cod_peca, quantidade) VALUES (" +codOrc+ "," +pc.getId()+ ", " +pc.getQtd()+ ")");
             for(ServicoEscolhido svc: servicos)
-                st.execute("INSERT INTO orcamento_servico (cod_servico) VALUES ("+svc.getId()+ ")");
+                st.execute("INSERT INTO orcamento_servico (cod_orcamento, cod_servico) VALUES (" +codOrc+ ", " +svc.getId()+ ")");
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!");
+            alert.setHeaderText(null);
+            alert.setContentText("Erro ao inserir o orçamento no BD: " + e.getMessage());
         }
     }
 

@@ -31,7 +31,7 @@ public class PassoClienteVeiculo extends Passos {
     private Veiculo veiculo;
 
 
-    PassoClienteVeiculo(AnchorPane pane){
+    PassoClienteVeiculo(NovoOrcamento contr, AnchorPane pane){
         super(pane);
 
         MaskFieldUtil.placaMask(placaVeiculo);

@@ -22,14 +22,12 @@ public class NovoOrcamento {
     private PassoServicos passoServicos;
     private PassoFinalizacao passoFinalizacao;
 
-
-
     @FXML
     private void initialize(){
-        passoCV = new PassoClienteVeiculo((AnchorPane) container.lookup("#passoCV"));
-        passoPecas = new PassoPecas((AnchorPane) container.lookup("#passoPecas"));
-        passoServicos = new PassoServicos((AnchorPane) container.lookup("#passoServicos"));
-        passoFinalizacao = new PassoFinalizacao((AnchorPane) container.lookup("#passoFinalizacao"));
+        passoCV = new PassoClienteVeiculo(this, (AnchorPane) container.lookup("#passoCV"));
+        passoPecas = new PassoPecas(this, (AnchorPane) container.lookup("#passoPecas"));
+        passoServicos = new PassoServicos(this, (AnchorPane) container.lookup("#passoServicos"));
+        passoFinalizacao = new PassoFinalizacao(this, (AnchorPane) container.lookup("#passoFinalizacao"));
 
         numPasso = 1;
         passoAtual = passoCV;
@@ -69,6 +67,8 @@ public class NovoOrcamento {
     public void finalizarOrcamento(){
         passoFinalizacao.finalizarOrcamento();
     }
+
+
 
     private void scroll(int passo){
         container.setLayoutY(-530 * (passo-1));

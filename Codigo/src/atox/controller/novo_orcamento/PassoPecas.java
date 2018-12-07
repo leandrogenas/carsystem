@@ -50,7 +50,7 @@ public class PassoPecas extends Passos{
 
     private List<PecaUtilizada> pecasUtilizadas = new ArrayList<>();
 
-    PassoPecas(AnchorPane pane){
+    PassoPecas(NovoOrcamento contr, AnchorPane pane){
         super(pane);
     }
 
