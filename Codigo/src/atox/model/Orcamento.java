@@ -13,11 +13,11 @@ import java.util.Date;
 
 public class Orcamento {
     private static String codigoTitle = "Cód",
-            veiculoTittle = "Veículo",
-            pagamentoTittle = "Forma de Pag.",
-            inicioTittle = "Início",
-            precoTittle = "Preço",
-            seguradoraTittle = "Seguradora",
+            veiculoTitle = "Veículo",
+            pagamentoTitle = "Forma de Pag.",
+            inicioTitle = "Início",
+            precoTitle = "Preço",
+            seguradoraTitle = "Seguradora",
             statusTitle = "Status";
 
     private int codigo;
@@ -56,17 +56,6 @@ public class Orcamento {
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
-        //TODO: retirar esse treco abaixo
-        for (int i = 1; i <= 10; i++) {
-            orcamentos.add(new Orcamento(i,
-                    new Veiculo(),
-                    new Pagamento(),
-                    new Date(),
-                    new Date(),
-                    "10.00",
-                    "Porto Seguro",
-                    "Iniciado"));
-        }
 
         return orcamentos;
     }
@@ -75,24 +64,24 @@ public class Orcamento {
         return codigoTitle;
     }
 
-    public static String veiculoTittle() {
-        return veiculoTittle;
+    public static String veiculoTitle() {
+        return veiculoTitle;
     }
 
-    public static String pagamentoTittle() {
-        return pagamentoTittle;
+    public static String pagamentoTitle() {
+        return pagamentoTitle;
     }
 
-    public static String inicioTittle() {
-        return inicioTittle;
+    public static String inicioTitle() {
+        return inicioTitle;
     }
 
     public static String precoTitle() {
-        return precoTittle;
+        return precoTitle;
     }
 
     public static String seguradoraTitle() {
-        return seguradoraTittle;
+        return seguradoraTitle;
     }
 
     public static String statusTitle() {
@@ -103,9 +92,7 @@ public class Orcamento {
         return new SimpleIntegerProperty(codigo);
     }
 
-    public SimpleStringProperty veiculoProperty() {
-        return new SimpleStringProperty(veiculo.getPlaca());
-    }
+    public SimpleStringProperty veiculoProperty() { return new SimpleStringProperty(veiculo.getPlaca()); }
 
     public SimpleStringProperty pagamentoProperty() {
         return new SimpleStringProperty(pagamento.getForma());
@@ -130,6 +117,7 @@ public class Orcamento {
 
     public int getId() { return codigo; }
     public String getPreco() { return preco; }
+    public Veiculo getVeiculo() { return veiculo; }
 
     public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -162,17 +150,6 @@ public class Orcamento {
                     rSet.getString("iniciado"));
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
-        }
-        //TODO: retirar esse treco abaixo
-        for (int i = 1; i <= 10; i++) {
-            orcamento = new Orcamento(i,
-                    new Veiculo(),
-                    new Pagamento(),
-                    new Date(),
-                    new Date(),
-                    "10.00",
-                    "Porto Seguro",
-                    "Iniciado");
         }
 
         return orcamento;

@@ -13,10 +13,10 @@ import java.util.Date;
 
 public class Atendimento {
     private static String codigoTitle = "Cód",
-            orcamentoTittle = "Orcamento",
-            faseTittle = "Fase",
-            inicioTittle = "Inicio",
-            terminoTittle = "Fim Previsto";
+            orcamentoTitle = "Orcamento",
+            faseTitle = "Fase",
+            inicioTitle = "Inicio",
+            terminoTitle = "Fim Previsto";
 
     private int codigo;
     private Orcamento orcamento;
@@ -35,24 +35,16 @@ public class Atendimento {
         ArrayList<Atendimento> atendimentos = new ArrayList<Atendimento>();
         try {
             Statement stmt = BancoDeDados.getNewStatement();
-            ResultSet rSet = stmt.executeQuery("SELECT * FROM orcamento");
+            ResultSet rSet = stmt.executeQuery("SELECT * FROM atendimento");
             rSet.next();
             atendimentos.add(new Atendimento(
-                    rSet.getInt("cod_orcamento"),
-                    Orcamento.buscaPorId(rSet.getInt("cod_pagamento")),
+                    rSet.getInt("cod_atendimento"),
+                    Orcamento.buscaPorId(rSet.getInt("cod_orcamento")),
                     rSet.getString("fase"),
                     rSet.getDate("data_inicio"),
                     rSet.getDate("termino_previsto")));
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
-        }
-        //TODO: retirar esse treco abaixo
-        for (int i = 1; i <= 10; i++) {
-            atendimentos.add(new Atendimento(i,
-                    new Orcamento(),
-                    "fase",
-                    new Date(),
-                    new Date()));
         }
 
         return atendimentos;
@@ -62,20 +54,20 @@ public class Atendimento {
         return codigoTitle;
     }
 
-    public static String orcamentoTittle() {
-        return orcamentoTittle;
+    public static String orcamentoTitle() {
+        return orcamentoTitle;
     }
 
-    public static String faseTittle() {
-        return faseTittle;
+    public static String faseTitle() {
+        return faseTitle;
     }
 
-    public static String inicioTittle() {
-        return inicioTittle;
+    public static String inicioTitle() {
+        return inicioTitle;
     }
 
-    public static String terminoTittle() {
-        return terminoTittle;
+    public static String terminoTitle() {
+        return terminoTitle;
     }
 
     public SimpleIntegerProperty codigoProperty() {
@@ -99,6 +91,9 @@ public class Atendimento {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         return new SimpleStringProperty(format.format(dataFim));
     }
+
+    public Date getInicio() { return dataInicio; }
+    public Date getFim() { return dataFim; }
 
     public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");

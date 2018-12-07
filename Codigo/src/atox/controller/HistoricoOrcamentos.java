@@ -18,9 +18,9 @@ public class HistoricoOrcamentos {
         TableWithCustomRow.createTable(tabHistOrcamentos, "Orçamento");
         tabHistOrcamentos.getItems().addAll(orcamentos);
         tabHistOrcamentos.getColumns().add(column(Orcamento.codigoTitle(), Orcamento::codigoProperty));
-        tabHistOrcamentos.getColumns().add(column(Orcamento.veiculoTittle(), Orcamento::veiculoProperty));
-        tabHistOrcamentos.getColumns().add(column(Orcamento.pagamentoTittle(), Orcamento::pagamentoProperty));
-        tabHistOrcamentos.getColumns().add(column(Orcamento.inicioTittle(), Orcamento::inicioProperty));
+        tabHistOrcamentos.getColumns().add(column(Orcamento.veiculoTitle(), Orcamento::veiculoProperty));
+        tabHistOrcamentos.getColumns().add(column(Orcamento.pagamentoTitle(), Orcamento::pagamentoProperty));
+        tabHistOrcamentos.getColumns().add(column(Orcamento.inicioTitle(), Orcamento::inicioProperty));
         tabHistOrcamentos.getColumns().add(column(Orcamento.precoTitle(), Orcamento::precoProperty));
         tabHistOrcamentos.getColumns().add(column(Orcamento.seguradoraTitle(), Orcamento::seguradoraProperty));
         tabHistOrcamentos.getColumns().add(column(Orcamento.statusTitle(), Orcamento::statusProperty));

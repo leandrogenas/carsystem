@@ -18,9 +18,9 @@ public class HistoricoAtendimentos {
         TableWithCustomRow.createTable(tabHistAtendimento, "Atendimento");
         tabHistAtendimento.getItems().addAll(Atendimentos);
         tabHistAtendimento.getColumns().add(column(Atendimento.codigoTitle(), Atendimento::codigoProperty));
-        tabHistAtendimento.getColumns().add(column(Atendimento.orcamentoTittle(), Atendimento::orcamentoProperty));
-        tabHistAtendimento.getColumns().add(column(Atendimento.faseTittle(), Atendimento::faseProperty));
-        tabHistAtendimento.getColumns().add(column(Atendimento.inicioTittle(), Atendimento::inicioProperty));
-        tabHistAtendimento.getColumns().add(column(Atendimento.terminoTittle(), Atendimento::terminoProperty));
+        tabHistAtendimento.getColumns().add(column(Atendimento.orcamentoTitle(), Atendimento::orcamentoProperty));
+        tabHistAtendimento.getColumns().add(column(Atendimento.faseTitle(), Atendimento::faseProperty));
+        tabHistAtendimento.getColumns().add(column(Atendimento.inicioTitle(), Atendimento::inicioProperty));
+        tabHistAtendimento.getColumns().add(column(Atendimento.terminoTitle(), Atendimento::terminoProperty));
     }
 }
