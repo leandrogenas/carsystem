@@ -1,8 +1,9 @@
-package atox.controller.novo_orcamento;
+package atox.controller.orcamento.novo_orcamento;
 
 import atox.CarSystem;
 import atox.exception.CarSystemException;
 import atox.model.*;
+import atox.controller.orcamento.novo_orcamento.passos.*;
 import atox.utils.EnvioEmail;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,8 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class NovoOrcamento {

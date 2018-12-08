@@ -34,7 +34,9 @@ public final class CarSystem {
         CADASTRO_CLIENTE("cadastro-clientes", "Cadastro de Clientes"),
         CADASTRO_FORNECEDOR("cadastro-fornecedores", "Cadastro de Fornecedores"),
         CADASTRO_VEICULO("cadastro-veiculos", "Cadastro de veículos"),
-        CADASTRO_SERVICO("cadastro-servicos", "Cadastro de serviços");
+        CADASTRO_SERVICO("cadastro-servicos", "Cadastro de serviços"),
+        DETALHES_ORCAMENTO("detalhes-orcamento", "Detalhes do orçamento"),
+        DETALHES_ATENDIMENTO("detalhes-atendimento", "Detalhes do atencimento");
 
         private final String nomeFXML;
         private final String titulo;

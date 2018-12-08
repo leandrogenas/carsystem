@@ -100,6 +100,9 @@ create table orcamento_peca(
 create table orcamento_servico(
  cod_orcamento int not null,
  cod_servico int not null,
+ valor_total numeric(10, 2) not null,
+ iniciado bit not null,
+ finalizado bit not null,
  primary key(cod_orcamento, cod_servico),
  CONSTRAINT fk_OrcamentoPS FOREIGN KEY (cod_orcamento) REFERENCES orcamento (cod_orcamento),
  CONSTRAINT fk_Servico FOREIGN KEY (cod_servico) REFERENCES servico (cod_servico),

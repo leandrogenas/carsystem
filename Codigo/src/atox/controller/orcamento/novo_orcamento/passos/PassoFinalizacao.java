@@ -1,18 +1,10 @@
-package atox.controller.novo_orcamento;
+package atox.controller.orcamento.novo_orcamento.passos;
 
-import atox.BancoDeDados;
-import atox.exception.CarSystemException;
-import atox.model.*;
+import atox.controller.orcamento.novo_orcamento.NovoOrcamento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-
-import javax.xml.soap.Text;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
 
 public class PassoFinalizacao extends Passos {
 

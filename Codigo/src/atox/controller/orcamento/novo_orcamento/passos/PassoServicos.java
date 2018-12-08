@@ -1,34 +1,15 @@
-package atox.controller.novo_orcamento;
+package atox.controller.orcamento.novo_orcamento.passos;
 
-import atox.CarSystem;
 import atox.exception.CarSystemException;
-import atox.model.Peca;
 import atox.model.Servico;
+import atox.controller.orcamento.novo_orcamento.NovoOrcamento;
+import atox.controller.orcamento.novo_orcamento.ServicoEscolhido;
 import atox.utils.MaskFieldUtil;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
-import javax.xml.soap.Text;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-class ServicoEscolhido {
-    private int id;
-    private String nome;
-    private double maoDeObra;
-
-    public ServicoEscolhido(int id, String nome, double maoDeObra){
-        this.id = id;
-        this.nome = nome;
-        this.maoDeObra = maoDeObra;
-    }
-
-    public int getId(){ return id; }
-    public String getNome(){ return nome; }
-    public double getMaoDeObra(){ return maoDeObra; }
-
-}
 
 public class PassoServicos extends Passos {
 

@@ -1,5 +1,6 @@
-package atox.controller.novo_orcamento;
+package atox.controller.orcamento.novo_orcamento.passos;
 
+import atox.controller.orcamento.novo_orcamento.NovoOrcamento;
 import javafx.scene.layout.AnchorPane;
 
 public abstract class Passos {

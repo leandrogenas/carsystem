@@ -1,4 +1,4 @@
-package atox.controller;
+package atox.controller.cadastro;
 
 import atox.exception.CarSystemException;
 import atox.model.Cliente;

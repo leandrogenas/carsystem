@@ -6,22 +6,21 @@ import atox.exception.CarSystemException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class Pagamento {
 
     private int id;
     private String forma;
     private int numParcelas;
-    private int pago;
+    private boolean pago;
 
     public Pagamento(String forma, int numParcelas){
         this.forma = forma;
         this.numParcelas = numParcelas;
-        this.pago = 0;
+        this.pago = false;
     }
 
-    public Pagamento(int id, String forma, int numParcelas, int pago){
+    public Pagamento(int id, String forma, int numParcelas, boolean pago){
         this(forma, numParcelas);
         this.id = id;
         this.pago = pago;
@@ -31,7 +30,7 @@ public class Pagamento {
     public String getForma() { return forma; }
     public int getNumParcelas() { return numParcelas; }
     public int getId() { return id; }
-    public int getPago(){ return pago; }
+    public boolean estaPago(){ return pago; }
 
     // Setters
     public void setNumParcelas(int numParcelas){ this.numParcelas = numParcelas; }
@@ -47,7 +46,7 @@ public class Pagamento {
                     rSet.getInt("cod_pagamento"),
                     rSet.getString("forma_pagamento"),
                     rSet.getInt("num_parcelas"),
-                    rSet.getInt("pago")
+                    rSet.getBoolean("pago")
             );
         }catch (Exception e){
             e.printStackTrace();
@@ -69,7 +68,7 @@ public class Pagamento {
             PreparedStatement stmt = BancoDeDados.getNewPreparedStatement(insert);
             stmt.setString(1, pag.getForma());
             stmt.setInt(2, pag.getNumParcelas());
-            stmt.setInt(3, pag.getPago());
+            stmt.setBoolean(3, pag.estaPago());
 
             int linhas = stmt.executeUpdate();
 
@@ -81,7 +80,7 @@ public class Pagamento {
                     id,
                     pag.getForma(),
                     pag.getNumParcelas(),
-                    pag.getPago()
+                    pag.estaPago()
             );
         }catch (SQLException ex){
             throw new CarSystemException("Erro de SQL: " + ex.getMessage());

@@ -1,42 +1,14 @@
-package atox.controller.novo_orcamento;
+package atox.controller.orcamento.novo_orcamento.passos;
 
 import atox.exception.CarSystemException;
 import atox.model.Peca;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import atox.controller.orcamento.novo_orcamento.NovoOrcamento;
+import atox.controller.orcamento.novo_orcamento.PecaUtilizada;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Callback;
 
 import java.util.ArrayList;
 import java.util.List;
-
-class PecaUtilizada {
-    private int id;
-    private String peca;
-    private int qtd;
-    private double unit;
-    private double total;
-
-    public PecaUtilizada(int id, String peca, int qtd, double valUnit){
-        this.id = id;
-        this.peca = peca;
-        this.qtd = qtd;
-        this.unit = valUnit;
-        this.total = valUnit * qtd;
-    }
-
-    public int getId(){ return id; }
-    public String getPeca(){ return peca; }
-    public int getQtd(){ return qtd; }
-    public double getValUnit(){ return unit; }
-    public double getValTotal(){ return total; }
-
-}
 
 public class PassoPecas extends Passos{
     private ScrollPane panePecas;

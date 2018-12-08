@@ -1,18 +1,15 @@
-package atox.controller.novo_orcamento;
+package atox.controller.orcamento.novo_orcamento.passos;
 
 import atox.exception.CarSystemException;
 import atox.model.Cliente;
 import atox.model.Veiculo;
+import atox.controller.orcamento.novo_orcamento.NovoOrcamento;
 import atox.utils.MaskFieldUtil;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.Optional;
 
 public class PassoClienteVeiculo extends Passos {
@@ -248,7 +245,7 @@ public class PassoClienteVeiculo extends Passos {
         kmVeiculo = (TextField) container.lookup("#kmVeiculo");
         importadoVeiculo = (CheckBox) container.lookup("#importadoVeiculo");
 
-        //  Ação ao clicar em Ok na placa
+        //  Ação ao clicar em Ok na lblPlaca
         okPlaca = (Button) this.container.lookup("#okPlaca");
         okPlaca.setOnAction(event -> consultarPlaca(placaVeiculo.getText()));
 

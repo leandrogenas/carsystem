@@ -1,4 +1,4 @@
-package atox.controller;
+package atox.controller.cadastro;
 
 import atox.CarSystem;
 import atox.exception.CarSystemException;
@@ -92,7 +92,7 @@ public class CadastroVeiculos {
     }
 
     private void carregaVeiculos() {
-        colPlaca.setCellValueFactory(new PropertyValueFactory<>("placa"));
+        colPlaca.setCellValueFactory(new PropertyValueFactory<>("lblPlaca"));
         colVeiculo.setCellValueFactory(param -> {
             SimpleStringProperty propr = new SimpleStringProperty();
 
@@ -164,7 +164,7 @@ public class CadastroVeiculos {
                         Integer.parseInt(kmField.getText())
                 );
 
-                veiculo = Veiculo.inserir(veiculo);
+                veiculo = pVeiculo.inserir(veiculo);
 
                 dados.add(veiculo);
 

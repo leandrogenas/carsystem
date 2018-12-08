@@ -11,19 +11,16 @@ import java.util.List;
 
 public class OrcamentoPeca {
 
-    private Orcamento orcamento;
     private Peca peca;
     private int quantidade;
 
-    private OrcamentoPeca(Orcamento orc, Peca peca, int qtd){
-        this.orcamento = orc;
+    private OrcamentoPeca( Peca peca, int qtd){
         this.peca = peca;
         this.quantidade = qtd;
     }
 
     // Getters
     public int getQuantidade() { return quantidade; }
-    public Orcamento getOrcamento() { return orcamento; }
     public Peca getPeca() { return peca; }
 
     // Buscas
@@ -35,7 +32,6 @@ public class OrcamentoPeca {
             ResultSet rSet = stmt.executeQuery("SELECT * FROM orcamento_peca WHERE cod_orcamento = '"+codOrc+"'");
             while(rSet.next())
                 orcPeca.add(new OrcamentoPeca(
-                        Orcamento.buscaPorId(codOrc),
                         Peca.buscaPorId(rSet.getInt("cod_peca")),
                         rSet.getInt("quantidade")
                 ));
@@ -62,7 +58,6 @@ public class OrcamentoPeca {
             int id = stmt.executeUpdate(insert, Statement.RETURN_GENERATED_KEYS);
 
             return new OrcamentoPeca(
-                    orc,
                     Peca.buscaPorId(idPc),
                     qtd
             );

@@ -97,7 +97,9 @@ public class Orcamento {
         return new SimpleStringProperty(seguradora);
     }
     public SimpleStringProperty statusProperty() {
-        return new SimpleStringProperty(statusAtual);
+        String status = (statusAtual.equals("0")) ? "Não pago" : "Pago";
+
+        return new SimpleStringProperty(status);
     }
     public SimpleStringProperty inicioProperty() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -149,7 +151,7 @@ public class Orcamento {
     }
 
     public static ArrayList<Orcamento> todos() {
-        ArrayList<Orcamento> orcamentos = new ArrayList<Orcamento>();
+        ArrayList<Orcamento> orcamentos = new ArrayList<>();
         try {
             Statement stmt = BancoDeDados.getNewStatement();
             ResultSet rSet = stmt.executeQuery("SELECT * FROM orcamento");
@@ -159,7 +161,7 @@ public class Orcamento {
                     Veiculo.buscaPorId(rSet.getInt("cod_veiculo")),
                     Cliente.buscaPorId(rSet.getInt("cod_cliente")),
                     Pagamento.buscaPorId(rSet.getInt("cod_pagamento")),
-                    rSet.getDate("data_inicio"),
+                    rSet.getDate("data_criado"),
                     rSet.getDate("termino_previsto"),
                     rSet.getDouble("preco"),
                     rSet.getString("seguradora"),
@@ -188,7 +190,7 @@ public class Orcamento {
                     Veiculo.buscaPorId(rSet.getInt("cod_veiculo")),
                     Cliente.buscaPorId(rSet.getInt("cod_cliente")),
                     Pagamento.buscaPorId(rSet.getInt("cod_pagamento")),
-                    rSet.getDate("data_inicio"),
+                    rSet.getDate("data_criado"),
                     rSet.getDate("termino_previsto"),
                     rSet.getDouble("preco"),
                     rSet.getString("seguradora"),
@@ -235,7 +237,7 @@ public class Orcamento {
                 throw new CarSystemException("Erro ao inserir o orçamento");
 
 
-            String insertAtend = "INSERT INTO atendimento (cod_orcamento, fase, data_inicio, data_termino) VALUES (" +idOrc+ ", 0, null, null)";
+            String insertAtend = "INSERT INTO atendimento (cod_orcamento, lblFase, data_inicio, data_termino) VALUES (" +idOrc+ ", 0, null, null)";
             Statement stmt = BancoDeDados.getNewStatement();
             if(stmt.executeUpdate(insertAtend, Statement.RETURN_GENERATED_KEYS) < 1)
                 throw new CarSystemException("Erro ao criar atendimento");

@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="paneEstoque" prefHeight="400.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.Estoque">
+<AnchorPane fx:id="paneEstoque" prefHeight="400.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.cadastro.Estoque">
    <children>
       <Line endY="150.0" layoutX="38.0" layoutY="42.0" />
       <Circle fx:id="shapeAvatar2111" fill="#b91212" layoutX="38.0" layoutY="42.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />

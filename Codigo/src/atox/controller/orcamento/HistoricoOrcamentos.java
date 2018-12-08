@@ -1,4 +1,4 @@
-package atox.controller;
+package atox.controller.orcamento;
 
 import atox.model.Orcamento;
 import atox.utils.TableWithCustomRow;
@@ -15,7 +15,7 @@ public class HistoricoOrcamentos {
 
     public void initialize() {
         List<Orcamento> orcamentos = Orcamento.todos();
-        TableWithCustomRow.createTable(tabHistOrcamentos, "Orçamento");
+        TableWithCustomRow.createTable(tabHistOrcamentos, "Orçamentos: ");
         tabHistOrcamentos.getItems().addAll(orcamentos);
         tabHistOrcamentos.getColumns().add(column(Orcamento.codigoTitle(), Orcamento::idProperty));
         tabHistOrcamentos.getColumns().add(column(Orcamento.veiculoTitle(), Orcamento::veiculoProperty));

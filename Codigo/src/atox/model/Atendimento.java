@@ -4,10 +4,12 @@ import atox.BancoDeDados;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Atendimento {
     private static String codigoTitle = "Cód",
@@ -16,13 +18,13 @@ public class Atendimento {
             inicioTitle = "Inicio",
             terminoTitle = "Fim Previsto";
 
-    private int codigo;
+    private int id;
     private Orcamento orcamento;
-    private String fase;
-    private static Date dataInicio, dataFim;
+    private int fase;
+    private Date dataInicio, dataFim;
 
-    public Atendimento(int codigo, Orcamento orcamento, String fase, Date dataInicio, Date dataFim) {
-        this.codigo = codigo;
+    public Atendimento(int id, Orcamento orcamento, int fase, Date dataInicio, Date dataFim) {
+        this.id = id;
         this.orcamento = orcamento;
         this.fase = fase;
         this.dataInicio = dataInicio;
@@ -34,13 +36,14 @@ public class Atendimento {
         try {
             Statement stmt = BancoDeDados.getNewStatement();
             ResultSet rSet = stmt.executeQuery("SELECT * FROM atendimento");
-            rSet.next();
-            atendimentos.add(new Atendimento(
+
+            while(rSet.next())
+                atendimentos.add(new Atendimento(
                     rSet.getInt("cod_atendimento"),
                     Orcamento.buscaPorId(rSet.getInt("cod_orcamento")),
-                    rSet.getString("fase"),
+                    rSet.getInt("lblFase"),
                     rSet.getDate("data_inicio"),
-                    rSet.getDate("termino_previsto")));
+                    rSet.getDate("data_termino")));
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
@@ -69,38 +72,54 @@ public class Atendimento {
         return terminoTitle;
     }
 
-    public SimpleIntegerProperty codigoProperty() {
-        return new SimpleIntegerProperty(codigo);
+    public SimpleIntegerProperty idProperty() {
+        return new SimpleIntegerProperty(id);
     }
 
     public SimpleStringProperty orcamentoProperty() {
         return new SimpleStringProperty(Double.toString(orcamento.getPreco()));
     }
 
-    public SimpleStringProperty faseProperty() {
-        return new SimpleStringProperty(fase);
-    }
-
     public SimpleStringProperty inicioProperty() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        return new SimpleStringProperty(format.format(dataInicio));
+        if(dataInicio != null)
+            return new SimpleStringProperty(format.format(dataInicio));
+        else
+            return new SimpleStringProperty("Não iniciado");
     }
 
     public SimpleStringProperty terminoProperty() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        return new SimpleStringProperty(format.format(dataFim));
+        if(dataFim != null)
+            return new SimpleStringProperty(format.format(dataFim));
+        else
+            return new SimpleStringProperty("Não finalizado");
     }
 
     public Date getInicio() { return dataInicio; }
+
     public Date getFim() { return dataFim; }
+    public int getId() { return id; }
+    public int getFase(){ return fase; }
+    public Orcamento getOrcamento(){ return orcamento; }
+    public void setFase(int fase){ this.fase = fase; }
 
     public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        String detailText = "Código: " + codigo + "\nData de início: " + format.format(dataInicio)+"\nTérmino previsto: " + format.format(dataFim);
+        String detailText = "Código: " + id + "\nData de início: " + format.format(dataInicio)+"\nTérmino previsto: " + format.format(dataFim);
         detailText += "\n\nOrçamento:";
         detailText += "\n\nCódigo: "+orcamento.getId()+"\t\tPreço: R$" + orcamento.getPreco();
         detailText += "\n\nFase: " + fase;
 
         return detailText;
     }
+
+    public static boolean updateFase(Atendimento atendimento) throws SQLException {
+        String update = "UPDATE atendimento SET lblFase=" +atendimento.getFase()+ " WHERE cod_atendimento=" +atendimento.getId();
+
+        Statement stmt = BancoDeDados.getNewStatement();
+        return stmt.execute(update);
+
+    }
+
 }

@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="paneCadastroFornecedores" prefHeight="400.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.CadastroFornecedores">
+<AnchorPane fx:id="paneCadastroFornecedores" prefHeight="400.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.cadastro.CadastroFornecedores">
    <children>
       <Line endY="134.0" layoutX="38.0" layoutY="42.0" />
       <Label fx:id="lblTopo" layoutX="51.0" layoutY="24.0" text="Cadastrar um fornecedor" textFill="#b91212">
