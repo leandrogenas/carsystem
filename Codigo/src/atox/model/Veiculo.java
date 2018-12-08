@@ -12,21 +12,17 @@ import java.util.List;
 
 public class Veiculo {
 
-    private int id;
-    private String placa;
+    private int id, codProprietario;
+    private String placa, marca, modelo, ano, cor, numParcelas;
     private Cliente proprietario;
-    private String modelo;
-    private String marca;
-    private String ano;
-    private String cor;
     private boolean importado;
     private int km;
 
-    public Veiculo(String placa){
-        this.placa = placa;
+    public Veiculo() {
     }
 
     public Veiculo(String placa, Cliente proprietario, String marca, String modelo, String ano, String cor, boolean importado, int km){
+
         this.placa = placa;
         this.proprietario = proprietario;
         this.marca = marca;
@@ -48,52 +44,80 @@ public class Veiculo {
     public String getPlaca() {
         return placa;
     }
-    public String getMarca() { return marca; }
+
+    public int getCodProprietario() {
+        return codProprietario;
+    }
+
     public Cliente getProprietario() {
         return proprietario;
     }
+
     public String getModelo() {
         return modelo;
     }
+
     public String getAno() {
         return ano;
     }
+
     public String getCor() {
         return cor;
     }
+
     public int getKm() { return km; }
     public boolean isImportado() { return importado; }
-
     public void setPlaca(String placa){ this.placa = placa; }
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
-    public void setMarca(String marca){ this.marca = marca; }
-    public void setKm(int km) {
-        this.km = km;
-    }
+    public void setKm(int km) { this.km = km; }
+
     public void setAno(String ano) {
         this.ano = ano;
     }
+
     public void setCor(String cor) {
         this.cor = cor;
     }
+
+    public void setCodProprietario(int cpfProprietario) {
+        this.codProprietario = cpfProprietario;
+    }
+
     public void setProprietario(Cliente proprietario) {
         this.proprietario = proprietario;
     }
+
     public void setImportado(boolean importado) {
         this.importado = importado;
     }
     public SimpleStringProperty cpfPropr(){ return new SimpleStringProperty(getProprietario().getDocumento()); }
 
-    public static Veiculo buscaPorPlaca(String placa){
+    public String getNumParcelas() {
+        return numParcelas;
+    }
+
+    public void setNumParcelas(String numParcelas) {
+        this.numParcelas = numParcelas;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public static Veiculo buscaPorId(int id) {
         Veiculo veiculo = null;
         try {
-            String sql = "SELECT * FROM veiculo WHERE placa='" + placa + "'";
+            String sql = "SELECT * FROM Veiculo WHERE cod_veiculo= " + id;
             ResultSet rSet = BancoDeDados.getNewStatement().executeQuery(sql);
 
-            if(!rSet.next())
+            if (!rSet.next())
                 return null;
 
             veiculo = new Veiculo(
@@ -107,8 +131,35 @@ public class Veiculo {
                     rSet.getBoolean("importado"),
                     rSet.getInt("kilometragem")
             );
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println(e.getMessage());
+        }
 
-        }catch (Exception e){
+        return veiculo;
+    }
+
+    public static Veiculo buscaPorPlaca(String placa) {
+        Veiculo veiculo = null;
+        try {
+            String sql = "SELECT * FROM Veiculo WHERE placa= '" + placa + "'";
+            ResultSet rSet = BancoDeDados.getNewStatement().executeQuery(sql);
+            if (!rSet.next())
+                return null;
+
+
+            veiculo = new Veiculo(
+                    rSet.getInt("cod_veiculo"),
+                    rSet.getString("placa"),
+                    Cliente.buscaPorId(rSet.getInt("cod_proprietario")),
+                    rSet.getString("marca"),
+                    rSet.getString("modelo"),
+                    rSet.getString("ano"),
+                    rSet.getString("cor"),
+                    rSet.getBoolean("importado"),
+                    rSet.getInt("kilometragem")
+            );
+        } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getMessage());
         }
@@ -171,6 +222,8 @@ public class Veiculo {
             e.printStackTrace();
             System.err.println(e.getMessage());
         }
+
+
         return veiculos;
     }
 
@@ -212,30 +265,6 @@ public class Veiculo {
             System.err.println(e.getMessage());
             return false;
         }
-    }
-
-    public static Veiculo buscaPorId(int id){
-        Veiculo veic = null;
-
-        try {
-            Statement stmt = BancoDeDados.getNewStatement();
-            ResultSet rSet = stmt.executeQuery("SELECT * FROM cliente WHERE cod_veiculo="+id+"");
-            rSet.next();
-            veic = new Veiculo(
-                    rSet.getString("placa"),
-                    Cliente.buscaPorId(Integer.parseInt(rSet.getString("cod_proprietario"))),
-                    rSet.getString("marca"),
-                    rSet.getString("modelo"),
-                    rSet.getString("ano"),
-                    rSet.getString("cor"),
-                    rSet.getBoolean("importado"),
-                    rSet.getInt("kilometragem")
-            );
-        }
-        catch(Exception ex) {
-            System.err.println(ex.getMessage());
-        }
-        return veic;
     }
 
 }

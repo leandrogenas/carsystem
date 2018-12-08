@@ -1,4 +1,5 @@
 package atox.model;
+
 import atox.BancoDeDados;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -7,16 +8,19 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
 public class Atendimento {
     private static String codigoTitle = "Cód",
-            orcamentoTittle = "Orcamento",
-            faseTittle = "Fase",
-            inicioTittle = "Inicio",
-            terminoTittle = "Fim Previsto";
+            orcamentoTitle = "Orcamento",
+            faseTitle = "Fase",
+            inicioTitle = "Inicio",
+            terminoTitle = "Fim Previsto";
+
     private int codigo;
     private Orcamento orcamento;
     private String fase;
     private static Date dataInicio, dataFim;
+
     public Atendimento(int codigo, Orcamento orcamento, String fase, Date dataInicio, Date dataFim) {
         this.codigo = codigo;
         this.orcamento = orcamento;
@@ -24,87 +28,71 @@ public class Atendimento {
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
     }
+
     public static ArrayList<Atendimento> buscarTodos() {
         ArrayList<Atendimento> atendimentos = new ArrayList<Atendimento>();
         try {
-            Statement stmt = BancoDeDados.getNewStatement();
-            ResultSet rSet = stmt.executeQuery("SELECT * FROM orcamento");
+
+            ResultSet rSet = stmt.executeQuery("SELECT * FROM atendimento");
             rSet.next();
             atendimentos.add(new Atendimento(
-                    rSet.getInt("cod_orcamento"),
-                    null, //Orcamento.buscaPorId(rSet.getInt("cod_pagamento")),
+                    rSet.getInt("cod_atendimento"),
+                    Orcamento.buscaPorId(rSet.getInt("cod_orcamento")),
                     rSet.getString("fase"),
                     rSet.getDate("data_inicio"),
                     rSet.getDate("termino_previsto")));
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
-        //TODO: retirar esse treco abaixo
-        for (int i = 1; i <= 100; i++) {
-            atendimentos.add(new Atendimento(i,
-                    new Orcamento(),
-                    "fase",
-                    new Date(),
-                    new Date()));
-        }
+
         return atendimentos;
     }
 
-    /*
-    public static Orcamento buscaPorId(int id){
-        Orcamento orcamento = new Orcamento();
-        try {
-            Statement stmt = BancoDeDados.getNewStatement();
-            ResultSet rSet = stmt.executeQuery("SELECT * FROM orcamento WHERE cod_orcamento = "+id);
-            rSet.next();
-            orcamento = new Orcamento(
-                    rSet.getInt("cod_orcamento"),
-                    Veiculo.buscaPorId(rSet.getInt("cod_veiculo")),
-                    Pagamento.buscaPorId(rSet.getInt("cod_pagamento")),
-                    rSet.getDate("data_inicio"),
-                    rSet.getDate("termino_previsto"),
-                    rSet.getString("preco"),
-                    rSet.getString("seguradora"),
-                    rSet.getString("iniciado"));
-        } catch (Exception ex) {
-            System.err.println(ex.getMessage());
-        }
-        return orcamento;
-    }
-    */
 
     public static String codigoTitle() {
         return codigoTitle;
     }
-    public static String orcamentoTittle() {
-        return orcamentoTittle;
+
+    public static String orcamentoTitle() {
+        return orcamentoTitle;
     }
-    public static String faseTittle() {
-        return faseTittle;
+
+    public static String faseTitle() {
+        return faseTitle;
     }
-    public static String inicioTittle() {
-        return inicioTittle;
+
+    public static String inicioTitle() {
+        return inicioTitle;
     }
-    public static String terminoTittle() {
-        return terminoTittle;
+
+    public static String terminoTitle() {
+        return terminoTitle;
     }
+
     public SimpleIntegerProperty codigoProperty() {
         return new SimpleIntegerProperty(codigo);
     }
+
     public SimpleStringProperty orcamentoProperty() {
         return new SimpleStringProperty(orcamento.getPreco());
     }
+
     public SimpleStringProperty faseProperty() {
         return new SimpleStringProperty(fase);
     }
+
     public SimpleStringProperty inicioProperty() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         return new SimpleStringProperty(format.format(dataInicio));
     }
+
     public SimpleStringProperty terminoProperty() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         return new SimpleStringProperty(format.format(dataFim));
     }
+
+    public Date getInicio() { return dataInicio; }
+    public Date getFim() { return dataFim; }
 
     public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -112,6 +100,7 @@ public class Atendimento {
         detailText += "\n\nOrçamento:";
         detailText += "\n\nCódigo: "+orcamento.getId()+"\t\tPreço: R$" + orcamento.getPreco();
         detailText += "\n\nFase: " + fase;
+
         return detailText;
     }
 }

@@ -31,10 +31,11 @@
           <TableColumn fx:id="colDescr" prefWidth="408.0" text="Descrição" />
         </columns>
       </TableView>
+
       <Label layoutX="87.0" layoutY="67.0" text="Nome: " />
       <Label layoutX="68.0" layoutY="95.0" text="Descrição: " />
-      <TextField fx:id="nome" layoutX="126.0" layoutY="63.0" prefHeight="25.0" prefWidth="353.0" />
-      <TextField fx:id="descricao" layoutX="126.0" layoutY="93.0" prefHeight="25.0" prefWidth="353.0" />
+      <TextField fx:id="nome" layoutX="139.0" layoutY="63.0" prefHeight="25.0" prefWidth="353.0" />
+      <TextField fx:id="descricao" layoutX="139.0" layoutY="93.0" prefHeight="25.0" prefWidth="353.0" />
       <Label layoutX="52.0" layoutY="230.0" text="Botão direito para ver opções">
          <font>
             <Font name="System Italic" size="12.0" />

@@ -19,6 +19,7 @@ public class Cliente {
     private String nome;
     private String endereco;
     private String telefone;
+    private String celular;
     private String email;
 
     public Cliente(String documento){
@@ -33,6 +34,14 @@ public class Cliente {
         this.endereco = endereco;
     }
 
+    public Cliente(int id, String documento, String nome, String email, String telefone, String celular, String endereco) {
+        this.documento = documento;
+        this.nome = nome;
+        this.email = email;
+        this.celular = celular;
+        this.telefone = telefone;
+        this.endereco = endereco;
+    }
     public Cliente(int id, String documento, String nome, String email, String telefone, String endereco) {
         this(documento, nome, email, telefone, endereco);
         this.id = id;
@@ -47,9 +56,21 @@ public class Cliente {
     public SimpleStringProperty telefoneProperty(){ return new SimpleStringProperty(telefone); }
     public SimpleStringProperty enderecoProperty(){ return new SimpleStringProperty(endereco); }
     public int getId(){ return id; }
-    public String getNome() { return nome; }
-
     public String getDocumento() { return documento; }
+    public String getCelular() { return celular; }
+    public static String getDocumento(int idCliente){
+        try {
+            Statement stmt = BancoDeDados.getNewStatement();
+            ResultSet rSet = stmt.executeQuery("SELECT * FROM cliente WHERE cod_cliente='"+idCliente+"'");
+            rSet.next();
+            return rSet.getString("nr_documento");
+        }
+        catch(Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+        return "";
+    }
+    public String getNome() { return nome; }
     public String getTelefone() { return telefone; }
     public String getEmail() { return email; }
     public String getEndereco() { return endereco; }
@@ -59,6 +80,7 @@ public class Cliente {
     public void setEndereco(String endereco) { this.endereco = endereco; }
     public void setTelefone(String telefone) { this.telefone = telefone; }
     public void setEmail(String email) { this.email = email; }
+
     public static Cliente buscaPorId(int id){
         Cliente cliente = null;
 
@@ -68,7 +90,7 @@ public class Cliente {
             rSet.next();
             cliente = new Cliente(
                     rSet.getInt("cod_cliente"),
-                    rSet.getString("cpf"),
+                    rSet.getString("nr_documento"),
                     rSet.getString("nome"),
                     rSet.getString("email"),
                     rSet.getString("telefone"),
@@ -122,7 +144,7 @@ public class Cliente {
         update += "email = '"+cliente.getEmail()+"',";
         update += "telefone = '"+cliente.getTelefone()+"',";
         update += "endereco = '"+cliente.getEndereco()+"'";
-        update += " WHERE cod_cliente = '"+cliente.getId()+"'";
+        update += " WHERE nr_documento = '"+cliente.getDocumento()+"'";
 
         Statement stmt = BancoDeDados.getNewStatement();
         stmt.execute(update);
@@ -168,7 +190,6 @@ public class Cliente {
         return saida;
 
     }
-
 
 }
 
