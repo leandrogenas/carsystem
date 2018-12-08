@@ -134,8 +134,7 @@ public class CadastroClientes {
                         enderecoField.getText()
                 );
 
-                if(!Cliente.inserir(cliente))
-                    throw new CarSystemException("Erro no SQL");
+                cliente = Cliente.inserir(cliente);
 
                 dados.add(cliente);
 

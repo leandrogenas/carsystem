@@ -41,7 +41,7 @@ public class PassoServicos extends Passos {
     private List<ServicoEscolhido> servicos = new ArrayList<>();
 
     PassoServicos(NovoOrcamento contr, AnchorPane pane){
-        super(pane);
+        super(contr, pane);
     }
 
 
@@ -79,6 +79,11 @@ public class PassoServicos extends Passos {
         //cbServicos.setValue(cbServicos.getItems().get(0));
 
         MaskFieldUtil.valorMask(custoServico);
+    }
+
+    @Override
+    public void exibir() {
+
     }
 
     private void adcServico(){

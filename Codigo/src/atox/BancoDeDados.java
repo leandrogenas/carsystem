@@ -7,8 +7,8 @@ public class BancoDeDados {
 
     private static String DRIVER = "sqlserver";
     private static String HOST = "localhost";
-    private static String USER = "CarSystemSvcUsr";
-    private static String PASS = "_svcusrCarSystem";
+    private static String USER = "sa";
+    private static String PASS = "Password123";
     private static String DB = "CarSystem";
     private static int PORTA = 1433;
 
@@ -40,6 +40,13 @@ public class BancoDeDados {
             instancia = new BancoDeDados();
 
         return instancia.getConn().createStatement();
+    }
+
+    public static PreparedStatement getNewPreparedStatement(String sql) throws SQLException{
+        if(instancia == null || instancia.conn == null)
+            instancia = new BancoDeDados();
+
+        return instancia.getConn().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
     }
 
     public Connection getConn(){

@@ -29,10 +29,10 @@ public class Atendimento {
         this.dataFim = dataFim;
     }
 
-    public static ArrayList<Atendimento> buscarTodos() {
+    public static ArrayList<Atendimento> todos() {
         ArrayList<Atendimento> atendimentos = new ArrayList<Atendimento>();
         try {
-
+            Statement stmt = BancoDeDados.getNewStatement();
             ResultSet rSet = stmt.executeQuery("SELECT * FROM atendimento");
             rSet.next();
             atendimentos.add(new Atendimento(
@@ -74,7 +74,7 @@ public class Atendimento {
     }
 
     public SimpleStringProperty orcamentoProperty() {
-        return new SimpleStringProperty(orcamento.getPreco());
+        return new SimpleStringProperty(Double.toString(orcamento.getPreco()));
     }
 
     public SimpleStringProperty faseProperty() {

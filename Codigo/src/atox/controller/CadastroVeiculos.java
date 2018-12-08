@@ -97,16 +97,25 @@ public class CadastroVeiculos {
             SimpleStringProperty propr = new SimpleStringProperty();
 
             propr.setValue(
-                    param.getValue().getMarca() + ", " +
-                            param.getValue().getCor() + ", " +
-                            param.getValue().getModelo()
+                    param.getValue().getMarca() + param.getValue().getCor().toLowerCase() + ", modelo " +
+                    param.getValue().getModelo()
             );
 
             return propr;
         });
         colKm.setCellValueFactory(new PropertyValueFactory<>("km"));
         colAno.setCellValueFactory(new PropertyValueFactory<>("ano"));
-        colPropr.setCellValueFactory(new PropertyValueFactory<>("cpfPropr"));
+        colPropr.setCellValueFactory(param -> {
+            SimpleStringProperty propr = new SimpleStringProperty();
+
+            propr.setValue(
+                    param.getValue().getProprietario().getNome() +
+                    ", Doc: " + param.getValue().getProprietario().getDocumento()
+            );
+
+            return propr;
+
+        });
 
         dados = FXCollections.observableArrayList(Veiculo.todos());
         tblVeiculo.setItems(dados);
@@ -155,8 +164,7 @@ public class CadastroVeiculos {
                         Integer.parseInt(kmField.getText())
                 );
 
-                if (!Veiculo.inserir(veiculo))
-                    throw new CarSystemException("Erro no SQL");
+                veiculo = Veiculo.inserir(veiculo);
 
                 dados.add(veiculo);
 

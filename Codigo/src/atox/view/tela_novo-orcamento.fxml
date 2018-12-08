@@ -226,8 +226,7 @@
       </AnchorPane>
       <AnchorPane fx:id="passoFinalizacao" layoutX="10.0" layoutY="1191.0" maxHeight="530.0" prefHeight="530.0" prefWidth="670.0">
          <children>
-            <Line endY="50.0" layoutX="44.0" layoutY="178.0" />
-            <Line endY="80.0" layoutX="44.0" layoutY="97.0" />
+            <Line endY="200.0" layoutX="44.0" layoutY="97.0" />
             <Label layoutX="40.0" layoutY="36.0" text="Finalização do orçamento" textFill="#b91212">
                <font>
                   <Font name="System Bold" size="25.0" />
@@ -245,7 +244,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Label layoutX="239.0" layoutY="107.0" text="Forma de pagamento" />
+            <Label layoutX="57.0" layoutY="160.0" text="Forma de pagamento:" />
             <Label layoutX="56.0" layoutY="86.0" text="Pagamento" textFill="#b91212">
                <font>
                   <Font size="15.0" />
@@ -254,27 +253,34 @@
             <Circle fx:id="shapeAvatar2112" fill="#b91212" layoutX="44.0" layoutY="96.0" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
             <Label layoutX="56.0" layoutY="109.0" text="Mão de obra:" />
             <Label layoutX="56.0" layoutY="134.0" text="Custo de peças:" />
-            <Label fx:id="totalMaoDeObra" layoutX="147.0" layoutY="107.0" text="R$99,99" textFill="#42a71a">
+            <Label fx:id="totalMaoDeObra" layoutX="180.0" layoutY="107.0" text="R$99,99" textFill="#42a71a">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="totalPecas" layoutX="147.0" layoutY="132.0" text="R$99,99" textFill="#42a71a">
+            <Label fx:id="totalPecas" layoutX="180.0" layoutY="132.0" text="R$99,99" textFill="#42a71a">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Circle fx:id="shapeAvatar21121" fill="#b91212" layoutX="44.0" layoutY="178.0" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
-            <Label layoutX="56.0" layoutY="168.0" text="Opções adicionais" textFill="#b91212">
+            <Circle fx:id="shapeAvatar21121" fill="#b91212" layoutX="44.0" layoutY="235.0" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
+            <Label layoutX="56.0" layoutY="225.0" text="Opções adicionais" textFill="#b91212">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <CheckBox fx:id="chkEnviarOrcamentoEmail" layoutX="55.0" layoutY="199.0" mnemonicParsing="false" text="Enviar o orçamento para o email do cliente" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="7.0" layoutX="40.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
-            <ChoiceBox fx:id="cbFormasPag" layoutX="361.0" layoutY="103.0" prefHeight="25.0" prefWidth="234.0" />
-            <Label layoutX="239.0" layoutY="134.0" text="Número de parcelas:" />
-            <TextField fx:id="numParcelas" layoutX="361.0" layoutY="130.0" />
+            <CheckBox fx:id="chkEnviarOrcamentoEmail" layoutX="55.0" layoutY="256.0" mnemonicParsing="false" text="Enviar o orçamento para o email do cliente" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="7.0" layoutX="41.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="7.0" />
+            <ChoiceBox fx:id="cbFormasPag" layoutX="179.0" layoutY="156.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="58.0" layoutY="191.0" text="Número de parcelas:" />
+            <TextField fx:id="numParcelas" layoutX="179.0" layoutY="187.0" />
+            <Label layoutX="56.0" layoutY="286.0" text="Seguradora" textFill="#b91212">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nomeSeguradora" layoutX="105.0" layoutY="310.0" prefHeight="25.0" prefWidth="275.0" />
+            <Label layoutX="61.0" layoutY="314.0" text="Nome:" />
          </children>
       </AnchorPane>
    </children>

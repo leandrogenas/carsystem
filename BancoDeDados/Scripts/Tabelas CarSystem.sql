@@ -1,106 +1,106 @@
-create database CarSystem;
-use CarSystem;
+create database Carsystem;
+use Carsystem;
 
- create table Cliente(
- cpf varchar(18) not null,
- nome varchar(100) not null,
- email varchar(40) not null,
- telefone varchar(12) not null,
- endereco varchar(100) not null,
- primary key(cpf),
- );
+create table cliente(
+ cod_cliente int not null IDENTITY(1,1),
+ cpf varchar(14) not null,
+ nome varchar(100),
+ email varchar(100),
+ telefone varchar(13),
+ endereco varchar(100),
+ primary key(cod_cliente)
+);
 
- create table Peca(
- codigo varchar(10) not null,
- modelo varchar(25) not null,
- estoque int not null,
- nome varchar(100) not null,
+create table peca(
+ cod_peca int not null IDENTITY(1,1),
+ em_estoque int not null,
+ nome varchar(20) not null,
+ modelo varchar(30),
+ valor_unit numeric(5,2),
+ primary key(cod_peca)
+);
+
+create table fornecedor(
+ cod_fornecedor int not null IDENTITY(1,1),
+ cnpj varchar(20) not null,
+ nome varchar(30) not null,
+ telefone varchar(13) not null,
+ endereco varchar(100),
+ primary key(cod_fornecedor)
+);
+
+create table servico(
+ cod_servico int not null IDENTITY(1,1),
  descricao varchar(100) not null,
- primary key(codigo),
- );
-
- create table Fornecedor(
- cnpj varchar(18) not null,
- nome varchar(10) not null,
- telefone int not null,
- endereco varchar(100) not null,
- primary key(cnpj),
- );
-
- create table Servico(
- codigo varchar(5) not null,
- descricao varchar(10) not null,
- primary key(codigo),
- );
-
- create table Pagamento(
- codigo_pagamento varchar(5) not null,
+ nome varchar(20) not null,
+ primary key(cod_servico)
+);
+create table pagamento(
+ cod_pagamento int not null IDENTITY(1,1),
  forma_pagamento varchar(20) not null,
  num_parcelas int not null,
- primary key(codigo_pagamento),
- );
-
- create table Veiculo(
+ pago bit not null,
+ primary key(cod_pagamento)
+);
+create table veiculo(
+ cod_veiculo int not null IDENTITY(1,1),
  placa varchar(8) not null,
- cpf_proprietario varchar(18) not null,
- num_parcelas int not null,
- cor varchar(20) not null,
- modelo varchar(25) not null,
- marca varchar(25) not null,
- ano varchar(4) not null,
- importado char(1) not null,
- kilometragem varchar(10) not null,
- primary key(placa),
- CONSTRAINT fk_ClienteVeiculo FOREIGN KEY (cpf_proprietario) REFERENCES Cliente (cpf),
- );
-
- create table UtilizacaoPeca(
- cod_peca varchar(10) not null,
- cod_servico varchar(5) not null,
+ cod_proprietario int null,
+ cor varchar(20),
+ marca varchar(50),
+ modelo varchar(50),
+ ano int,
+ importado bit,
+ kilometragem int,
+ primary key(cod_veiculo),
+ CONSTRAINT fk_ClienteVeiculo FOREIGN KEY (cod_proprietario) REFERENCES cliente
+(cod_cliente),
+);
+create table fornecedor_peca(
+ cod_peca int not null,
+ cod_fornecedor int not null,
  quantidade int not null,
- primary key(cod_peca),
- CONSTRAINT fk_UtilizaPeca FOREIGN KEY (cod_peca) REFERENCES Peca (codigo),
- CONSTRAINT fk_UtilizaServico FOREIGN KEY (cod_servico) REFERENCES Servico (codigo),
- );
-
- create table Fornecimento(
- cod_peca varchar(10) not null,
- cnpj_fornecedor varchar(18) not null,
- quantidade int not null,
- primary key(cod_peca, cnpj_fornecedor),
- CONSTRAINT fk_FornecimentoPeca FOREIGN KEY (cod_peca) REFERENCES Peca (codigo),
- CONSTRAINT fk_FornecimentoFornecedor FOREIGN KEY (cnpj_fornecedor) REFERENCES Fornecedor (cnpj),
- );
-
-  create table Orcamento(
- cod_orcamento varchar(15) not null,
- placa_veiculo varchar(7) not null,
- valor money not null,
- datainicio DATE not null,
- datatermino DATE not null,
- terminoprevisto DATE not null,
- seguradora varchar(25) null,
- executado char(1) not null,
+ primary key(cod_peca, cod_fornecedor),
+ CONSTRAINT fk_FornecimentoPeca FOREIGN KEY (cod_peca) REFERENCES peca(cod_peca),
+ CONSTRAINT fk_FornecimentoFornecedor FOREIGN KEY (cod_fornecedor) REFERENCES fornecedor (cod_fornecedor),
+);
+create table orcamento(
+ cod_orcamento int not null IDENTITY(1,1),
+ cod_veiculo int not null,
+ cod_cliente int null,
+ preco float,
+ data_inicio DATE,
+ termino_previsto DATE,
+ seguradora varchar(100),
+ iniciado bit,
+ cod_pagamento int,
  primary key(cod_orcamento),
- CONSTRAINT fk_OrçamentoVeiculo FOREIGN KEY (placa_veiculo) REFERENCES Veiculo (placa),
- );
-
-  create table ExecucaoServico(
- cod_servico varchar(5) not null,
- cod_orcamento varchar(15) not null,
- datainicio DATE not null,
- datatermino DATE not null,
- primary key(cod_servico, cod_orcamento),
- CONSTRAINT fk_ExecucaoServico FOREIGN KEY (cod_servico) REFERENCES Servico (codigo),
- CONSTRAINT fk_ExecucaoOrcamento FOREIGN KEY (cod_orcamento) REFERENCES Orcamento (cod_orcamento),
- );
-
- create table Status(
- cod_servico varchar(5) not null,
- texto varchar(15) not null,
- primary key(cod_servico),
- CONSTRAINT fk_StatusServico FOREIGN KEY (cod_servico) REFERENCES Servico (codigo),
- );
-
-
-
+ CONSTRAINT fk_OrcamentoCliente FOREIGN KEY (cod_cliente) REFERENCES cliente(cod_cliente),
+ CONSTRAINT fk_OrcamentoVeiculo FOREIGN KEY (cod_veiculo) REFERENCES veiculo(cod_veiculo),
+ CONSTRAINT fk_OrcamentoPagamento FOREIGN KEY (cod_pagamento) REFERENCES pagamento (cod_pagamento),
+);
+create table atendimento(
+ cod_atendimento int not null IDENTITY(1,1),
+ cod_orcamento int not null,
+ fase int not null,
+ data_inicio DATE,
+ data_termino DATE,
+ primary key(cod_atendimento),
+ CONSTRAINT fk_AtendimentoOrcamento FOREIGN KEY (cod_orcamento) REFERENCES
+orcamento (cod_orcamento),
+);
+create table orcamento_peca(
+ cod_orcamento int not null,
+ cod_peca int not null,
+ quantidade int not null,
+ primary key(cod_orcamento, cod_peca),
+ CONSTRAINT fk_OrcamentoPeca FOREIGN KEY (cod_peca) REFERENCES peca (cod_peca),
+ CONSTRAINT fk_Orcamento FOREIGN KEY (cod_orcamento) REFERENCES orcamento (cod_orcamento),
+);
+create table orcamento_servico(
+ cod_orcamento int not null,
+ cod_servico int not null,
+ primary key(cod_orcamento, cod_servico),
+ CONSTRAINT fk_OrcamentoPS FOREIGN KEY (cod_orcamento) REFERENCES orcamento (cod_orcamento),
+ CONSTRAINT fk_Servico FOREIGN KEY (cod_servico) REFERENCES servico (cod_servico),
+);

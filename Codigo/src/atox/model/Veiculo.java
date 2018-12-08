@@ -2,8 +2,10 @@ package atox.model;
 
 
 import atox.BancoDeDados;
+import atox.exception.CarSystemException;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -227,7 +229,7 @@ public class Veiculo {
         return veiculos;
     }
 
-    public static boolean inserir(Veiculo veiculo) throws Exception {
+    public static Veiculo inserir(Veiculo veiculo) throws Exception {
         String insert = "INSERT INTO Veiculo (placa, cod_proprietario, cor, modelo, marca, ano, importado, kilometragem) VALUES ('";
         insert += veiculo.getPlaca()+"','";
         insert += veiculo.getProprietario().getId()+"','";
@@ -237,9 +239,38 @@ public class Veiculo {
         insert += veiculo.getAno()+"','";
         insert += ((veiculo.isImportado()) ? "1" : "0")  +"',";
         insert += veiculo.getKm()+")";
-        Statement stmt = BancoDeDados.getNewStatement();
 
-        return stmt.execute(insert);
+        try {
+            PreparedStatement stmt = BancoDeDados.getNewPreparedStatement(insert);
+            stmt.setString(1, veiculo.getPlaca());
+            stmt.setInt(2, veiculo.getCodProprietario());
+            stmt.setString(3, veiculo.getCor());
+            stmt.setString(4, veiculo.getModelo());
+            stmt.setString(5, veiculo.getMarca());
+            stmt.setString(6, veiculo.getAno());
+            stmt.setBoolean(7, veiculo.isImportado());
+            stmt.setInt(8, veiculo.getKm());
+
+            int linhas = stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            int id = rs.getInt(1);
+
+            return new Veiculo(
+                    id,
+                    veiculo.getPlaca(),
+                    veiculo.getProprietario(),
+                    veiculo.getMarca(),
+                    veiculo.getModelo(),
+                    veiculo.getAno(),
+                    veiculo.getCor(),
+                    veiculo.isImportado(),
+                    veiculo.getKm()
+            );
+        }catch (SQLException ex){
+            throw new CarSystemException("Erro de SQL: " + ex.getMessage());
+        }
     }
 
     public static void alterar(Veiculo veiculo) throws SQLException {

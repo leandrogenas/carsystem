@@ -4,6 +4,7 @@ import atox.exception.CarSystemException;
 import atox.model.Fornecedor;
 import atox.model.Peca;
 import atox.utils.MaskFieldUtil;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -71,7 +72,11 @@ public class Estoque {
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
         colEmEstoque.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
-        colValUnit.setCellValueFactory(new PropertyValueFactory<>("valunit"));
+        colValUnit.setCellValueFactory(param -> {
+            SimpleStringProperty propr = new SimpleStringProperty();
+            propr.setValue(Double.toString(param.getValue().getValUnit()));
+            return propr;
+        });
 
         dadosTabela = FXCollections.observableArrayList(Peca.todos());
         tblPecas.setItems(dadosTabela);
@@ -113,8 +118,7 @@ public class Estoque {
                         Double.parseDouble(valUnit.getText())
                 );
 
-                if(!Peca.inserir(peca))
-                    throw new CarSystemException("Erro no SQL");
+                Peca.inserir(peca);
 
                 dadosTabela.add(peca);
 

@@ -27,12 +27,13 @@ public class PassoClienteVeiculo extends Passos {
     private TextField placaVeiculo, marcaVeiculo, modeloVeiculo, corVeiculo, kmVeiculo, anoVeiculo;
     private CheckBox importadoVeiculo;
 
-    //Veiculo
+
     private Veiculo veiculo;
+    private Cliente cliente;
 
 
     PassoClienteVeiculo(NovoOrcamento contr, AnchorPane pane){
-        super(pane);
+        super(contr, pane);
 
         MaskFieldUtil.placaMask(placaVeiculo);
         MaskFieldUtil.cpfMask(docCliente);
@@ -46,8 +47,44 @@ public class PassoClienteVeiculo extends Passos {
             if(!veiculoValido())
                 throw new CarSystemException("Preencha os campos obrigatórios (com asterisco) do veículo!");
 
+            cliente.setNome(nomeCliente.getText());
+            cliente.setDocumento(docCliente.getText());
+            cliente.setEmail(emailCliente.getText());
+            cliente.setEndereco(enderecoCliente.getText());
+            cliente.setTelefone(telefoneCliente.getText());
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Atenção");
+            alert.setHeaderText(null);
+
+            if(cliente.getId() == 0) {
+                cliente = Cliente.inserir(cliente);
+
+                alert.setContentText("Cliente inserido no BD!");
+                alert.showAndWait();
+            }else {
+                Cliente.alterar(cliente);
+            }
+
+            veiculo.setPlaca(placaVeiculo.getText());
+            veiculo.setMarca(marcaVeiculo.getText());
+            veiculo.setModelo(modeloVeiculo.getText());
+            veiculo.setCor(corVeiculo.getText());
+            veiculo.setAno(anoVeiculo.getText());
+            veiculo.setImportado(importadoVeiculo.isSelected());
+            veiculo.setKm(Integer.valueOf(kmVeiculo.getText()));
+
+            if(veiculo.getId() == 0) {
+                veiculo = Veiculo.inserir(veiculo);
+
+                alert.setContentText("Veículo inserido no BD!");
+                alert.showAndWait();
+            }else {
+                Veiculo.alterar(veiculo);
+            }
+
             return true;
-        }catch (CarSystemException e){
+        }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Atenção!");
             alert.setHeaderText(null);
@@ -136,12 +173,14 @@ public class PassoClienteVeiculo extends Passos {
         limpaCamposCliente();
 
         // Busca o cliente
-        Cliente cli = Cliente.buscaPorDocumento(doc);
+        cliente = Cliente.buscaPorDocumento(doc);
 
         // Caso o cliente não exista, pergunta se quer cadastrar
-        if (cli == null) {
+        if (cliente == null) {
             if (promptCadastro("Cliente não encontrado!", "Deseja cadastrar o cliente?")){
                 liberaCamposCliente();
+
+                cliente = new Cliente(docCliente.getText());
 
                 return;
             }else{
@@ -158,10 +197,10 @@ public class PassoClienteVeiculo extends Passos {
         }
 
         // Carrega os dados do cliente caso encontrado
-        nomeCliente.setText(cli.getNome());
-        emailCliente.setText(cli.getEmail());
-        enderecoCliente.setText(cli.getEndereco());
-        telefoneCliente.setText(cli.getTelefone());
+        nomeCliente.setText(cliente.getNome());
+        emailCliente.setText(cliente.getEmail());
+        enderecoCliente.setText(cliente.getEndereco());
+        telefoneCliente.setText(cliente.getTelefone());
 
     }
 
@@ -215,25 +254,16 @@ public class PassoClienteVeiculo extends Passos {
 
     }
 
+    @Override
+    public void exibir() {
+
+    }
+
     public Cliente getDadosCliente(){
-        return new Cliente(
-                docCliente.getText(),
-                nomeCliente.getText(),
-                emailCliente.getText(),
-                telefoneCliente.getText(),
-                enderecoCliente.getText()
-        );
+        return cliente;
     }
 
     public Veiculo getDadosVeiculo(){
-        //TODO: cadastrar ou atualizar o veiculo
-        if(veiculo == null) {
-            //cadastrar e pegar o id
-            //busca por placa
-        } else {
-            //atualiza
-        }
-
         return veiculo;
     }
 }

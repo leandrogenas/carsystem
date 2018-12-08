@@ -51,7 +51,7 @@ public class PassoPecas extends Passos{
     private List<PecaUtilizada> pecasUtilizadas = new ArrayList<>();
 
     PassoPecas(NovoOrcamento contr, AnchorPane pane){
-        super(pane);
+        super(contr, pane);
     }
 
     @Override
@@ -77,6 +77,11 @@ public class PassoPecas extends Passos{
         //cbPecas.setValue(cbPecas.getItems().get(0));
 
         lblEstoqueNegativo.setVisible(false);
+    }
+
+    @Override
+    public void exibir() {
+
     }
 
     private void adcPeca() {

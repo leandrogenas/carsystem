@@ -20,6 +20,5 @@ public abstract class Passos {
 
     public abstract boolean passoValido();
     public abstract void carregarElementos();
-
-
+    public abstract void exibir();
 }

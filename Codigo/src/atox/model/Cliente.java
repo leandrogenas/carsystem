@@ -2,10 +2,12 @@ package atox.model;
 
 
 import atox.BancoDeDados;
+import atox.exception.CarSystemException;
 import atox.utils.Mock;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -34,14 +36,6 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public Cliente(int id, String documento, String nome, String email, String telefone, String celular, String endereco) {
-        this.documento = documento;
-        this.nome = nome;
-        this.email = email;
-        this.celular = celular;
-        this.telefone = telefone;
-        this.endereco = endereco;
-    }
     public Cliente(int id, String documento, String nome, String email, String telefone, String endereco) {
         this(documento, nome, email, telefone, endereco);
         this.id = id;
@@ -90,7 +84,7 @@ public class Cliente {
             rSet.next();
             cliente = new Cliente(
                     rSet.getInt("cod_cliente"),
-                    rSet.getString("nr_documento"),
+                    rSet.getString("cpf"),
                     rSet.getString("nome"),
                     rSet.getString("email"),
                     rSet.getString("telefone"),
@@ -108,7 +102,6 @@ public class Cliente {
 
         try {
             Statement stmt = BancoDeDados.getNewStatement();
-            System.out.println("SELECT * FROM cliente WHERE cpf = '"+doc+"'");
             ResultSet rSet = stmt.executeQuery("SELECT * FROM cliente WHERE cpf = '"+doc+"'");
             rSet.next();
             cliente = new Cliente(
@@ -126,16 +119,34 @@ public class Cliente {
         return cliente;
     }
 
-    public static boolean inserir(Cliente cliente) throws Exception {
-        String insert = "INSERT INTO cliente (cpf,nome,email,telefone,endereco) VALUES ('";
-        insert += cliente.getDocumento()+"','";
-        insert += cliente.getNome()+"','";
-        insert += cliente.getEmail()+"','";
-        insert += cliente.getTelefone()+"','";
-        insert += cliente.getEndereco()+"')";
+    public static Cliente inserir(Cliente cliente) throws Exception {
+        String insert = "INSERT INTO cliente (cpf,nome,email,telefone,endereco) VALUES (?, ?, ?, ?, ?)";
 
-        Statement stmt = BancoDeDados.getNewStatement();
-        return stmt.execute(insert);
+        try {
+            PreparedStatement stmt = BancoDeDados.getNewPreparedStatement(insert);
+            stmt.setString(1, cliente.getDocumento());
+            stmt.setString(2, cliente.getNome());
+            stmt.setString(3, cliente.getEmail());
+            stmt.setString(3, cliente.getTelefone());
+            stmt.setString(3, cliente.getEndereco());
+
+            int linhas = stmt.executeUpdate();
+
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            int id = rs.getInt(1);
+
+            return new Cliente(
+                    id,
+                    cliente.getDocumento(),
+                    cliente.getNome(),
+                    cliente.getEmail(),
+                    cliente.getTelefone(),
+                    cliente.getEndereco()
+            );
+        }catch (SQLException ex){
+            throw new CarSystemException("Erro de SQL: " + ex.getMessage());
+        }
     }
 
     public static void alterar(Cliente cliente) throws SQLException {
@@ -144,7 +155,7 @@ public class Cliente {
         update += "email = '"+cliente.getEmail()+"',";
         update += "telefone = '"+cliente.getTelefone()+"',";
         update += "endereco = '"+cliente.getEndereco()+"'";
-        update += " WHERE nr_documento = '"+cliente.getDocumento()+"'";
+        update += " WHERE cpf = '"+cliente.getDocumento()+"'";
 
         Statement stmt = BancoDeDados.getNewStatement();
         stmt.execute(update);

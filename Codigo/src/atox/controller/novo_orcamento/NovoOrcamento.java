@@ -1,12 +1,16 @@
 package atox.controller.novo_orcamento;
 
+import atox.CarSystem;
 import atox.exception.CarSystemException;
+import atox.model.*;
+import atox.utils.EnvioEmail;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,6 +25,8 @@ public class NovoOrcamento {
     private PassoPecas passoPecas;
     private PassoServicos passoServicos;
     private PassoFinalizacao passoFinalizacao;
+
+    private Orcamento orcamento;
 
     @FXML
     private void initialize(){
@@ -51,36 +57,103 @@ public class NovoOrcamento {
             case 4: passoAtual = passoServicos;
         }
 
-        if(passoAtual instanceof PassoFinalizacao)
-            ((PassoFinalizacao) passoAtual).setDados(
-                passoCV.getDadosCliente(),
-                passoCV.getDadosVeiculo(),
-                passoPecas.getPecas(),
-                passoServicos.getServicos()
-            );
-
         scroll((praFrente) ? ++numPasso : --numPasso);
         passoAtual.setVisible(true);
+        passoAtual.exibir();
 
     }
-
-    public void finalizarOrcamento(){
-        passoFinalizacao.finalizarOrcamento();
-    }
-
-
 
     private void scroll(int passo){
         container.setLayoutY(-530 * (passo-1));
     }
 
-    private static void mensagem(String msg, Alert.AlertType tipo){
-        Alert alert = new Alert(tipo);
-        alert.setTitle("Novo Orçamento");
-        alert.setHeaderText(null);
-        alert.setContentText(msg);
+    public void cadastrarOrcamento(){
+        try {
+            double precoTotal = passoFinalizacao.getTotalMDO() + passoFinalizacao.getTotalPecas();
 
-        alert.showAndWait();
+            Pagamento pag = Pagamento.inserir(new Pagamento(
+                    passoFinalizacao.getFormaPag(),
+                    passoFinalizacao.getNumParcelas()
+            ));
+
+            if(pag.getId() == 0)
+                throw new CarSystemException("Erro ao gravar o pagamento no BD");
+
+
+            orcamento = Orcamento.inserir(new Orcamento(
+                    getDadosVeiculo(),
+                    getDadosCliente(),
+                    pag,
+                    precoTotal,
+                    passoFinalizacao.getSeguradora()
+            ), precoTotal);
+
+            if(orcamento.getId() == 0)
+                throw new CarSystemException("Erro ao gravar o orçamento no BD");
+
+            // Inclui as peças utilizadas
+            List<PecaUtilizada> pecas = getPecas();
+            if(pecas.isEmpty())
+                throw new CarSystemException("Não há peças no orçamento!");
+
+            for(PecaUtilizada pc: pecas) {
+                OrcamentoPeca orcPeca = OrcamentoPeca.inserir(orcamento, pc.getId(), pc.getQtd());
+                orcamento.addPeca(orcPeca);
+            }
+
+            // Inclui os serviços escolhidos
+            List<ServicoEscolhido> svcs = getServicos();
+            if(svcs.isEmpty()) {
+                throw new CarSystemException("Não há serviços a serem feitos!");
+            }
+
+            for(ServicoEscolhido svc: svcs)
+                orcamento.addServico(OrcamentoServico.inserir(orcamento, svc.getId(), svc.getMaoDeObra()));
+
+            // Dá baixa no estoque
+            Orcamento.baixaEstoque(orcamento);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Sucesso!");
+            alert.setHeaderText(null);
+            alert.setContentText("Orçamento cadastrado com sucesso! Inicie o pagamento em 'Atendimentos'");
+            alert.showAndWait();
+
+            CarSystem.getInstancia().mudaTela(CarSystem.Tipo.ATENDIMENTOS);
+        } catch (CarSystemException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!");
+            alert.setHeaderText(null);
+            alert.setContentText("Erro ao inserir o orçamento no BD: " + e.getMessage());
+            alert.showAndWait();
+
+        }
+    }
+
+    public void finalizarOrcamento(){
+        if(!(passoAtual instanceof PassoFinalizacao))
+            return;
+
+        if(passoFinalizacao.enviaPorEmail()){
+            EnvioEmail enviador = EnvioEmail.getInstancia();
+            enviador.enviarOrcamento(orcamento, getDadosCliente().getEmail());
+        }
+
+        cadastrarOrcamento();
+
+    }
+
+    public Cliente getDadosCliente(){
+        return passoCV.getDadosCliente();
+    }
+    public Veiculo getDadosVeiculo(){
+        return passoCV.getDadosVeiculo();
+    }
+    public List<PecaUtilizada> getPecas(){
+        return passoPecas.getPecas();
+    }
+    public List<ServicoEscolhido> getServicos(){
+        return passoServicos.getServicos();
     }
 
 

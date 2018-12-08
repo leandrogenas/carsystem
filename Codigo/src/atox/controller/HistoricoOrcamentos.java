@@ -14,10 +14,10 @@ public class HistoricoOrcamentos {
     private TableView<Orcamento> tabHistOrcamentos;
 
     public void initialize() {
-        List<Orcamento> orcamentos = Orcamento.buscarTodos();
+        List<Orcamento> orcamentos = Orcamento.todos();
         TableWithCustomRow.createTable(tabHistOrcamentos, "Orçamento");
         tabHistOrcamentos.getItems().addAll(orcamentos);
-        tabHistOrcamentos.getColumns().add(column(Orcamento.codigoTitle(), Orcamento::codigoProperty));
+        tabHistOrcamentos.getColumns().add(column(Orcamento.codigoTitle(), Orcamento::idProperty));
         tabHistOrcamentos.getColumns().add(column(Orcamento.veiculoTitle(), Orcamento::veiculoProperty));
         tabHistOrcamentos.getColumns().add(column(Orcamento.pagamentoTitle(), Orcamento::pagamentoProperty));
         tabHistOrcamentos.getColumns().add(column(Orcamento.inicioTitle(), Orcamento::inicioProperty));

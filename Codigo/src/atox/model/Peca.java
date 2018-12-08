@@ -105,8 +105,8 @@ public class Peca {
         String insert = "INSERT INTO peca (nome,modelo,em_estoque,valor_unit) VALUES ('";
         insert += peca.getNome()+"','";
         insert += peca.getModelo()+"','";
-        insert += peca.getQuantidade()+"','";
-        insert += peca.getValUnit()+"')";
+        insert += peca.getQuantidade()+"',";
+        insert += peca.getValUnit()+")";
 
         Statement stmt = BancoDeDados.getNewStatement();
         return stmt.execute(insert);
@@ -118,7 +118,7 @@ public class Peca {
         update += "nome = '"+peca.getNome()+"',";
         update += "modelo = '"+peca.getModelo()+"',";
         update += "em_estoque = '"+peca.getQuantidade()+"',";
-        update += "valor_unit = '"+peca.getValUnit()+"'";
+        update += "valor_unit = "+peca.getValUnit()+"";
         update += " WHERE cod_peca = '"+peca.getId()+"'";
 
         BancoDeDados.getNewStatement().execute(update);

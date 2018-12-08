@@ -34,12 +34,12 @@ public class Financa {
     public static String inicioTitle() { return inicioTitle; }
     public static String terminoTitle() { return terminoTitle; }
 
-    public SimpleStringProperty precoProperty() { return new SimpleStringProperty(orcamento.getPreco()); }
+    public SimpleStringProperty precoProperty() { return new SimpleStringProperty(Double.toString(orcamento.getPreco())); }
     public SimpleStringProperty veiculoProperty() { return new SimpleStringProperty(veiculo.getPlaca()); }
     public SimpleStringProperty inicioProperty() { return new SimpleStringProperty(atendimento.getInicio().toString()); }
     public SimpleStringProperty terminoProperty() { return new SimpleStringProperty(atendimento.getFim().toString()); }
 
-    public int getPreco() { return Integer.valueOf(orcamento.getPreco()); }
+    public double getPreco() { return orcamento.getPreco(); }
 
     public static List<Financa> buscarPorPeriodo(LocalDate dataInicial, LocalDate dataFinal) {
         List<Financa> financas = new ArrayList<Financa>();
@@ -58,6 +58,7 @@ public class Financa {
             selectQuery += "\tand data_termino < '"+dataFinal.toString()+"'";
             ResultSet rSet = stmt.executeQuery(selectQuery);
             while(rSet.next()) {
+                /*
                 Pagamento pagamento = new Pagamento();
 
                 Orcamento orcamento = new Orcamento(
@@ -76,8 +77,8 @@ public class Financa {
                         rSet.getString("fase"),
                         rSet.getDate("data_inicio"),
                         rSet.getDate("termino_previsto"));
-
-                financas.add(new Financa(pagamento, orcamento, atendimento));
+                */
+                financas.add(new Financa(null, null, null));
             }
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
