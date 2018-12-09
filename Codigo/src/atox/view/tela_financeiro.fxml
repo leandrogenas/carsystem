@@ -20,7 +20,7 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-      <Button layoutX="541.0" layoutY="494.0" mnemonicParsing="false" onAction="#salvarPdf" text="Salvar em PDF" />
+      <Button fx:id="salvarPdfButton" layoutX="541.0" layoutY="494.0" mnemonicParsing="false" onAction="#salvarPdf" text="Salvar em PDF" />
       <Label layoutX="14.0" layoutY="449.0" text="Total de atendimentos: " />
       <Label fx:id="atendimentosLabel" layoutX="171.0" layoutY="449.0" text="0" />
       <Label layoutX="311.0" layoutY="449.0" text="Caixa Total: R$" />

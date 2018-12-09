@@ -92,8 +92,8 @@ public class Atendimento {
         return new SimpleStringProperty(format.format(dataFim));
     }
 
-    public Date getInicio() { return dataInicio; }
-    public Date getFim() { return dataFim; }
+    public Date getDataInicio() { return dataInicio; }
+    public Date getDataFim() { return dataFim; }
 
     public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");

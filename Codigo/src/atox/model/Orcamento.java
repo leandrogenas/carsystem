@@ -118,6 +118,9 @@ public class Orcamento {
     public int getId() { return codigo; }
     public String getPreco() { return preco; }
     public Veiculo getVeiculo() { return veiculo; }
+    public Date getDataInicio() {return dataInicio;}
+    public Date getDataFim() {return dataFim;}
+    public String getSeguradora() {return seguradora;}
 
     public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -126,7 +129,7 @@ public class Orcamento {
         detailText += "\n\nVeículo:";
         detailText += "\n\tPlaca: " + veiculo.getPlaca() + "\tModelo: " + veiculo.getModelo() + "\tMarca: " + veiculo.getMarca() + "\tCor: " + veiculo.getCor();
         detailText += "\n\nPagamento:";
-        detailText += "\n\tForma: " + pagamento.getForma() + "\t\tNúmero de parcelas: " + pagamento.getNParcelas();
+        detailText += "\n\tForma: " + pagamento.getForma() + "\t\tNúmero de parcelas: " + pagamento.getNumParcelas();
         detailText += "\n\nSeguradora: " + seguradora;
         detailText += "\n\nStatus: " + statusAtual;
 

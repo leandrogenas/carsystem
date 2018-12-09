@@ -34,10 +34,10 @@ public class Financa {
     public static String inicioTitle() { return inicioTitle; }
     public static String terminoTitle() { return terminoTitle; }
 
-    public SimpleStringProperty precoProperty() { return new SimpleStringProperty(orcamento.getPreco()); }
+    public SimpleStringProperty precoProperty() { return new SimpleStringProperty("R$"+orcamento.getPreco()); }
     public SimpleStringProperty veiculoProperty() { return new SimpleStringProperty(veiculo.getPlaca()); }
-    public SimpleStringProperty inicioProperty() { return new SimpleStringProperty(atendimento.getInicio().toString()); }
-    public SimpleStringProperty terminoProperty() { return new SimpleStringProperty(atendimento.getFim().toString()); }
+    public SimpleStringProperty inicioProperty() { return new SimpleStringProperty(atendimento.getDataInicio().toString()); }
+    public SimpleStringProperty terminoProperty() { return new SimpleStringProperty(atendimento.getDataFim().toString()); }
 
     public int getPreco() { return Integer.valueOf(orcamento.getPreco()); }
 
@@ -46,19 +46,22 @@ public class Financa {
         try {
             Statement stmt = BancoDeDados.getNewStatement();
             String selectQuery = "select atd.cod_atendimento,atd.fase,atd.data_inicio,atd.data_termino,\n" +
-                    "\torcPag.* from atendimento as atd\n" +
+                    "\norcPag.* from atendimento as atd\n" +
                     "inner join (\n" +
-                    "\tselect orc.cod_orcamento,orc.cod_veiculo,orc.preco,orc.data_inicio [data_orc],orc.termino_previsto,orc.seguradora,orc.iniciado,orc.cod_pagamento,\n" +
-                    "\t\tpag.forma_pagamento, pag.num_parcelas from orcamento as orc\n" +
-                    "\tinner join pagamento as pag\n" +
-                    "\ton orc.cod_pagamento = pag.cod_pagamento\n" +
+                    "\nselect orc.cod_orcamento,orc.cod_veiculo,orc.preco,orc.data_inicio [data_orc],orc.termino_previsto,orc.seguradora,orc.iniciado,orc.cod_pagamento,\n" +
+                    "\n\npag.forma_pagamento, pag.num_parcelas from orcamento as orc\n" +
+                    "\ninner join pagamento as pag\n" +
+                    "\non orc.cod_pagamento = pag.cod_pagamento\n" +
                     ") as orcPag\n" +
                     "on atd.cod_orcamento = orcPag.cod_orcamento\n";
-            selectQuery += "where data_termino > '"+dataInicial.toString()+"'\n";
-            selectQuery += "\tand data_termino < '"+dataFinal.toString()+"'";
+            selectQuery += "where data_termino >= '"+dataInicial.toString()+"'\n";
+            selectQuery += "\nand data_termino <= '"+dataFinal.toString()+"'";
             ResultSet rSet = stmt.executeQuery(selectQuery);
             while(rSet.next()) {
-                Pagamento pagamento = new Pagamento();
+                Pagamento pagamento = new Pagamento(rSet.getInt("cod_pagamento"),
+                        rSet.getString("forma_pagamento"),
+                        rSet.getInt("num_parcelas"),
+                        true);
 
                 Orcamento orcamento = new Orcamento(
                         rSet.getInt("cod_orcamento"),
@@ -88,8 +91,25 @@ public class Financa {
 
     public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        String detailText = "\n\nOrçamento:";
-        detailText += "\n\nCódigo: "+orcamento.getId()+"\t\tPreço: R$" + orcamento.getPreco();
+        String detailText = "      Veículo:";
+        detailText += "\nPlaca: " + veiculo.getPlaca() + "\nModelo: " + veiculo.getModelo() + "\nMarca: " + veiculo.getMarca() + "\nCor: " + veiculo.getCor();
+
+        if(veiculo.getCodProprietario() != 0) {
+            Cliente cliente = Cliente.buscaPorId(veiculo.getCodProprietario());
+            detailText += "\n\n      Cliente:";
+            detailText += "\nDocumento: " + cliente.getDocumento() + "\nNome: " + cliente.getNome();
+            detailText += "\nTelefone: " + cliente.getTelefone() + "\nCelular: " + cliente.getCelular();
+            detailText += "\nE-mail: " + cliente.getEmail() + "\nEndereço: " + cliente.getEndereco();
+        } else {
+            detailText += "\n\n      Cliente não registrado.";
+        }
+
+        detailText += "\n\n      Atendimento:";
+        detailText += "\nData de início: " + format.format(atendimento.getDataInicio()) + "\nData de Término" + atendimento.getDataFim();
+        detailText += "\n\n      Orçamento:";
+        detailText += "\nPreço: R$" + orcamento.getPreco();
+        detailText += "\n\n      Pagamento:";
+        detailText += "\nForma: " + pagamento.getForma() + "\nNúmero de parcelas: " + pagamento.getNumParcelas() + "\nSeguradora: " + orcamento.getSeguradora();
 
         return detailText;
     }

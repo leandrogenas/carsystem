@@ -46,4 +46,10 @@ public class BancoDeDados {
         return conn;
     }
 
+    public static PreparedStatement getNewPreparedStatement(String sql) throws SQLException{
+        if(instancia == null || instancia.conn == null)
+            instancia = new BancoDeDados();
+
+        return instancia.getConn().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+    }
 }
