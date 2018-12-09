@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paneCadastroServicos" prefHeight="530.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.CadastroServicos">
+   <children>
+      <Line endY="176.0" layoutX="38.0" layoutY="42.0" />
+      <Label fx:id="lblTopo" layoutX="51.0" layoutY="24.0" text="Novo serviço" textFill="#b91212">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Circle fx:id="shapeAvatar2111" fill="#b91212" layoutX="38.0" layoutY="42.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
+      <Label layoutX="51.0" layoutY="200.0" text="Serviços cadastrados" textFill="#b91212">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Circle fx:id="shapeAvatar21111" fill="#b91212" layoutX="38.0" layoutY="218.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
+      <TableView fx:id="tblServicos" editable="true" layoutX="51.0" layoutY="249.0" prefHeight="264.0" prefWidth="604.0">
+        <columns>
+          <TableColumn fx:id="colNome" prefWidth="195.0" text="Nome" />
+          <TableColumn fx:id="colDescr" prefWidth="408.0" text="Descrição" />
+        </columns>
+      </TableView>
+
+      <Label layoutX="87.0" layoutY="67.0" text="Nome: " />
+      <Label layoutX="68.0" layoutY="95.0" text="Descrição: " />
+      <TextField fx:id="nome" layoutX="139.0" layoutY="63.0" prefHeight="25.0" prefWidth="353.0" />
+      <TextField fx:id="descricao" layoutX="139.0" layoutY="93.0" prefHeight="25.0" prefWidth="353.0" />
+      <Label layoutX="52.0" layoutY="230.0" text="Botão direito para ver opções">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnEfetivar" layoutX="128.0" layoutY="130.0" mnemonicParsing="false" onAction="#efetivar" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: green;" text="Cadastrar" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="241.0" layoutY="130.0" mnemonicParsing="false" onAction="#limpar" style="-fx-background-color: #538ee8;" text="Limpar" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

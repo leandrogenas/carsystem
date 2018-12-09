@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="paneCadastroFornecedores" prefHeight="400.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="atox.controller.CadastroFornecedores">
+   <children>
+      <Line endY="134.0" layoutX="38.0" layoutY="42.0" />
+      <Label fx:id="lblTopo" layoutX="51.0" layoutY="24.0" text="Cadastrar um fornecedor" textFill="#b91212">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Circle fx:id="shapeAvatar2111" fill="#b91212" layoutX="38.0" layoutY="42.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
+      <Label layoutX="51.0" layoutY="158.0" text="Fornecedores cadastrados" textFill="#b91212">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Circle fx:id="shapeAvatar21111" fill="#b91212" layoutX="38.0" layoutY="176.0" radius="6.0" stroke="WHITE" strokeType="INSIDE" />
+      <TableView fx:id="tblFornecedores" layoutX="51.0" layoutY="213.0" prefHeight="173.0" prefWidth="604.0">
+        <columns>
+          <TableColumn fx:id="colNome" prefWidth="169.0" text="Nome" />
+          <TableColumn fx:id="colCNPJ" prefWidth="150.0" text="CNPJ" />
+            <TableColumn fx:id="colTelefone" minWidth="0.0" prefWidth="135.0" text="Telefone" />
+            <TableColumn fx:id="colEndereco" prefWidth="149.0" text="Endereço" />
+        </columns>
+      </TableView>
+      <Label layoutX="87.0" layoutY="67.0" text="Nome: " />
+      <Label layoutX="420.0" layoutY="67.0" text="CNPJ:" />
+      <Label layoutX="435.0" layoutY="96.0" text="Telefone:" />
+      <TextField fx:id="nome" layoutX="126.0" layoutY="63.0" prefHeight="25.0" prefWidth="288.0" />
+      <TextField fx:id="cnpj" layoutX="460.0" layoutY="63.0" />
+      <TextField fx:id="telefone" layoutX="491.0" layoutY="92.0" prefHeight="25.0" prefWidth="119.0" />
+      <Label layoutX="70.0" layoutY="96.0" text="Endereço:" />
+      <TextField fx:id="endereco" layoutX="126.0" layoutY="92.0" prefHeight="25.0" prefWidth="305.0" />
+      <Label layoutX="52.0" layoutY="190.0" text="Botão direito para ver opções">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnEfetivar" layoutX="128.0" layoutY="123.0" mnemonicParsing="false" onAction="#efetivar" style="-fx-background-color: green;" text="Cadastrar" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="236.0" layoutY="123.0" mnemonicParsing="false" onAction="#limpar" style="-fx-background-color: #538ee8;" text="Limpar" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
