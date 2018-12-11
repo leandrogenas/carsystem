@@ -38,8 +38,8 @@ public class HistoricoAtendimentos {
             pane.lookup("#paneControles").setVisible(false);
 
             Label lblFinalizado = new Label("Atendimento finalizado");
-            lblFinalizado.setLayoutX(160);
-            lblFinalizado.setLayoutY(130);
+            lblFinalizado.setLayoutX(370);
+            lblFinalizado.setLayoutY(20);
             lblFinalizado.setTextFill(Color.web("#3b9019"));
             lblFinalizado.setFont(Font.font("System", 20));
             pane.getChildren().add(lblFinalizado);

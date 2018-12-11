@@ -16,6 +16,7 @@ import java.util.*;
 
 public class DetalhesAtendimento {
 
+    public Pane paneControles;
     public AnchorPane paneDetAt;
     public TableView<Fases.Fase> tblFases;
     public TableColumn<Fases.Fase, String> colEtapa, colIniciada, colConcluida;
@@ -178,15 +179,77 @@ public class DetalhesAtendimento {
     }
 
     private void proxFaseAtendimento(){
-        fases.proximaFase();
-        faseAtual = fases.getFaseAtual();
-        updateTela();
+        try {
+            if (!fases.proximaFase())
+                throw new CarSystemException("Não foi possível ir para a próxima fase");
+
+            faseAtual = fases.getFaseAtual();
+
+            if(fases.estaNaUltimaFase() && faseAtual.finalizada) {
+                lstFases.removeAll();
+                faseAtual = null;
+            }
+
+            updateTela();
+        }catch (CarSystemException e){
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!");
+            alert.setHeaderText(null);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
 
     }
 
 
     private void finalizarAtendimento(){
+        try {
+            if(!confirmFinalizacao())
+                return;
 
+            atendimento.setFinalizado(true);
+
+            if(!Atendimento.finalizar(atendimento.getId()))
+                throw new CarSystemException("Não foi possível finalizar o atendimento!");
+
+
+            Label lblFinalizado = new Label("Atendimento finalizado");
+            lblFinalizado.setLayoutX(370);
+            lblFinalizado.setLayoutY(20);
+            lblFinalizado.setTextFill(Color.web("#3b9019"));
+            lblFinalizado.setFont(Font.font("System", 20));
+            paneDetAt.getChildren().add(lblFinalizado);
+
+            ((Pane) paneDetAt.getParent()).setPrefHeight(80);
+
+            lblNaoPago.setVisible(false);
+            paneControles.setVisible(false);
+
+            updateTela();
+        }catch (CarSystemException e){
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!");
+            alert.setHeaderText(null);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    private boolean confirmFinalizacao(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Atenção");
+        alert.setHeaderText(null);
+        alert.setContentText("Deseja finalizar o atendimento?");
+        alert.getButtonTypes().setAll(new ButtonType("Sim"), new ButtonType("Não"), new ButtonType("Cancelar"));
+
+        Optional<ButtonType> escolha = alert.showAndWait();
+
+        if(!escolha.isPresent())
+            return false;
+
+        return escolha.get().getText().equals("Sim");
     }
 
 

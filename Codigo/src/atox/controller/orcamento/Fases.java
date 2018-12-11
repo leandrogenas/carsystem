@@ -133,7 +133,8 @@ public class Fases {
 
         }
 
-        return true;
+        // Se estiver na última fase
+        return faseAtual.finalizada;
 
 
     }

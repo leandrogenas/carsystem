@@ -108,6 +108,8 @@ public class Atendimento {
     public void setFase(int fase){ this.fase = fase; }
     public boolean estaFinalizado(){ return this.finalizado; }
 
+    public void setFinalizado(boolean finalizado){ this.finalizado = finalizado; }
+
     public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         String detailText = "Código: " + id + "\nData de início: " + format.format(dataInicio)+"\nTérmino previsto: " + format.format(dataFim);
@@ -125,10 +127,22 @@ public class Atendimento {
             return (stmt.executeUpdate(update, Statement.RETURN_GENERATED_KEYS) > 0);
         }catch (SQLException e){
             e.printStackTrace();
-            System.err.println("Erro na finalização do serviço do orçamento: " + e.getMessage());
+            System.err.println("Erro na alteração de fase do atendimento: " + e.getMessage());
             return false;
         }
 
+    }
+
+    public static boolean finalizar(int codAtendimento){
+        String update = "UPDATE atendimento SET finalizado=1 WHERE cod_atendimento=" +codAtendimento;
+        try {
+            Statement stmt = BancoDeDados.getNewStatement();
+            return (stmt.executeUpdate(update, Statement.RETURN_GENERATED_KEYS) > 0);
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.err.println("Erro na finalização do atendimento: " + e.getMessage());
+            return false;
+        }
     }
 
 }
