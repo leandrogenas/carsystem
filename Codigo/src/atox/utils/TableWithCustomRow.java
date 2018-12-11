@@ -122,7 +122,7 @@ public abstract class TableWithCustomRow  {
         BorderPane detailsPane = new BorderPane();
         Label detailsLabel = new Label();
 
-        VBox labels = new VBox(5, new Label(": "), detailsLabel);
+        VBox labels = new VBox(5, detailsLabel);
         labels.setAlignment(Pos.CENTER_LEFT);
         labels.setPadding(new Insets(2, 2, 2, 16));
         detailsPane.setCenter(labels);
@@ -140,7 +140,8 @@ public abstract class TableWithCustomRow  {
 
     public static <S,T> TableColumn<S,T> column(String title, Function<S, ObservableValue<T>> property) {
         TableColumn<S,T> col = new TableColumn<>(title);
-        col.setCellValueFactory(cellData -> property.apply(cellData.getValue()));
+        if(property != null)
+            col.setCellValueFactory(cellData -> property.apply(cellData.getValue()));
         col.setPrefWidth(150);
         return col ;
     }

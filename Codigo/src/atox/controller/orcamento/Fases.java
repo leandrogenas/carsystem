@@ -182,8 +182,14 @@ public class Fases {
         return escolha.get().getText().equals("Sim");
     }
 
+    public Fase getFaseAtual(){ return fasesRestantes.peek(); }
     public Queue<Fase> getFasesRestantes(){ return fasesRestantes; }
     public List<Fase> getFasesFinalizadas() { return fasesFinalizadas; }
-    public Fase getFaseAtual(){ return fasesRestantes.peek(); }
+    public List<Fase> getFases(){
+        List<Fase> saida = new ArrayList<>();
+        saida.addAll(fasesRestantes);
+        saida.addAll(fasesFinalizadas);
+        return saida;
+    }
 
 }

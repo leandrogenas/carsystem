@@ -58,7 +58,7 @@ public class DetalhesAtendimento {
     private void updateTela(){
         if(tblFases.isVisible()) {
             lstFases.removeAll();
-            lstFases.setAll(fases.getFasesRestantes());
+            lstFases.setAll(fases.getFases());
             tblFases.setItems(lstFases);
         }
 
