@@ -5,35 +5,45 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxWidth="650.0" prefHeight="170.0" prefWidth="650.0" style="-fx-border-color: #c1c1c1; -fx-border-width: 0 0 1 0;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="paneDetAt" maxWidth="650.0" prefHeight="200.0" prefWidth="650.0" style="-fx-border-color: #c1c1c1; -fx-border-width: 0 0 1 0;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
      <children>
-        <Label fx:id="lblMarcaModelo" layoutX="7.0" layoutY="7.0" text="Marca / Modelo ">
-           <font>
-              <Font size="22.0" />
-           </font>
-        </Label>
-        <Label fx:id="lblCor" layoutX="7.0" layoutY="60.0" text="Cor do veículo" />
-        <Button fx:id="btnProxFase" layoutX="478.0" layoutY="45.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" text="Próxima fase" />
-        <Button fx:id="btnFinalizar" layoutX="584.0" layoutY="45.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Finalizar" />
-        <Button fx:id="btnIniciar" layoutX="410.0" layoutY="45.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Iniciar" />
-        <Label fx:id="lblFase" alignment="CENTER" layoutX="411.0" layoutY="12.0" prefHeight="25.0" prefWidth="234.0" text="Fase atual" textFill="#3f5fb8">
-           <font>
-              <Font name="System Bold" size="16.0" />
-           </font>
-        </Label>
-      <TableView fx:id="tblFases" layoutX="4.0" layoutY="85.0" prefHeight="80.0" prefWidth="642.0">
+      <TableView fx:id="tblFases" layoutX="4.0" layoutY="99.0" prefHeight="97.0" prefWidth="642.0">
         <columns>
           <TableColumn fx:id="colEtapa" prefWidth="91.0" text="Etapa" />
           <TableColumn fx:id="colIniciada" prefWidth="104.0" text="Iniciada" />
             <TableColumn fx:id="colConcluida" prefWidth="93.0" text="Concluída" />
         </columns>
       </TableView>
+        <Label fx:id="lblMarcaModelo" layoutX="7.0" layoutY="7.0" text="Marca / Modelo ">
+           <font>
+              <Font size="22.0" />
+           </font>
+        </Label>
+        <Label fx:id="lblCor" layoutX="7.0" layoutY="60.0" text="Cor do veículo" />
       <Label fx:id="lblPlaca" layoutX="7.0" layoutY="38.0" text="ABC-0000" textFill="#649051">
          <font>
             <Font name="Lucida Console" size="20.0" />
          </font>
       </Label>
+      <Pane fx:id="paneControles" layoutX="392.0" layoutY="6.0" prefHeight="85.0" prefWidth="252.0">
+         <children>
+            <Label fx:id="lblNaoPago" layoutX="17.0" layoutY="61.0" text="Atenção: Atendimento não pago!" textFill="#e42525">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+              <Label fx:id="lblFase" alignment="CENTER" layoutX="1.0" layoutY="2.0" prefHeight="25.0" prefWidth="252.0" text="Fase atual" textFill="#686868">
+                 <font>
+                    <Font name="System Bold" size="16.0" />
+                 </font>
+              </Label>
+              <Button fx:id="btnIniciar" layoutX="10.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Iniciar" />
+              <Button fx:id="btnProxFase" layoutX="76.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" text="Próxima fase" />
+              <Button fx:id="btnFinalizar" layoutX="180.0" layoutY="32.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Finalizar" />
+         </children>
+      </Pane>
      </children>
   </AnchorPane>

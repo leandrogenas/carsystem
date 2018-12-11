@@ -34,6 +34,7 @@ public class Pagamento {
 
     // Setters
     public void setNumParcelas(int numParcelas){ this.numParcelas = numParcelas; }
+    public void setPago(boolean pago){ this.pago = pago; }
 
     public static Pagamento buscaPorId(int id){
         Pagamento pagamento = null;

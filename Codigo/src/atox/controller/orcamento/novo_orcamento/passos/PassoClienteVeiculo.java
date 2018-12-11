@@ -29,7 +29,7 @@ public class PassoClienteVeiculo extends Passos {
     private Cliente cliente;
 
 
-    PassoClienteVeiculo(NovoOrcamento contr, AnchorPane pane){
+    public PassoClienteVeiculo(NovoOrcamento contr, AnchorPane pane){
         super(contr, pane);
 
         MaskFieldUtil.placaMask(placaVeiculo);
@@ -245,7 +245,7 @@ public class PassoClienteVeiculo extends Passos {
         kmVeiculo = (TextField) container.lookup("#kmVeiculo");
         importadoVeiculo = (CheckBox) container.lookup("#importadoVeiculo");
 
-        //  Ação ao clicar em Ok na lblPlaca
+        //  Ação ao clicar em Ok na placa
         okPlaca = (Button) this.container.lookup("#okPlaca");
         okPlaca.setOnAction(event -> consultarPlaca(placaVeiculo.getText()));
 

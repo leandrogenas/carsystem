@@ -237,7 +237,7 @@ public class Orcamento {
                 throw new CarSystemException("Erro ao inserir o orçamento");
 
 
-            String insertAtend = "INSERT INTO atendimento (cod_orcamento, lblFase, data_inicio, data_termino) VALUES (" +idOrc+ ", 0, null, null)";
+            String insertAtend = "INSERT INTO atendimento (cod_orcamento, fase, data_inicio, data_termino) VALUES (" +idOrc+ ", 0, null, null)";
             Statement stmt = BancoDeDados.getNewStatement();
             if(stmt.executeUpdate(insertAtend, Statement.RETURN_GENERATED_KEYS) < 1)
                 throw new CarSystemException("Erro ao criar atendimento");

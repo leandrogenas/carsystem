@@ -1,6 +1,8 @@
 package atox.controller.orcamento.novo_orcamento.passos;
 
 import atox.controller.orcamento.novo_orcamento.NovoOrcamento;
+import atox.controller.orcamento.novo_orcamento.PecaUtilizada;
+import atox.controller.orcamento.novo_orcamento.ServicoEscolhido;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -17,7 +19,7 @@ public class PassoFinalizacao extends Passos {
     private double totalMDOVal = 0.0;
     private double totalPecasVal = 0.0;
 
-    PassoFinalizacao(NovoOrcamento contr, AnchorPane pane){
+    public PassoFinalizacao(NovoOrcamento contr, AnchorPane pane){
         super(contr, pane);
     }
 

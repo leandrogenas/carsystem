@@ -92,7 +92,7 @@ public class CadastroVeiculos {
     }
 
     private void carregaVeiculos() {
-        colPlaca.setCellValueFactory(new PropertyValueFactory<>("lblPlaca"));
+        colPlaca.setCellValueFactory(new PropertyValueFactory<>("placa"));
         colVeiculo.setCellValueFactory(param -> {
             SimpleStringProperty propr = new SimpleStringProperty();
 
@@ -164,7 +164,7 @@ public class CadastroVeiculos {
                         Integer.parseInt(kmField.getText())
                 );
 
-                veiculo = pVeiculo.inserir(veiculo);
+                veiculo = Veiculo.inserir(veiculo);
 
                 dados.add(veiculo);
 

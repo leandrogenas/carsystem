@@ -1,91 +1,134 @@
 package atox.controller.atendimento;
 
 import atox.controller.orcamento.Fases;
+import atox.exception.CarSystemException;
 import atox.model.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
-import java.sql.SQLException;
 import java.util.*;
 
 public class DetalhesAtendimento {
 
+    public AnchorPane paneDetAt;
     public TableView<Fases.Fase> tblFases;
     public TableColumn<Fases.Fase, String> colEtapa, colIniciada, colConcluida;
 
     public Button btnIniciar, btnProxFase, btnFinalizar;
-    public Label lblMarcaModelo, lblPlaca, lblCor, lblFase;
+    public Label lblMarcaModelo, lblPlaca, lblCor, lblFase, lblNaoPago;
 
     private Fases fases;
     private Atendimento atendimento;
     private Veiculo veiculo;
     private Orcamento orcamento;
+
+    private ObservableList<Fases.Fase> lstFases = FXCollections.observableArrayList();
+
     private Fases.Fase faseAtual;
 
     public DetalhesAtendimento(Atendimento at) {
         this.atendimento = at;
         this.orcamento = at.getOrcamento();
         this.veiculo = orcamento.getVeiculo();
-        this.fases = Fases.carregar(orcamento);
+
+        if(atendimento.getFase() > 0) {
+            at.getOrcamento().getPagamento().setPago(true);
+
+        }
+
+        try {
+            this.fases = Fases.carregar(orcamento);
+        }catch (CarSystemException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!");
+            alert.setHeaderText(null);
+            alert.setContentText("Erro ao carregar fases do atendimento! " +e.getMessage());
+            alert.show();
+        }
 
     }
 
-    private Fases.Fase getFaseAtual(){
-        return null;
+    private void updateTela(){
+        if(tblFases.isVisible()) {
+            lstFases.removeAll();
+            lstFases.setAll(fases.getFasesRestantes());
+            tblFases.setItems(lstFases);
+        }
+
+        btnIniciar.setDisable(!podeIniciar());
+        btnProxFase.setDisable(!podePassarFase());
+        btnFinalizar.setDisable(!podeFinalizar());
+
+        String fase = "Não pago";
+        lblFase.setTextFill(Color.web("#e73737"));
+
+        if(atendimento.getFase() > 0) {
+            if(orcamento.getPagamento().estaPago()){
+                if (atendimento.estaFinalizado()) {
+                    lblFase.setTextFill(Color.web("#327535"));
+                    fase = "Finalizado";
+                } else {
+                    lblFase.setTextFill(Color.web("#686868"));
+                    fase = (faseAtual != null)
+                            ? "Serviço de "+ faseAtual.descricao
+                            : "Aguardando finalização";
+                }
+            }else {
+                fase = "Não iniciado";
+            }
+        }
+
+        lblFase.setText(fase);
+
     }
 
-    private void carregaTabFases(){
-        ObservableList<Fases.Fase> fases =FXCollections.observableArrayList();
-        /*
-        for(Map.Entry<Integer, Fases.Fase> fase: fases.entrySet())
-            fases.add(fase.getValue());
-        */
-        tblFases.setItems(fases);
-    }
+    public void initialize() {
+        faseAtual = fases.getFaseAtual();
 
-    public void initialize(){
-        carregaTabFases();
-
-        colEtapa.setCellValueFactory(item -> new SimpleStringProperty(item.getValue().descricao));
-        colIniciada.setCellValueFactory(item ->
-                new SimpleStringProperty((item.getValue().iniciada) ? "Sim" : "Não")
-        );
-        colConcluida.setCellValueFactory(item ->
-                new SimpleStringProperty((item.getValue().finalizada) ? "Sim" : "Não")
-        );
+        if (tblFases.isVisible()){
+            colEtapa.setCellValueFactory(item -> new SimpleStringProperty(item.getValue().descricao));
+            colIniciada.setCellValueFactory(item ->
+                    new SimpleStringProperty((item.getValue().iniciada) ? "Sim" : "Não")
+            );
+            colConcluida.setCellValueFactory(item ->
+                    new SimpleStringProperty((item.getValue().finalizada) ? "Sim" : "Não")
+            );
+        }
 
         lblMarcaModelo.setText(veiculo.getMarca() + "/" + veiculo.getModelo());
         lblPlaca.setText(veiculo.getPlaca());
         lblCor.setText(veiculo.getCor());
 
-        lblFase.setText(updateFase());
-
-        btnIniciar.setDisable(!(faseAtual == null));
         btnIniciar.setOnAction(e -> iniciarAtendimento());
         btnProxFase.setOnAction(e -> proxFaseAtendimento());
-        btnProxFase.setDisable((faseAtual == null));
         btnFinalizar.setOnAction(e -> finalizarAtendimento());
-        btnFinalizar.setDisable(!btnFinalizar.isDisabled());
+
+        updateTela();
+    }
+
+    private boolean podeFinalizar(){
+        if(faseAtual == null)
+            return true;
+
+        if(!fases.estaNaUltimaFase())
+            return false;
+
+        return faseAtual.finalizada;
 
     }
 
-    public String updateFase(){
-        if(orcamento.getPagamento().estaPago()){
-            if(faseAtual.codigo == 0) {
-                lblFase.setTextFill(Color.web("#3f5fb8"));
-                return "Não iniciado";
-            }
+    private boolean podeIniciar(){
+        return atendimento.getFase() == 0;
+    }
 
-            lblFase.setTextFill(Color.web("#327535"));
-            return faseAtual.descricao;
-        }
-
-        lblFase.setTextFill(Color.web("#e73737"));
-        return "Não pago";
-
+    private boolean podePassarFase(){
+        return atendimento.getFase() > 0 && faseAtual != null;
     }
 
     private boolean confirmIniciar(){
@@ -103,43 +146,48 @@ public class DetalhesAtendimento {
         return escolha.get().getText().equals("Sim");
     }
 
-    /*
-    private Fase primeiraFase(){
-        Map.Entry<Integer, Fase> entry = fases.entrySet().iterator().next();
-        return entry.getValue();
-    }
-    */
-
     private void iniciarAtendimento(){
-        /*
-        if(!orcamento.getPagamento().estaPago()){
-            if(!confirmIniciar())
-                return;
-
-            Fase proxFase;
-            if(atendimento.getFase() == 0)
-                proxFase = primeiraFase();
-            else
-                proxFase =
-        }else {
-            if((faseAtual.idx + 1) == fases.size())
-                atendimento.setFase(fases.get(faseAtual.idx + 1).codigo);
+        if(!orcamento.getPagamento().estaPago()) {
+            if (!confirmIniciar()) return;
         }
 
         try {
-            Atendimento.updateFase(atendimento);
-        } catch (SQLException e) {
+            if (fases.iniciarFaseAtual() && podeIniciar()) {
+                if (!Atendimento.updateFase(faseAtual.codigo, atendimento.getId()))
+                    throw new CarSystemException("Não foi possível alterar o atendimento");
+
+                faseAtual = fases.getFaseAtual();
+                atendimento.setFase(faseAtual.codigo);
+                orcamento.getPagamento().setPago(true);
+
+                updateTela();
+            } else
+                throw new CarSystemException("Não foi possível iniciar a fase atual");
+
+        }catch (CarSystemException e){
             e.printStackTrace();
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro!");
+            alert.setHeaderText(null);
+            alert.setContentText("Erro ao iniciar o atendimento: " + e.getMessage());
+            alert.showAndWait();
         }
-        */
+
+
     }
 
     private void proxFaseAtendimento(){
+        fases.proximaFase();
+        faseAtual = fases.getFaseAtual();
+        updateTela();
 
     }
+
 
     private void finalizarAtendimento(){
 
     }
+
 
 }

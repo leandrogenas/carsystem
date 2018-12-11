@@ -7,9 +7,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -30,7 +34,20 @@ public class HistoricoAtendimentos {
     private void carregaLinha(BorderPane pDet, Atendimento item){
         AnchorPane pane = detalhes.get(item.getId());
 
-        pDet.setPrefHeight(170);
+        if(item.estaFinalizado()){
+            pane.lookup("#paneControles").setVisible(false);
+
+            Label lblFinalizado = new Label("Atendimento finalizado");
+            lblFinalizado.setLayoutX(160);
+            lblFinalizado.setLayoutY(130);
+            lblFinalizado.setTextFill(Color.web("#3b9019"));
+            lblFinalizado.setFont(Font.font("System", 20));
+            pane.getChildren().add(lblFinalizado);
+
+            pDet.setPrefHeight(80);
+        }else
+            pDet.setPrefHeight(200);
+
         pDet.getChildren().add(pane);
     }
 

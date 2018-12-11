@@ -4,26 +4,29 @@ import atox.exception.CarSystemException;
 import atox.model.Orcamento;
 import atox.model.OrcamentoServico;
 import atox.model.Servico;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class Fases {
 
     public class Fase{
 
         private OrcamentoServico svcExecutado;
-        private int idOrc;
 
-        public int idx;
         public int codigo;
+
         public String descricao;
         public boolean iniciada;
         public boolean finalizada;
 
-        Fase(int idx, OrcamentoServico svcExecutado){
-            this.idx = idx;
-            this.idOrc = idOrc;
+        Fase(){
+            this.codigo = -1;
+            this.descricao = "Não há serviços a serem executados!";
+        }
+
+        Fase(OrcamentoServico svcExecutado){
             this.svcExecutado = svcExecutado;
 
             Servico svc = svcExecutado.getServico();
@@ -33,50 +36,153 @@ public class Fases {
             this.finalizada = svcExecutado.estaFinalizado();
         }
 
-        public boolean iniciarFase(Fase fase) {
-            boolean altBd = OrcamentoServico.iniciar(svcExecutado, idOrc);
+        public OrcamentoServico getServico(){
+            return svcExecutado;
+        }
 
-            if (altBd)
-                System.out.println("[orç ]"+ idOrc +" Serviço "+ descricao +" iniciado");
+
+
+    }
+    private Queue<Fase> fasesRestantes = new LinkedList<>();
+    private List<Fase> fasesFinalizadas = new ArrayList<>();
+
+    private Orcamento orcamento;
+    private Fases(Orcamento orc) {
+        this.orcamento = orc;
+
+        // Se não tem fases, devia jogar uma exception
+        if(orc.getServicos().isEmpty())
+            return;
+
+        for(OrcamentoServico orcSvc: orc.getServicos())
+            if(!orcSvc.estaFinalizado())
+                fasesRestantes.add(new Fase(orcSvc));
             else
-                System.out.println("[orç ]"+ idOrc +" Erro ao iniciar o serviço "+ descricao);
+                fasesFinalizadas.add(new Fase(orcSvc));
 
-            return altBd;
+    }
+
+    public static Fases carregar(Orcamento orc) throws CarSystemException{
+        if(orc == null || orc.getId() == 0)
+            throw new CarSystemException("Orçamento inválido, impossível buscar fasesRestantes");
+
+        return new Fases(orc);
+
+    }
+
+    private boolean iniciar(Fase fase) {
+        fase.iniciada = OrcamentoServico.iniciar(fase.getServico(), orcamento.getId());
+
+        System.out.println("[orç "+ orcamento.getId() +"]" +
+                ((fase.iniciada)
+                        ? " Serviço "+ fase.descricao +" iniciado"
+                        : " Erro ao iniciar o serviço "+ fase.descricao)
+        );
+
+        return fase.iniciada;
+
+    }
+
+    private boolean finalizar(Fase fase){
+        fase.finalizada = OrcamentoServico.finalizar(fase.getServico(), orcamento.getId());
+
+        System.out.println("[orç "+ orcamento.getId() +"]" +
+                ((fase.finalizada)
+                        ? " Serviço "+ fase.descricao +" finalizado"
+                        : " Erro ao finalizar o serviço "+ fase.descricao)
+        );
+
+        return fase.finalizada;
+    }
+
+    public boolean proximaFase(){
+        Fase faseAtual = fasesRestantes.peek();
+
+        // Caso não tenha fases restantes
+        if(faseAtual == null) {
+            System.out.println("Não há fases restantes");
+            return false;
         }
 
-        public boolean finalizar(){
-            boolean altBd = OrcamentoServico.finalizar(svcExecutado, idOrc);
+        // Caso a fase não esteja iniciada
+        //  inicia
+        if(!faseAtual.iniciada)
+            return iniciar(faseAtual);
 
-            if (altBd)
-                System.out.println("[orç ]"+ idOrc +" Serviço "+ descricao +" finalizado");
-            else
-                System.out.println("[orç ]"+ idOrc +" Erro ao finalizar o serviço "+ descricao);
+        // Caso a fase não esteja finalizada
+        //  finaliza
+        if(!faseAtual.finalizada)
+            return finalizar(faseAtual);
 
-            return altBd;
+
+        // Se não estiver na última fase
+        //  carrega a próxima
+        if(!estaNaUltimaFase()) {
+            if (!confirmProximaFase())
+                return false;
+
+            fasesFinalizadas.add(fasesRestantes.poll());
+
+            Fase proxFase = fasesRestantes.peek();
+            if(proxFase == null) {
+                System.out.println("Não há próxima fase");
+                return false;
+            }
+
+            return iniciar(proxFase);
+
         }
+
+        return true;
 
 
     }
 
-    private Stack<Fase> fases = new Stack<>();
-
-    private Fases(Orcamento orc) throws CarSystemException {
-        List<OrcamentoServico> svcs = orc.getServicos();
-
-        if(svcs.isEmpty())
-            throw new CarSystemException("Orçamento não possui serviços");
-
-        int idx = 0;
-        for(OrcamentoServico orcSvc: orc.getServicos()){
-            Servico svc = orcSvc.getServico();
-            fases.push(new Fase(idx++, orcSvc));
-
+    public boolean iniciarFaseAtual(){
+        Fase faseAtual = fasesRestantes.peek();
+        if(faseAtual == null){
+            System.out.println("Não há fases restantes");
+            return false;
         }
 
+        return iniciar(faseAtual);
     }
 
-    public static Fases carregar(Orcamento orc){
-        return null;
+    public boolean finalizarFaseAtual(){
+        Fase faseAtual = fasesRestantes.peek();
+        if(faseAtual == null){
+            System.out.println("Não há fases restantes");
+            return false;
+        }
+
+        return finalizar(faseAtual);
     }
+
+    public boolean estaNaUltimaFase(){
+        return fasesRestantes.size() == 1;
+    }
+
+    public int fasesRestantes(){
+        return fasesRestantes.size();
+    }
+
+    private boolean confirmProximaFase(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Atenção");
+        alert.setHeaderText(null);
+        alert.setContentText("Deseja iniciar o próximo serviço?");
+        alert.getButtonTypes().setAll(new ButtonType("Sim"), new ButtonType("Não"), new ButtonType("Cancelar"));
+
+        Optional<ButtonType> escolha = alert.showAndWait();
+
+        if(!escolha.isPresent())
+            return false;
+
+        return escolha.get().getText().equals("Sim");
+    }
+
+    public Queue<Fase> getFasesRestantes(){ return fasesRestantes; }
+    public List<Fase> getFasesFinalizadas() { return fasesFinalizadas; }
+    public Fase getFaseAtual(){ return fasesRestantes.peek(); }
 
 }

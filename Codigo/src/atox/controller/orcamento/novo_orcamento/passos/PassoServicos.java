@@ -21,7 +21,7 @@ public class PassoServicos extends Passos {
 
     private List<ServicoEscolhido> servicos = new ArrayList<>();
 
-    PassoServicos(NovoOrcamento contr, AnchorPane pane){
+    public PassoServicos(NovoOrcamento contr, AnchorPane pane){
         super(contr, pane);
     }
 

@@ -22,13 +22,15 @@ public class Atendimento {
     private Orcamento orcamento;
     private int fase;
     private Date dataInicio, dataFim;
+    private boolean finalizado;
 
-    public Atendimento(int id, Orcamento orcamento, int fase, Date dataInicio, Date dataFim) {
+    public Atendimento(int id, Orcamento orcamento, int fase, Date dataInicio, Date dataFim, boolean finalizado) {
         this.id = id;
         this.orcamento = orcamento;
         this.fase = fase;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
+        this.finalizado = finalizado;
     }
 
     public static ArrayList<Atendimento> todos() {
@@ -41,9 +43,10 @@ public class Atendimento {
                 atendimentos.add(new Atendimento(
                     rSet.getInt("cod_atendimento"),
                     Orcamento.buscaPorId(rSet.getInt("cod_orcamento")),
-                    rSet.getInt("lblFase"),
+                    rSet.getInt("fase"),
                     rSet.getDate("data_inicio"),
-                    rSet.getDate("data_termino")));
+                    rSet.getDate("data_termino"),
+                    rSet.getBoolean("finalizado")));
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
@@ -103,6 +106,7 @@ public class Atendimento {
     public int getFase(){ return fase; }
     public Orcamento getOrcamento(){ return orcamento; }
     public void setFase(int fase){ this.fase = fase; }
+    public boolean estaFinalizado(){ return this.finalizado; }
 
     public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -114,11 +118,16 @@ public class Atendimento {
         return detailText;
     }
 
-    public static boolean updateFase(Atendimento atendimento) throws SQLException {
-        String update = "UPDATE atendimento SET lblFase=" +atendimento.getFase()+ " WHERE cod_atendimento=" +atendimento.getId();
-
-        Statement stmt = BancoDeDados.getNewStatement();
-        return stmt.execute(update);
+    public static boolean updateFase(int fase, int codAtendimento){
+        String update = "UPDATE atendimento SET fase=" +fase+ " WHERE cod_atendimento=" +codAtendimento;
+        try {
+            Statement stmt = BancoDeDados.getNewStatement();
+            return (stmt.executeUpdate(update, Statement.RETURN_GENERATED_KEYS) > 0);
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.err.println("Erro na finalização do serviço do orçamento: " + e.getMessage());
+            return false;
+        }
 
     }
 

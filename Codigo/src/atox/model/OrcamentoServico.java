@@ -41,8 +41,8 @@ public class OrcamentoServico {
                 orcSvc.add(new OrcamentoServico(
                         Servico.buscaPorId(rSet.getInt("cod_servico")),
                         rSet.getDouble("valor_total"),
-                        rSet.getBoolean("finalizado"),
-                        rSet.getBoolean("iniciado")
+                        rSet.getBoolean("iniciado"),
+                        rSet.getBoolean("finalizado")
                 ));
 
         }
@@ -54,10 +54,10 @@ public class OrcamentoServico {
     }
 
     public static boolean iniciar(OrcamentoServico svc, int codOrc){
-        String update = "UPDATE orcamento_servico SET iniciado=1 WHERE cod_orcamento="+ codOrc;
+        String update = "UPDATE orcamento_servico SET iniciado=1 WHERE cod_orcamento="+ codOrc +" AND cod_servico="+ svc.getServico().getId();
         try {
             Statement stmt = BancoDeDados.getNewStatement();
-            return stmt.execute(update, Statement.RETURN_GENERATED_KEYS);
+            return (stmt.executeUpdate(update, Statement.RETURN_GENERATED_KEYS) > 0);
         }catch (SQLException e){
             e.printStackTrace();
             System.err.println("Erro na finalização do serviço do orçamento: " + e.getMessage());
@@ -66,10 +66,10 @@ public class OrcamentoServico {
     }
 
     public static boolean finalizar(OrcamentoServico svc, int codOrc){
-        String update = "UPDATE orcamento_servico SET finalizado=1 WHERE cod_orcamento="+ codOrc;
+        String update = "UPDATE orcamento_servico SET finalizado=1 WHERE cod_orcamento="+ codOrc +" AND cod_servico="+ svc.getServico().getId();
         try {
             Statement stmt = BancoDeDados.getNewStatement();
-            return stmt.execute(update, Statement.RETURN_GENERATED_KEYS);
+            return (stmt.executeUpdate(update, Statement.RETURN_GENERATED_KEYS) > 0);
         }catch (SQLException e){
             e.printStackTrace();
             System.err.println("Erro na finalização do serviço do orçamento: " + e.getMessage());

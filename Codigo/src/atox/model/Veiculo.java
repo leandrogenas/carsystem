@@ -124,12 +124,12 @@ public class Veiculo {
 
             veiculo = new Veiculo(
                     rSet.getInt("cod_veiculo"),
-                    rSet.getString("lblPlaca"),
+                    rSet.getString("placa"),
                     Cliente.buscaPorId(rSet.getInt("cod_proprietario")),
                     rSet.getString("marca"),
                     rSet.getString("modelo"),
                     rSet.getString("ano"),
-                    rSet.getString("lblCor"),
+                    rSet.getString("cor"),
                     rSet.getBoolean("importado"),
                     rSet.getInt("kilometragem")
             );
@@ -144,7 +144,7 @@ public class Veiculo {
     public static Veiculo buscaPorPlaca(String placa) {
         Veiculo veiculo = null;
         try {
-            String sql = "SELECT * FROM Veiculo WHERE lblPlaca= '" + placa + "'";
+            String sql = "SELECT * FROM Veiculo WHERE placa= '" + placa + "'";
             ResultSet rSet = BancoDeDados.getNewStatement().executeQuery(sql);
             if (!rSet.next())
                 return null;
@@ -152,12 +152,12 @@ public class Veiculo {
 
             veiculo = new Veiculo(
                     rSet.getInt("cod_veiculo"),
-                    rSet.getString("lblPlaca"),
+                    rSet.getString("placa"),
                     Cliente.buscaPorId(rSet.getInt("cod_proprietario")),
                     rSet.getString("marca"),
                     rSet.getString("modelo"),
                     rSet.getString("ano"),
-                    rSet.getString("lblCor"),
+                    rSet.getString("cor"),
                     rSet.getBoolean("importado"),
                     rSet.getInt("kilometragem")
             );
@@ -178,12 +178,12 @@ public class Veiculo {
             while(rSet.next()) {
                 Veiculo veiculo = new Veiculo(
                         rSet.getInt("cod_veiculo"),
-                        rSet.getString("lblPlaca"),
+                        rSet.getString("placa"),
                         Cliente.buscaPorId(rSet.getInt("cod_proprietario")),
                         rSet.getString("marca"),
                         rSet.getString("modelo"),
                         rSet.getString("ano"),
-                        rSet.getString("lblCor"),
+                        rSet.getString("cor"),
                         rSet.getBoolean("importado"),
                         rSet.getInt("kilometragem")
                 );
@@ -210,12 +210,12 @@ public class Veiculo {
             ResultSet rSet = BancoDeDados.getNewStatement().executeQuery(sql);
             while(rSet.next()) {
                 Veiculo veiculo = new Veiculo(
-                        rSet.getString("lblPlaca"),
+                        rSet.getString("placa"),
                         cli,
                         rSet.getString("marca"),
                         rSet.getString("modelo"),
                         rSet.getString("ano"),
-                        rSet.getString("lblCor"),
+                        rSet.getString("cor"),
                         rSet.getBoolean("importado"),
                         rSet.getInt("kilometragem"));
                 veiculos.add(veiculo);
@@ -230,7 +230,7 @@ public class Veiculo {
     }
 
     public static Veiculo inserir(Veiculo veiculo) throws Exception {
-        String insert = "INSERT INTO Veiculo (lblPlaca, cod_proprietario, lblCor, modelo, marca, ano, importado, kilometragem) VALUES ('";
+        String insert = "INSERT INTO Veiculo (placa, cod_proprietario, cor, modelo, marca, ano, importado, kilometragem) VALUES ('";
         insert += veiculo.getPlaca()+"','";
         insert += veiculo.getProprietario().getId()+"','";
         insert += veiculo.getCor()+"','";
@@ -275,9 +275,9 @@ public class Veiculo {
 
     public static void alterar(Veiculo veiculo) throws SQLException {
         String update = "UPDATE veiculo SET ";
-        update += "lblPlaca = '"+veiculo.getPlaca()+"',";
+        update += "placa = '"+veiculo.getPlaca()+"',";
         update += "cod_proprietario = '"+veiculo.getProprietario().getId()+"',";
-        update += "lblCor = '"+veiculo.getCor()+"',";
+        update += "cor = '"+veiculo.getCor()+"',";
         update += "modelo = '"+veiculo.getModelo()+"',";
         update += "marca = '"+veiculo.getMarca()+"',";
         update += "ano = '"+veiculo.getAno()+"',";

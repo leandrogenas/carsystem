@@ -45,7 +45,7 @@ public class Financa {
         List<Financa> financas = new ArrayList<Financa>();
         try {
             Statement stmt = BancoDeDados.getNewStatement();
-            String selectQuery = "select atd.cod_atendimento,atd.lblFase,atd.data_inicio,atd.data_termino,\n" +
+            String selectQuery = "select atd.cod_atendimento,atd.fase,atd.data_inicio,atd.data_termino,\n" +
                     "\torcPag.* from atendimento as atd\n" +
                     "inner join (\n" +
                     "\tselect orc.cod_orcamento,orc.cod_veiculo,orc.preco,orc.data_inicio [data_orc],orc.termino_previsto,orc.seguradora,orc.iniciado,orc.cod_pagamento,\n" +
