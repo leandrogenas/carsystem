@@ -135,8 +135,8 @@ public class NovoOrcamento {
 
         cadastrarOrcamento();
 
-        if(passoFinalizacao.enviaPorEmail())
-            EnvioEmail.enviarOrcamento(orcamento, "leandragem96@gmail.com");
+        if(passoFinalizacao.enviaPorEmail() && !getDadosCliente().getEmail().isEmpty())
+            EnvioEmail.enviarOrcamento(orcamento, getDadosCliente().getEmail());
 
     }
 

@@ -3,6 +3,7 @@ package atox.controller.atendimento;
 import atox.controller.orcamento.Fases;
 import atox.exception.CarSystemException;
 import atox.model.*;
+import atox.utils.EnvioEmail;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -184,9 +185,11 @@ public class DetalhesAtendimento {
 
     private void proxFaseAtendimento(){
         try {
+
             if (!fases.proximaFase())
                 throw new CarSystemException("Não foi possível ir para a próxima fase");
 
+            EnvioEmail.enviarStatus(atendimento);
             faseAtual = fases.getFaseAtual();
 
             if(fases.estaNaUltimaFase() && faseAtual.finalizada) {
@@ -217,10 +220,11 @@ public class DetalhesAtendimento {
             if(!Atendimento.finalizar(atendimento.getId()))
                 throw new CarSystemException("Não foi possível finalizar o atendimento!");
 
+            EnvioEmail.finalizarAtendimento(atendimento);
 
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             Label lblFinalizado = new Label("Atendimento finalizado em " + format.format(new Date()));
-            lblFinalizado.setLayoutX(370);
+            lblFinalizado.setLayoutX(280);
             lblFinalizado.setLayoutY(20);
             lblFinalizado.setTextFill(Color.web("#3b9019"));
             lblFinalizado.setFont(Font.font("System", 20));

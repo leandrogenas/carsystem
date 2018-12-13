@@ -1,6 +1,9 @@
 package atox.utils;
 
-import atox.model.Orcamento;
+import atox.controller.orcamento.Fases;
+import atox.controller.orcamento.novo_orcamento.passos.Passos;
+import atox.model.*;
+import atox.exception.CarSystemException;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -24,34 +27,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EnvioEmail{
-
-    public interface Dado{
-        Dado getDado();
-    }
-
-    public enum Tipo{
-        STATUS("email-status"),
-        ORCAMENTO("email-orcamento");
-
-        private Template template;
-
-        Tipo(String template){
-            VelocityEngine vE = new VelocityEngine();
-            vE.init();
-
-            this.template = vE.getTemplate("template_" + template + ".html");
-        }
-
-        public String geraTemplate(VelocityContext vCtx){
-            StringWriter sW = new StringWriter();
-            template.merge(vCtx, sW);
-
-            return sW.toString();
-
-        }
-
-    }
-
     private static final String HOST = "smtp.gmail.com";
     private static final String PORTA = "465";
     private static final String LOGIN = "carsystematox@gmail.com";
@@ -94,26 +69,89 @@ public class EnvioEmail{
     }
 
     public void setCorpo(String corpo) throws MessagingException{
-        msg.setText(corpo);
+        msg.setContent(corpo, "text/html; charset=utf-8");
     }
 
     public void enviar() throws MessagingException{
+
         Transport.send(msg);
+    }
+
+    public static void finalizarAtendimento(Atendimento at){
+        try{
+            EnvioEmail envio = new EnvioEmail(at.getOrcamento().getCliente().getEmail());
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("<style> div{ font-family: monospaced; }</style>");
+            sb.append("<div>");
+            sb.append("<h5>O seu atendimento na BoutCar foi finalizado!</h5> <br />");
+            sb.append("</div>");
+
+            envio.setAssunto("Seu carro está pronto!");
+            envio.setCorpo(sb.toString());
+            envio.enviar();
+        }catch (MessagingException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void enviarStatus(Atendimento at){
+        try{
+            EnvioEmail envio = new EnvioEmail(at.getOrcamento().getCliente().getEmail());
+
+            Fases fase = Fases.carregar(at.getOrcamento());
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("<style> div{ font-family: monospaced; }</style>");
+            sb.append("<div>");
+            sb.append("<h5>Boa tarde!</h5> <br />");
+            sb.append("<p>O serviço de ");
+            sb.append(fase.getFaseAtual().descricao);
+            sb.append(" foi terminado na BoutCar funilaria</p>");
+            sb.append("</div>");
+
+            envio.setAssunto("Atualização do status do seu veículo");
+            envio.setCorpo(sb.toString());
+            envio.enviar();
+        }catch (MessagingException | CarSystemException e){
+            e.printStackTrace();
+        }
     }
 
     public static void enviarOrcamento(Orcamento orc, String para){
         try {
             EnvioEmail envio = new EnvioEmail(para);
 
-            VelocityContext vCtx = new VelocityContext();
+            Veiculo veic = orc.getVeiculo();
 
-            vCtx.put("cliente", orc.getCliente());
-            vCtx.put("veiculo", orc.getVeiculo());
-            vCtx.put("orcamento", orc);
-            vCtx.put("pagamento", orc.getPagamento());
+            StringBuilder sb = new StringBuilder();
+            sb.append("<style> div{ font-family: monospaced; }</style>");
+            sb.append("<div>");
+            sb.append("<h4>Segue seu orçamento feito conosco na BoutCar</h4> <br />");
+            sb.append("+ Cliente ");
+            sb.append("-    Nome: "+ orc.getCliente().getNome() + "<br />");
+            sb.append("-    Doc: "+ orc.getCliente().getDocumento() + "<br />");
+            sb.append("+ Veículo <br />");
+            sb.append("-   " + veic.getMarca() + " " + veic.getCor() + ", " + veic.getModelo() + "<br />");
+            sb.append("-   Placa: "+ veic.getPlaca() + "<br /><br />");
+            sb.append("+ Serviços a serem executados <br />");
+
+            double valTotal = 0.0;
+            for(OrcamentoServico orcSvc: orc.getServicos()) {
+                sb.append("-   " + orcSvc.getServico().getNome() + "<br />");
+                valTotal += orcSvc.getValTotal();
+            }
+            sb.append("+ Peças utilizadas <br />");
+            for(OrcamentoPeca pc: orc.getPecas()) {
+                sb.append("-   " + pc.getQuantidade() + " " + pc.getPeca().getNome() + "<br />");
+                valTotal += pc.getQuantidade() * pc.getPeca().getValUnit();
+            }
+
+            sb.append("<br />");
+            sb.append("<br />+ Valor total: R$"+ valTotal);
 
             envio.setAssunto("Seu orçamento na BoutCar");
-            envio.setCorpo(Tipo.ORCAMENTO.geraTemplate(vCtx));
+            envio.setCorpo(sb.toString());
             envio.enviar();
 
             System.out.println("Email enviado!!!");
