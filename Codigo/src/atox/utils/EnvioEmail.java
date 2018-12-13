@@ -1,7 +1,17 @@
 package atox.utils;
 
 import atox.model.Orcamento;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.Velocity;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
+import org.slf4j.LoggerFactory;
+import org.slf4j.impl.SimpleLogger;
+import org.slf4j.impl.SimpleLoggerFactory;
 
+import java.io.StringWriter;
 import java.util.Properties;
 import javax.mail.Address;
 import javax.mail.Message;
@@ -9,10 +19,38 @@ import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EnvioEmail{
+
+    public interface Dado{
+        Dado getDado();
+    }
+
+    public enum Tipo{
+        STATUS("email-status"),
+        ORCAMENTO("email-orcamento");
+
+        private Template template;
+
+        Tipo(String template){
+            VelocityEngine vE = new VelocityEngine();
+            vE.init();
+
+            this.template = vE.getTemplate("template_" + template + ".html");
+        }
+
+        public String geraTemplate(VelocityContext vCtx){
+            StringWriter sW = new StringWriter();
+            template.merge(vCtx, sW);
+
+            return sW.toString();
+
+        }
+
+    }
 
     private static final String HOST = "smtp.gmail.com";
     private static final String PORTA = "465";
@@ -21,9 +59,10 @@ public class EnvioEmail{
 
     private static EnvioEmail instancia;
 
-    private Session session;
+    private String para;
+    private Message msg;
 
-    private EnvioEmail(){
+    private EnvioEmail(String para) throws MessagingException{
         Properties props = new Properties();
         /** Parâmetros de conexão com servidor Gmail */
         props.put("mail.smtp.host", HOST);
@@ -32,7 +71,7 @@ public class EnvioEmail{
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.port", PORTA);
 
-        session = Session.getDefaultInstance(props,
+        Session session = Session.getDefaultInstance(props,
             new javax.mail.Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication()
                 {
@@ -41,36 +80,48 @@ public class EnvioEmail{
         });
 
         session.setDebug(true);
+
+        this.msg = new MimeMessage(session);
+        this.msg.setFrom(new InternetAddress(LOGIN));
+        this.msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(para));
+
+        this.para = para;
+
     }
 
-    public static EnvioEmail getInstancia(){
-        if(instancia == null)
-            instancia = new EnvioEmail();
-
-        return instancia;
+    public void setAssunto(String assunto) throws MessagingException{
+        msg.setSubject(assunto);
     }
 
-    public void enviarOrcamento(Orcamento orc, String para){
+    public void setCorpo(String corpo) throws MessagingException{
+        msg.setText(corpo);
+    }
+
+    public void enviar() throws MessagingException{
+        Transport.send(msg);
+    }
+
+    public static void enviarOrcamento(Orcamento orc, String para){
         try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(LOGIN));
+            EnvioEmail envio = new EnvioEmail(para);
 
-            Address[] toUser = InternetAddress.parse(para);
+            VelocityContext vCtx = new VelocityContext();
 
-            message.setRecipients(Message.RecipientType.TO, toUser);
-            message.setSubject("Orçamento feito na BoutCar");
-            message.setText("SALVE QUEBRADAAA  PS. VSF   PS2. BOLA UM BECK");
+            vCtx.put("cliente", orc.getCliente());
+            vCtx.put("veiculo", orc.getVeiculo());
+            vCtx.put("orcamento", orc);
+            vCtx.put("pagamento", orc.getPagamento());
 
-            /* Método para enviar a mensagem criada */
-            Transport.send(message);
+            envio.setAssunto("Seu orçamento na BoutCar");
+            envio.setCorpo(Tipo.ORCAMENTO.geraTemplate(vCtx));
+            envio.enviar();
 
             System.out.println("Email enviado!!!");
 
         } catch (MessagingException e) {
-            e.printStackTrace();
+             e.printStackTrace();
             System.err.println("Erro ao enviar email");
         }
-
     }
 
 }

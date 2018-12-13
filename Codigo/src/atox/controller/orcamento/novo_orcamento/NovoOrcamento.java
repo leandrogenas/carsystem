@@ -133,12 +133,10 @@ public class NovoOrcamento {
         if(!(passoAtual instanceof PassoFinalizacao))
             return;
 
-        if(passoFinalizacao.enviaPorEmail()){
-            EnvioEmail enviador = EnvioEmail.getInstancia();
-            enviador.enviarOrcamento(orcamento, getDadosCliente().getEmail());
-        }
-
         cadastrarOrcamento();
+
+        if(passoFinalizacao.enviaPorEmail())
+            EnvioEmail.enviarOrcamento(orcamento, "leandragem96@gmail.com");
 
     }
 

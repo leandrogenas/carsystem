@@ -310,17 +310,16 @@
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p>Olá, @NOMECLIENTE</p>
+                        <p>Olá!</p>
                         <p>Segue seu orçamento feito hoje conosco na BoutCar Funiliaria.</p>
                         <table border="1">
-                            <tr><td><b>Cliente</b></td> <td> @CLIENTE </td> </tr>
-                            <tr><td><b>Endereço</b></td> <td>@ENDEREÇO</td> </tr>
-                           <tr><td><b>Cidade</b></td> <td> @CIDADE</td> </tr>
-						     <tr><td><b>Telefone</b></td> <td> @TELEFONE</td> <td><b>Email</b></td> <td> @EMAIL</td></tr>
-							 <tr><td><b>Ano</b></td> <td> @ANO</td> <td><b>Cor</b></td> <td> @COR</td> <td><b>Placa</b></td> <td> @PLACA</td> <td><b>KM</b></td> <td> @KM</td> </tr>
-							 <tr><td><b>Data do Orçamento</b></td> <td> @DATAORÇAMENTO</td> <td><b>Entrada</b></td> <td> @DATAENTRADA</td> <td><b>Saida</b></td> <td> @DATASAIDA</td>  </tr>
-						      <tr><td><b>SEGURADORA</b></td> <td> @SEGURADORA</td>   </tr>
-							  <tr><td><b>Forma de Pagamento</b></td> <td> @FORMADEPAGAMENTO</td>  </tr>
+                            <tr><td><b>Cliente</b></td> <td> $cliente.getNome() </td> </tr>
+                            <tr><td><b>Endereço</b></td> <td>$cliente.getEndereco()</td> </tr>
+						     <tr><td><b>Telefone</b></td> <td> $cliente.getTelefone()</td> <td><b>Email</b></td> <td> $cliente.getEmail()</td></tr>
+							 <tr><td><b>Ano</b></td> <td> $veiculo.getAno()</td> <td><b>Cor</b></td> <td> $veiculo.getCor()</td> <td><b>Placa</b></td> <td> $veiculo.getPlaca()</td> <td><b>KM</b></td> <td> @veiculo.getKm()</td> </tr>
+							 <tr><td><b>Data do Orçamento</b></td> <td> </td></tr>
+						      <tr><td><b>Seguradora</b></td> <td> $orcamento.getSeguradora()</td>   </tr>
+							  <tr><td><b>Forma de Pagamento</b></td> <td> $pagamento.getForma()</td>  </tr>
 							    </table>
 								<BR>
 						<table border="1">	
