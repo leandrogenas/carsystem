@@ -1,4 +1,3 @@
-package src;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +10,7 @@ public class Inicio extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/atox/view/tela_login.fxml"));
         Scene sceneLogin = new Scene(root, 300, 200);
-        stage.setTitle("Login");
+        stage.setTitle("atox.Login");
         stage.setScene(sceneLogin);
         stage.show();
     }

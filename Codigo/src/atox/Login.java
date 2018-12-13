@@ -1,3 +1,5 @@
+package atox;
+
 import atox.CarSystem;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -23,7 +25,7 @@ public class Login {
 
             fechaLogin();
         }catch (Exception e){
-            System.out.println("Erro na classe Login");
+            System.out.println("Erro na classe atox.Login");
             e.printStackTrace();
         }
     }

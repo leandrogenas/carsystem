@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class DetalhesAtendimento {
@@ -149,10 +150,13 @@ public class DetalhesAtendimento {
 
     private void iniciarAtendimento(){
         if(!orcamento.getPagamento().estaPago()) {
-            if (!confirmIniciar()) return;
+            if (!confirmIniciar())
+                return;
         }
 
         try {
+            Atendimento.iniciar(atendimento.getId());
+
             if (fases.iniciarFaseAtual() && podeIniciar()) {
                 if (!Atendimento.updateFase(faseAtual.codigo, atendimento.getId()))
                     throw new CarSystemException("Não foi possível alterar o atendimento");
@@ -214,7 +218,8 @@ public class DetalhesAtendimento {
                 throw new CarSystemException("Não foi possível finalizar o atendimento!");
 
 
-            Label lblFinalizado = new Label("Atendimento finalizado");
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            Label lblFinalizado = new Label("Atendimento finalizado em " + format.format(new Date()));
             lblFinalizado.setLayoutX(370);
             lblFinalizado.setLayoutY(20);
             lblFinalizado.setTextFill(Color.web("#3b9019"));

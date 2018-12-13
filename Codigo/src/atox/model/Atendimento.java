@@ -1,6 +1,7 @@
 package atox.model;
 
 import atox.BancoDeDados;
+import com.sun.javafx.binding.StringFormatter;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import java.sql.ResultSet;
@@ -47,6 +48,27 @@ public class Atendimento {
                     rSet.getDate("data_inicio"),
                     rSet.getDate("data_termino"),
                     rSet.getBoolean("finalizado")));
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return atendimentos;
+    }
+
+    public static ArrayList<Atendimento> todosIniciados() {
+        ArrayList<Atendimento> atendimentos = new ArrayList<Atendimento>();
+        try {
+            Statement stmt = BancoDeDados.getNewStatement();
+            ResultSet rSet = stmt.executeQuery("SELECT * FROM atendimento WHERE finalizado=0");
+
+            while(rSet.next())
+                atendimentos.add(new Atendimento(
+                        rSet.getInt("cod_atendimento"),
+                        Orcamento.buscaPorId(rSet.getInt("cod_orcamento")),
+                        rSet.getInt("fase"),
+                        rSet.getDate("data_inicio"),
+                        rSet.getDate("data_termino"),
+                        rSet.getBoolean("finalizado")));
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
@@ -134,13 +156,27 @@ public class Atendimento {
     }
 
     public static boolean finalizar(int codAtendimento){
-        String update = "UPDATE atendimento SET finalizado=1 WHERE cod_atendimento=" +codAtendimento;
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String update = "UPDATE atendimento SET finalizado=1, data_termino='"+ format.format(new Date()) +"' WHERE cod_atendimento=" +codAtendimento;
         try {
             Statement stmt = BancoDeDados.getNewStatement();
             return (stmt.executeUpdate(update, Statement.RETURN_GENERATED_KEYS) > 0);
         }catch (SQLException e){
             e.printStackTrace();
             System.err.println("Erro na finalização do atendimento: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean iniciar(int codAtendimento){
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String update = "UPDATE atendimento SET finalizado=0, data_inicio='"+ format.format(new Date()) +"' WHERE cod_atendimento=" +codAtendimento;
+        try {
+            Statement stmt = BancoDeDados.getNewStatement();
+            return (stmt.executeUpdate(update, Statement.RETURN_GENERATED_KEYS) > 0);
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.err.println("Erro no início do atendimento: " + e.getMessage());
             return false;
         }
     }

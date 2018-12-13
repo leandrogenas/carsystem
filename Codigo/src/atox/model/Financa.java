@@ -36,8 +36,21 @@ public class Financa {
 
     public SimpleStringProperty precoProperty() { return new SimpleStringProperty(Double.toString(orcamento.getPreco())); }
     public SimpleStringProperty veiculoProperty() { return new SimpleStringProperty(veiculo.getPlaca()); }
-    public SimpleStringProperty inicioProperty() { return new SimpleStringProperty(atendimento.getInicio().toString()); }
-    public SimpleStringProperty terminoProperty() { return new SimpleStringProperty(atendimento.getFim().toString()); }
+    public SimpleStringProperty inicioProperty() {
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        if(atendimento.getInicio() != null)
+            return new SimpleStringProperty(format.format(atendimento.getInicio()));
+        else
+            return new SimpleStringProperty("Não iniciado");
+    }
+    public SimpleStringProperty terminoProperty() {
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        if(atendimento.getFim() != null)
+            return new SimpleStringProperty(format.format(atendimento.getFim()));
+        else
+            return new SimpleStringProperty("Não finalizado");
+    }
+
 
     public double getPreco() { return orcamento.getPreco(); }
 
@@ -45,11 +58,11 @@ public class Financa {
         List<Financa> financas = new ArrayList<Financa>();
         try {
             Statement stmt = BancoDeDados.getNewStatement();
-            String selectQuery = "select atd.cod_atendimento,atd.fase,atd.data_inicio,atd.data_termino,\n" +
+            String selectQuery = "select atd.cod_atendimento,atd.fase,atd.data_inicio,atd.data_termino, atd.finalizado,\n" +
                     "\torcPag.* from atendimento as atd\n" +
                     "inner join (\n" +
-                    "\tselect orc.cod_orcamento,orc.cod_veiculo,orc.preco,orc.data_inicio [data_orc],orc.termino_previsto,orc.seguradora,orc.iniciado,orc.cod_pagamento,\n" +
-                    "\t\tpag.forma_pagamento, pag.num_parcelas from orcamento as orc\n" +
+                    "\tselect orc.cod_orcamento, orc.cod_cliente, orc.cod_veiculo,orc.preco,orc.data_criado [data_orc],orc.termino_previsto,orc.seguradora,orc.iniciado,orc.cod_pagamento,\n" +
+                    "\t\tpag.forma_pagamento, pag.num_parcelas, pag.pago from orcamento as orc\n" +
                     "\tinner join pagamento as pag\n" +
                     "\ton orc.cod_pagamento = pag.cod_pagamento\n" +
                     ") as orcPag\n" +
@@ -58,27 +71,36 @@ public class Financa {
             selectQuery += "\tand data_termino < '"+dataFinal.toString()+"'";
             ResultSet rSet = stmt.executeQuery(selectQuery);
             while(rSet.next()) {
-                /*
-                Pagamento pagamento = new Pagamento();
+
+                Pagamento pagamento = new Pagamento(
+                        rSet.getInt("cod_pagamento"),
+                        rSet.getString("forma_pagamento"),
+                        rSet.getInt("num_parcelas"),
+                        rSet.getBoolean("pago")
+                );
 
                 Orcamento orcamento = new Orcamento(
                         rSet.getInt("cod_orcamento"),
                         Veiculo.buscaPorId(rSet.getInt("cod_veiculo")),
+                        Cliente.buscaPorId(rSet.getInt("cod_cliente")),
                         pagamento,
                         rSet.getDate("data_inicio"),
                         rSet.getDate("termino_previsto"),
-                        rSet.getString("preco"),
+                        rSet.getDouble("preco"),
                         rSet.getString("seguradora"),
-                        rSet.getString("iniciado"));
+                        rSet.getString("iniciado")
+                );
 
                 Atendimento atendimento = new Atendimento(
                         rSet.getInt("cod_atendimento"),
                         orcamento,
-                        rSet.getString("lblFase"),
+                        rSet.getInt("fase"),
                         rSet.getDate("data_inicio"),
-                        rSet.getDate("termino_previsto"));
-                */
-                financas.add(new Financa(null, null, null));
+                        rSet.getDate("termino_previsto"),
+                        rSet.getBoolean("finalizado")
+                    );
+
+                financas.add(new Financa(pagamento, orcamento, atendimento));
             }
         } catch (Exception ex) {
             System.err.println(ex.getMessage());

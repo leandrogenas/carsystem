@@ -22,6 +22,8 @@ import javafx.scene.text.Font;
 import javafx.util.Callback;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,8 +45,9 @@ public class HistoricoAtendimentos {
         if(item.estaFinalizado()){
             pane.lookup("#paneControles").setVisible(false);
 
-            Label lblFinalizado = new Label("Atendimento finalizado");
-            lblFinalizado.setLayoutX(370);
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            Label lblFinalizado = new Label("Atendimento finalizado em " + format.format(item.getFim()));
+            lblFinalizado.setLayoutX(280);
             lblFinalizado.setLayoutY(20);
             lblFinalizado.setTextFill(Color.web("#3b9019"));
             lblFinalizado.setFont(Font.font("System", 20));
@@ -93,10 +96,10 @@ public class HistoricoAtendimentos {
                 )
         );
 
-        TableColumn<Atendimento, String> colDtIni = column("Início", null);
-        TableColumn<Atendimento, String> colDtFim = column("Término", null);
+        TableColumn<Atendimento, String> colDataIni = column("Data de início", Atendimento::inicioProperty);
 
-        tabHistAtendimento.getColumns().addAll(colCli, colStatus, colDtIni, colDtFim);
+
+        tabHistAtendimento.getColumns().addAll(colCli, colStatus, colDataIni);
 
     }
 }

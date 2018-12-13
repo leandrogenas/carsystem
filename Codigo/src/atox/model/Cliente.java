@@ -127,8 +127,8 @@ public class Cliente {
             stmt.setString(1, cliente.getDocumento());
             stmt.setString(2, cliente.getNome());
             stmt.setString(3, cliente.getEmail());
-            stmt.setString(3, cliente.getTelefone());
-            stmt.setString(3, cliente.getEndereco());
+            stmt.setString(4, cliente.getTelefone());
+            stmt.setString(5, cliente.getEndereco());
 
             int linhas = stmt.executeUpdate();
 

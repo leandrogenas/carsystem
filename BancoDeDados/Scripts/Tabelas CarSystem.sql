@@ -85,6 +85,7 @@ create table atendimento(
  fase int not null,
  data_inicio DATE,
  data_termino DATE,
+ finalizado bit null,
  primary key(cod_atendimento),
  CONSTRAINT fk_AtendimentoOrcamento FOREIGN KEY (cod_orcamento) REFERENCES
 orcamento (cod_orcamento),

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fillWidth="false" maxHeight="600.0" maxWidth="900.0" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" >
+<VBox fillWidth="false" maxHeight="600.0" maxWidth="900.0" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <HBox prefHeight="601.0" prefWidth="900.0">
             <children>
@@ -53,14 +53,11 @@
                                                 <Insets bottom="3.0" left="3.0" right="3.0" />
                                             </VBox.margin>
                                         </SplitMenuButton>
-                                        <SplitMenuButton layoutX="10.0" layoutY="45.0" mnemonicParsing="false" onAction="#atendimentos" popupSide="RIGHT" prefHeight="25.0" prefWidth="230.0" text="Atendimentos">
-                                            <items>
-                                                <MenuItem mnemonicParsing="false" onAction="#historicoAtendimentos" text="Histórico" />
-                                            </items>
-                                            <VBox.margin>
-                                                <Insets bottom="3.0" left="3.0" right="3.0" />
-                                            </VBox.margin>
-                                        </SplitMenuButton>
+                              <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#atendimentos" prefHeight="25.0" prefWidth="230.0" text="Atendimentos">
+                                 <VBox.margin>
+                                    <Insets bottom="3.0" left="3.0" right="3.0" />
+                                 </VBox.margin>
+                              </Button>
                                         <Button fx:id="telaFinanceiro" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#financeiro" prefHeight="25.0" prefWidth="230.0" text="Financeiro">
                                             <VBox.margin>
                                                 <Insets bottom="3.0" left="3.0" right="3.0" />

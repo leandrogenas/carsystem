@@ -42,6 +42,7 @@ public class Financeiro {
             alert.setContentText("Não foi retornado nenhum registro no intervalo estipulado!");
             alert.showAndWait();
         } else {
+            System.out.println(financas);
             tabFinanceiro.getItems().addAll(financas);
             caixaLabel.setText(String.valueOf(financas.stream().mapToDouble(financa -> financa.getPreco()).sum()));
             atendimentosLabel.setText(String.valueOf(financas.size()));
@@ -49,7 +50,7 @@ public class Financeiro {
     }
     public void salvarPdf() {
         try {
-            /*
+
             PDDocument document = new PDDocument();
 
             for (int i = 0; i < 2; i++) {
@@ -66,7 +67,7 @@ public class Financeiro {
 
             //Closing the document
             document.close();
-            */
+
         } catch (Exception ex) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Erro Ao Salvar Arquivo");
